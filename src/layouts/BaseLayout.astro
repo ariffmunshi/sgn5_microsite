@@ -1,0 +1,32 @@
+---
+import {SITE_TITLE} from '../constants.js';
+import TopBar from '../components/TopBar.astro';
+import Navbar from '../components/Navbar.astro';
+const {title} = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{SITE_TITLE}</title>
+		<style>
+      body {
+        background-image: url('/assets/svg/horizon-animated.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+				background-color: antiquewhite;
+				font-family: 'DM Sans', sans-serif;
+      }
+    </style>
+	</head>
+	<body>
+		    <Navbar />
+        <TopBar />
+        <h1>Your are on page {title}</h1>
+		<slot />
+	</body>
+</html>
