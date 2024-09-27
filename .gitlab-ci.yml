@@ -1,54 +1,53 @@
 include:
-  - project: "WOG/gvt/ship/ship-hats-templates"
-    ref: "v1.0.9"
-    file:
-      - /templates/.gitlab-ci-common.yml
+    - project: "WOG/gvt/ship/ship-hats-templates"
+      ref: "v1.0.9"
+      file:
+          - /templates/.gitlab-ci-common.yml
 
 image: $NEXUSREPO_DOCKER_PROXY_HOSTNAME/node:18-alpine
 
 stages:
-  - unit-test
-  - static-test # static test after getting output from build
-  - runtime-test # runtime testing
-  - sign # after all is good for testing, sign the output from build and push to an external repository
-  - deploy-to-prod # finally deploy with safety rules
+    - unit-test
+    - static-test # static test after getting output from build
+    - runtime-test # runtime testing
+    - sign # after all is good for testing, sign the output from build and push to an external repository
+    - deploy-to-prod # finally deploy with safety rules
 
 unit-test-SGN5:
-  stage: unit-test
-  script:
-    - npm install
-    - npm run test:coverage
-  artifacts:
-    paths:
-      - coverage
+    stage: unit-test
+    script:
+        - npm install
+        - npm run test:coverage
+    artifacts:
+        paths:
+            - coverage
 
 ship-sonarqube-scan:
-  variables:
-    SONAR_PROJECTKEY: SGN-EDB-SGN-SGN5_Microsite
-    SONAR_SOURCES: "src"
-    SONAR_OPT_ARG: >
-      -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-      -Dsonar.typescript.tsconfigPaths=tsconfig.sonar.json
-      -Dsonar.exclusions=**/*.test.tsx,**/*.test.ts
+    variables:
+        SONAR_PROJECTKEY: SGN-EDB-SGN-SGN5_Microsite
+        SONAR_SOURCES: "src"
+        SONAR_OPT_ARG: >
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.exclusions=src/constants.js,src/env.d.js,src/data/**/*.js
 
 deploy-prod-manual-job:
-  rules:
-    - when: never
-  script:
-    - "# Script Not Used."
+    rules:
+        - when: never
+    script:
+        - "# Script Not Used."
 
 container_scanning:
-  rules:
-    - when: never
+    rules:
+        - when: never
 
 dast:
-  rules:
-    - when: never
+    rules:
+        - when: never
 
 ship-sonarqube-scan-maven:
-  rules:
-    - when: never
+    rules:
+        - when: never
 
 ship-sonarqube-output-report-maven:
-  rules:
-    - when: never
+    rules:
+        - when: never
