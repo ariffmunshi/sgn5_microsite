@@ -1,32 +1,25 @@
 ---
-import {SITE_TITLE} from '../constants.js';
-import TopBar from '../components/TopBar.astro';
-import Navbar from '../components/Navbar.astro';
-const {title} = Astro.props;
+import { SITE_TITLE, DESCRIPTION } from "../constants.js";
+import "../styles/global.css";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{SITE_TITLE}</title>
-		<style>
-      body {
-        background-image: url('/assets/svg/horizon-animated.svg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-				background-color: antiquewhite;
-				font-family: 'DM Sans', sans-serif;
-      }
-    </style>
-	</head>
-	<body>
-		    <Navbar />
-        <TopBar />
-        <h1>Your are on page {title}</h1>
-		<slot />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{SITE_TITLE}</title>
+    <meta name="description" content={DESCRIPTION} />
+    <meta name="keywords" content="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" defer></script> -->
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>

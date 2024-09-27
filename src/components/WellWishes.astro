@@ -1,0 +1,88 @@
+---
+import { Image } from "astro:assets";
+import flower from "../images/well-wishes/flower.svg";
+---
+
+<section id="well-wishes-container">
+	<Image src={flower} alt="flower" class="flower" />
+	<div class="text-container">
+		<h3 >To Friendships That Know No Boundaries</h3>
+		<p>Share a photo of a cherished memory with a friend, tell us what you miss about them and how you keep the connection alive.</p>
+		<p>The cozy moments that give us the warm fuzzies stand a chance to win a special giveaway!</p>
+	</div>
+	<div class="padlet-container">
+		<iframe class="padlet-iframe"
+			src="https://padlet.com/embed/d4hffec9ckuxoag1"
+			allow="camera;microphone;geolocation"
+			style="width:102%;display:block;padding:0;margin:0">
+		</iframe>
+	</div>
+</section>
+
+<style>
+    #well-wishes-container {
+        position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 40px;
+		background-color: #EEE7E0;
+		height: 100vh;
+		width: 100vw;
+		padding: 80px 60px;
+        overflow: hidden;
+    }
+
+	.flower {
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: scale(0.6);
+		transform-origin: top left;
+	}
+
+	.text-container {
+		width: 30%;
+		z-index: 1;
+	}
+
+	h3 {
+		font-size: 48px;
+		font-weight: bold;
+		line-height: 1.2;
+	}
+
+	p {
+		margin: 10px 0;
+		font-size: 21px;
+		line-height: 1.5;
+	}
+
+   .padlet-container {
+		flex: 1;
+		border-top-left-radius: 40px;
+		border-bottom-right-radius: 40px;
+		background-color: #D9D9D9;
+		height: 100%;
+		overflow: hidden;
+    }
+
+	.padlet-iframe {
+		width: 102%;
+		height: calc(100% + 10%);
+		border: none;
+		position: relative;
+		top: -50px;
+	}
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .padlet-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    /*Hide scrollbar for IE, Edge and Firefox */
+    .padlet-container {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>

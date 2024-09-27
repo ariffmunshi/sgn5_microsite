@@ -1,0 +1,318 @@
+---
+import { Image } from "astro:assets";
+import mainMan from "../images/main-man.svg";
+import group1LeftTop from "../images/community/Community_Grp1_left_top.svg";
+import group2LeftBtm from "../images/community/Community_Grp2_left_btm.svg";
+import womenFormal from "../images/community/Community_Grp2_HERE - Women-formal.svg";
+import group3MidLeftTop from "../images/community/Community_Grp3_midleft_top.svg";
+import group4MidLeftBot from "../images/community/Community_Grp4_midleft_btm.svg";
+import manGreySweather from "../images/community/Community_Grp4_HERE - Man-grey-sweather.svg";
+import group5MidRightTop from "../images/community/Community_Grp5_midright_top.svg";
+import manDarkBlueShirt from "../images/community/Community_Grp5_HERE - Man-dark-blue-shirt.svg";
+import group6RightTop from "../images/community/Community_Grp6_right_top.svg";
+import group7RightMid from "../images/community/Community_Grp7_right_mid.svg";
+import womenStripeSweather from "../images/community/Community_Grp7_HERE - Women-stripe-sweather.svg";
+import manCurlyHair from "../images/community/Community_Grp8_HERE - Man-curly-hair.svg";
+import group8Rightbtm from "../images/community/Community_Grp8_right_btm.svg";
+import group9MidCentre from "../images/community/Community_Grp9_mid_centre.svg";
+
+import crossIcon from "../images/community/cross.svg";
+import leftIcon from "../images/community/icon-left.svg";
+import rightIcon from "../images/community/icon-right.svg";
+
+import communitySoundsAudio from "../audio/Community_People_Chatting.mp3"
+---
+
+<section id="brand-intro-3-container">
+    <div id="brand-intro-3-content">
+        <Image id="group5MidRightTop" class="persons" src={group5MidRightTop} alt="persons" style="top: -30%; right: 20%;"/>
+        <Image id="group3MidLeftTop" class="persons" src={group3MidLeftTop} alt="persons" style="top: -45%; left: 5%;"/>
+        <Image id="group6RightTop" class="persons" src={group6RightTop} alt="persons" style="top: -40%; right: -20%;"/>
+        <Image id="group9MidCentre" class="persons" src={group9MidCentre} alt="persons" style="top: -10%; left: 30%;"/>
+        <Image id="group1LeftTop" class="persons" src={group1LeftTop} alt="persons" style="top: -25%; left: -10%;"/>
+        <Image id="group7RightMid" class="persons" src={group7RightMid} alt="persons" style="top: 0%; right: -40%;"/>
+        <Image id="manDarkBlueShirt" class="persons featured" src={manDarkBlueShirt} alt="persons" style="top: 15%; right: 20%;"/>
+        <Image id="womenFormal" class="persons featured" src={womenFormal} alt="persons" style="top: 20%; left: 0%;"/>
+        <Image id="womenStripeSweather" class="persons featured" src={womenStripeSweather} alt="persons" style="top: 25%; right: -10%;"/>
+        <Image id="main-man-community" class="persons" src={mainMan} alt="man" style="bottom: -10%; left: 50%;" />
+        <Image id="manCurlyHair" class="persons featured" src={manCurlyHair} alt="persons" style="bottom: -10%; right: 10%;"/>
+        <Image id="group8Rightbtm" class="persons" src={group8Rightbtm} alt="persons" style="bottom: 0%; right: -20%;"/>
+        <Image id="group4MidLeftBot" class="persons" src={group4MidLeftBot} alt="persons" style="bottom: -10%; left: 10%;"/>
+        <Image id="manGreySweather" class="persons featured" src={manGreySweather} alt="persons" style="bottom: -10%; left: 25%;"/>
+        <Image id="group2LeftBtm" class="persons" src={group2LeftBtm} alt="persons" style="bottom: -100%; left: -20%;"/>
+        
+        <div id="card-scene-4" class="card scene-4">
+            <p class="card-text-main">
+                It's the real-life adventures, the defiance of odds and the pursuit of dreams that connect us.
+            </p>
+            <p class="card-text-sub">Click to read stories that make our community inspiring</p>
+        </div>
+
+        <div id="community-modal-container" class="modal-container card">
+            <Image aria-label="Left button" class="left-icon" src={leftIcon} alt="icon-left" />
+            <div id="main-panel">
+                <div id="left-panel">
+                    <img id="modal-content-image" class="modal-content-image"src="https://placehold.co/600x400" alt=""/>
+                </div>
+                <div id="right-panel">
+                    <p id="modal-text-content" class="card-text-alt">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p>
+                    <a id="learn-more-btn" class="primary-btn" aria-label="Learn more button" href="" target="_blank">
+                        Learn more
+                    </a>
+                </div>
+            </div>
+            <Image aria-label="Right button" class="right-icon" src={rightIcon} alt="icon-right" />
+            <Image aria-label="Close modal" class="close-icon" src={crossIcon} alt="close-icon" />
+        </div>
+        <audio id="community-sounds-audio" src={communitySoundsAudio}></audio>
+    </div>
+</section>
+
+<style lang="scss">
+    #brand-intro-3-container {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        z-index: 2;
+    }
+
+    img.persons {
+        position: absolute;
+        pointer-events: none;
+    }
+    
+    .card.scene-4 {
+        position: absolute;
+        left: 50%;
+        width: 640px;
+        transform: translate(-50%, 50%);
+    }
+
+    .card-text-main {
+        margin-bottom: 10px;
+    }
+
+    #main-man-community {
+        transform: translate(-50%, 0) scale(1.25);
+        transform-origin: center;
+    }
+
+    .persons.featured {
+        transition: transform 0.4s ease-in-out;
+        pointer-events: fill;
+        cursor: pointer;
+        &:hover,
+        &:active {
+            transform: translateY(-10px);
+            filter: drop-shadow(0 0 5px #ffdf8a) drop-shadow(0 0 10px #ffdf8a);
+        }
+    }
+
+    #community-modal-container {
+        @extend .card;
+        position: absolute;
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        width: 40rem;
+        max-width: calc(100vw - 4%);
+        z-index: 3;
+    }
+
+    #main-panel {
+        flex-grow: 1;
+        display: flex;
+        align-items: flex-start;
+        align-self: stretch;
+        padding: 10px;
+    }
+
+    #left-panel {
+        border-top-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+        padding: 10px;
+        width: 45%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    #right-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        height: 100%;
+        width: 55%;
+        padding: 10px;
+    }
+
+    .close-icon {
+        position: absolute;
+        top: 38px;
+        right: 38px;
+        width: 16px;
+        height: 16px;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .left-icon,
+    .right-icon {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    // Imports
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { communityDataArr } from "../data/community";
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    // Functions
+    function addPulsingGlow() {
+        glowingElems.forEach((element) => {
+            element.classList.add("glow");
+        });
+    }
+
+    function removePulsingGlow() {
+        glowingElems.forEach((element) => {
+            element.classList.remove("glow");
+        });
+    }
+
+    // Initialise variables
+    const glowingElems = [...document.querySelectorAll(".featured")];
+    const communitySoundsAudio = document.querySelector("#community-sounds-audio")
+
+    // Scroll Animation
+    // Initialise Timeline
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#brand-intro-3-container",
+            pin: "#brand-intro-3-container",
+            pinSpacing: false,
+            scrub: true,
+            start: "top top",
+            end: "bottom -50px",
+            onEnter: () => {
+                communitySoundsAudio.play()
+            },
+            onLeave: () => {
+                communitySoundsAudio.pause()
+            },
+            onEnterBack:  () => {
+                communitySoundsAudio.play()
+            },
+            onLeaveBack:  () => {
+                communitySoundsAudio.pause()
+            },
+        },
+    });
+
+    // Scroll Animation
+    timeline
+    .from("#main-man-community", { opacity: 0 })
+    .from("#card-scene-4", { opacity: 0 }, "<")
+    .from("#group2LeftBtm", { opacity: 0 })
+    .from("#womenFormal", { opacity: 0 })
+    .from("#group8Rightbtm", { opacity: 0 })
+    .from("#manCurlyHair", { opacity: 0 })
+    .from("#group7RightMid", { opacity: 0 })
+    .from("#womenStripeSweather", { opacity: 0 })
+    .from("#group1LeftTop", { opacity: 0 })
+    .from("#group4MidLeftBot", { opacity: 0 })
+    .from("#manGreySweather", { opacity: 0 })
+    .from("#group9MidCentre", { opacity: 0 })
+    .from("#group3MidLeftTop", { opacity: 0 })
+    .from("#group5MidRightTop", { opacity: 0 })
+    .from("#manDarkBlueShirt", { opacity: 0 })
+    .from("#group6RightTop", { opacity: 0 })
+    .to("#card-scene-4", { opacity: 0 })
+    .to({},
+        {
+            onComplete: addPulsingGlow,
+            onReverseComplete: () => {
+                removePulsingGlow();
+            },
+        }
+    )
+    .to("#brand-intro-3-container", {opacity: 0, delay: 2})
+
+    // Modal
+    function intitialiseModal() {
+        let currentContentArrIndex = 0;
+        const contentArr = communityDataArr;
+        const elementIDs = contentArr.map((element) => element.elementID);
+        const modal = document.querySelector<HTMLElement>("#community-modal-container")!;
+        const closeBtn = document.querySelector<HTMLElement>(".close-icon")!;
+        const leftBtn = document.querySelector<HTMLElement>(".left-icon")!;
+        const rightBtn = document.querySelector<HTMLElement>(".right-icon")!;
+        const modalImage = document.querySelector<HTMLImageElement>("#modal-content-image")!;
+        const modalText = document.getElementById("modal-text-content")!;
+        const learnMoreBtn = document.getElementById("learn-more-btn")!;
+        
+        function updateContent(id: number) {
+            const content = contentArr[id];
+
+            modal.style.display = "flex";
+            modal.style.top = content.topPos;
+            modal.style.left = content.leftPos;
+            modal.style.right = content.rightPos;
+            modalImage.src = content.imagePath;
+            modalText.textContent = content.text;
+            learnMoreBtn.href = content.link;
+        }
+
+        function updateGlow(id: number) {
+            const target = document.getElementById(elementIDs[id])!
+            removePulsingGlow();
+            target.classList.add("glow")
+        }
+
+        function hideModal() {
+            modal.style.display = "none";
+        }
+
+        glowingElems.forEach((element) => {
+            element.addEventListener("click", (event) => {
+                const target = event.target as Element; 
+                const targetID = target.id;
+                currentContentArrIndex = elementIDs.indexOf(targetID)
+                if (elementIDs.includes(targetID)) {
+                    updateContent(currentContentArrIndex);
+                    updateGlow(currentContentArrIndex)
+                }                
+            });
+        });
+
+        leftBtn.addEventListener("click", () => {
+            currentContentArrIndex = (currentContentArrIndex - 1) % contentArr.length;
+            updateContent(currentContentArrIndex);
+            updateGlow(currentContentArrIndex)
+        });
+
+        rightBtn.addEventListener("click", () => {
+            currentContentArrIndex = (currentContentArrIndex + 1) % contentArr.length;
+            updateContent(currentContentArrIndex);
+            updateGlow(currentContentArrIndex)
+        });
+
+        closeBtn.addEventListener("click", () => {
+            hideModal();
+        });
+    }
+    intitialiseModal();
+</script>

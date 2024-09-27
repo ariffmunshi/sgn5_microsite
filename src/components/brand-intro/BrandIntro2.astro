@@ -1,0 +1,218 @@
+---
+import { Image } from "astro:assets";
+import mainMan from "../../images/main-man.svg";
+import scene3Background from "../../images/brand-intro/intro2/Scene3_Background.svg";
+import womanFormalAttire from "../../images/brand-intro/intro2/Scene3_Women-formal-attire.svg";
+import manRedBag from "../../images/brand-intro/intro2/Scene3_Men-red-bag.svg";
+import couple from "../../images/brand-intro/intro2/Scene3_Couple.svg";
+import manInSuit from "../../images/brand-intro/intro2/Scene3_Man-in-suit.svg";
+import manYellowShirt from "../../images/brand-intro/intro2/Scene3_Man-yellow-shirt.svg";
+import momAndChild from "../../images/brand-intro/intro2/Scene3_Mom-and-child.svg";
+import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
+---
+
+<section id="brand-intro-2-container">
+    <div id="brand-intro-2-content">
+        <!-- Scene 3 -->
+        <Image id="scene3-background" class="scene-3" src={scene3Background} alt="scene 3 background" />
+        <Image id="main-man-intro2" class="scene-3" src={mainMan} alt="main man" />
+        <Image id="man-red-bag" class="person scene3" src={manRedBag} alt="person" />
+        <Image id="mom-and-child" class="person scene3" src={momAndChild} alt="person" />
+        <Image id="woman-formal-attire" class="person scene3" src={womanFormalAttire} alt="person" />
+        <Image id="man-yellow-shirt" class="person scene3" src={manYellowShirt} alt="person" />
+        <Image id="couple" class="person scene3" src={couple} alt="person" />
+        <Image id="man-in-suit" class="person scene3" src={manInSuit} alt="person" />
+
+        <div id="card-scene-3" class="card scene-3">
+            <p class="card-text-main">
+                What began as a small group of overseas Singaporeans has blossomed into a vibrant, diverse community
+                of
+                <span id="brand-intro-2-count1" class="typed-text fixed-width-1">0</span>
+                people from 
+                <span id="brand-intro-2-count2" class="typed-text fixed-width-2">0</span>
+                nationalities and
+                <span id="brand-intro-2-count3" class="typed-text fixed-width-2">0</span>
+                countries.
+            </p>
+        </div>
+        <audio id="city-sounds-audio" src={citySoundsAudio}></audio>
+    </div>
+</section>
+
+<style>
+    #brand-intro-2-container {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        z-index: 3;
+    }
+
+    #scene3-background {
+        position: absolute;
+        bottom: -120px;
+        width: 100%;
+        z-index: 1;
+        opacity: 0;
+    }
+
+    #main-man-intro2 {
+        position: absolute;
+        z-index: 5;
+        left: 50%;
+        bottom: -25%;
+        height: 100%;
+        transform: translate(-50%, 0);
+        transform-origin: top center;
+        opacity: 0;
+    }
+
+    .person {
+        position: absolute;
+        z-index: 2;
+        transform: scale(0.8);
+    }
+
+    #man-red-bag {
+        bottom: 5%;
+        left: 2%
+    }
+
+    #woman-formal-attire {
+        bottom: 0;
+        left: 6%;
+        transform-origin: bottom left;
+    }
+
+    #mom-and-child {
+        bottom: 10%;
+        left: 25%;
+    }
+
+    #man-yellow-shirt {
+        bottom: 0%;
+        right: 30%;
+    }
+
+    #couple {
+        bottom: 13%;
+        right: 15%;
+    }
+
+    #man-in-suit {
+        bottom: 0;
+        right: 0;
+        transform-origin: bottom right;
+    }
+
+    .card {
+        position: absolute;
+        left: 50%;
+        width: 580px;
+        transform: translate(-50%, 10%);
+        z-index: 5;
+    }
+
+    .typed-text {
+        display: inline-block;
+        font-size: 30px;
+        color: #B95B2D;
+    }
+
+    .fixed-width-1 {
+        width: 110px;
+    }
+
+    .fixed-width-2 {
+        width: 50px;
+    }
+
+</style>
+
+<script>
+    // Imports
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    // Initialise variables
+    const citySoundsAudio = document.querySelector("#city-sounds-audio");
+
+    // Scroll Animation
+    // Initialise custom GSAP effect for counter
+    gsap.registerEffect({
+        name: "counter",
+        extendTimeline: true,
+        defaults: {
+            end: 0,
+            duration: 0.5,
+            ease: "power1.inOut", // Smoother easing function
+            increment: 1,
+        },
+        effect: (targets, config) => {
+            let tl = gsap.timeline();
+            let num = parseInt(targets[0].innerText.replace(/,/g, ""), 10);
+            targets[0].innerText = num; // Convert and reset text to a number
+            tl.to(
+                targets,
+                {
+                    duration: config.duration,
+                    innerText: config.end,
+                    modifiers: {
+                        innerText: function (innerText) {
+                            // Format numbers with commas for thousands
+                            return gsap.utils
+                                .snap(config.increment, innerText)
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        },
+                    },
+                    ease: config.ease,
+                },
+                0
+            );
+            return tl;
+        },
+    });
+    
+    // Initialise Timeline
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#brand-intro-2-container",
+            pin: "#brand-intro-2-container",
+            pinSpacing: false,
+            scrub: true,
+            start: "top top",
+            end: "bottom top",
+            onEnter: () => {
+                citySoundsAudio.play()
+            },
+            onLeave: () => {
+                citySoundsAudio.pause()
+            },
+            onEnterBack:  () => {
+                citySoundsAudio.play()
+            },
+            onLeaveBack:  () => {
+                citySoundsAudio.pause()
+            },
+        },
+    });
+    
+    // Scroll Animation
+    timeline
+    .from("#card-scene-3", { opacity: 0 })
+    .to("#main-man-intro2", { opacity: 1, y: "0vh" }, "<")
+    .to("#scene3-background", { opacity: 1, scale: 1.05, transformOrigin: "50% 50%" })
+    .from("#mom-and-child", { opacity: 0 } )
+    .from("#man-yellow-shirt", { opacity: 0 }  )
+    .from("#woman-formal-attire", { opacity: 0 } )
+    .from("#man-red-bag", { opacity: 0 } )
+    .from("#couple", { opacity: 0 } )
+    .from("#man-in-suit", { opacity: 0 } )
+    .counter("#brand-intro-2-count1", { end: 123000, ease: "linear", duration: 2 }, "-=3")
+    .counter("#brand-intro-2-count2", { end: 183, ease: "linear", duration: 2 }, "-=3")
+    .counter("#brand-intro-2-count3", { end: 168, ease: "linear", duration: 2 }, "-=3")
+    .to("#brand-intro-2-content", {opacity: 0, delay: 1})
+</script>

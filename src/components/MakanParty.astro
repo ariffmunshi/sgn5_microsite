@@ -1,0 +1,238 @@
+---
+import { Image, getImage } from "astro:assets";
+import sceneBackground from "../images/makan-party/makan-party-background.svg";
+import { restaurantsArr as restaurants } from "../data/restaurants.js";
+import makanCoffeeshopAudio from "../audio/Makan_Coffeeshop.mp3"
+
+const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'});
+---
+
+<section id="makan-party-container">
+    <div id="makan-party-content" style={`background-image: url(${optimizedBackground.src});`}>
+        <div id="main-man-makan"></div>
+        <div id="makan-party-text" class="card scene-3">
+            <p class="card-text-main">
+                We've worked with some of the best Singapore dining spots all around the world to offer you exclusive perks. Grab a friend and share a great meal. Enjoy the flavours that unite us!
+            </p>
+        </div>
+        <div id="makan-party-restaurants" class="makan-party-restaurants card" style="display: none;">
+            <div class="restaurants-header body-font">
+                <h3>Restaurant Name</h3>
+                <h3>Location</h3>
+            </div>
+            <div class="restaurant-items">
+                {restaurants.map(restaurant => (
+                    <div class="restaurant-item">
+                        <div class="restaurant-header body-font">
+                            <h4 class="restaurant-data">{restaurant.name}</h4>
+                            <h4 class="restaurant-data">{restaurant.location}</h4>
+                        </div>
+                        <div class="restaurant-info">
+                            <img src={restaurant.image} alt="" class="restaurant-img">
+                            <div class="restaurant-content">
+                                <p class="restaurant-text">{restaurant.content}</p>
+                                <a class="primary-btn" href={restaurant.link}>Dine here</a>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+        <audio id="makan-coffeeshop-audio" src={makanCoffeeshopAudio}></audio>
+    </div>
+</section>
+
+<style lang="scss">
+    #makan-party-container {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        z-index: 1;
+    }
+    #makan-party-content{
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        background-position: bottom left;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    #main-man-makan {
+        position: absolute;
+        left: -5%;
+        bottom: -15%;
+        height: 80%;
+    }
+
+    .card.scene-3 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 600px;
+        cursor: pointer;
+    }
+
+    .card.makan-party-restaurants {
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        border-top-right-radius: 0;
+        border-top-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        border-bottom-left-radius: 0;
+        height: calc(100vh - 20%);
+        width: 600px;
+    }
+
+    .restaurant-items {
+        overflow-y: scroll;
+        margin: 20px 0;
+        height: calc(100% - 50px);
+        padding: 0 20px;
+    }
+
+    .restaurants-header,
+    .restaurant-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        h3, h4 {
+            font: inherit;
+            color: inherit;
+        }
+    }
+
+    .restaurants-header {
+        padding: 10px 20px 0;
+    }
+
+
+    .restaurant-header,
+    .restaurant-text {
+        color: #904723;
+    }
+
+    .restaurant-header {
+        cursor: pointer;
+    }
+
+    .restaurant-info {
+        align-items: center;
+        gap: 20px;
+        padding-bottom: 20px;
+        height: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: all 0.25s;
+        transition-behavior: allow-discrete;
+        opacity: 0;
+    }
+
+    .restaurant-item.active {
+        .restaurant-info {            
+            display: flex;
+            height: auto;
+            opacity: 1;
+            transform: scaleY(1);
+        }
+        .restaurant-header {
+            color: #ED8387;
+        }   
+    }
+    
+    .restaurant-img {
+        border-top-right-radius: 40px;
+        border-bottom-left-radius: 40px;
+        height: 180px;
+        width: 240px;
+        background-color: #999999;
+    }
+
+    .restaurant-content p {
+        margin-bottom: 20px;
+    }
+</style>
+
+<script>
+    // Imports
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import lottie from "lottie-web";
+    
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initialise variables
+    const mainMan = document.querySelector("#main-man-makan")!;
+    const textCard = document.querySelector("#makan-party-text")!;
+    const allRestaurants = document.querySelectorAll(".restaurant-item")!;
+    const restaurantsCard = document.querySelector("#makan-party-restaurants")!;
+    const makanCoffeeshopAudio = document.querySelector("#makan-coffeeshop-audio")!;
+
+    const mainManAnimation = lottie.loadAnimation({
+        container: mainMan,
+        renderer: "svg",
+        loop: true,
+        autoplay: false,
+        path: "/man-walking.json",
+    });
+
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#makan-party-container",
+            start: "top top",
+            end: "bottom top",
+            pin: true,
+            pinSpacing: false,
+            toggleActions: "restart complete none reset",
+            onEnter: () => {
+                makanCoffeeshopAudio.play()
+            },
+            onLeave: () => {
+                makanCoffeeshopAudio.pause()
+            },
+            onEnterBack:  () => {
+                makanCoffeeshopAudio.play()
+            },
+            onLeaveBack:  () => {
+                makanCoffeeshopAudio.pause()
+            },
+        }
+    });
+
+    timeline
+    .from("#makan-party-content", { opacity: 0, delay: 0.2, duration: 0.5 })
+    .to(mainMan,{
+        x: 500,
+        delay: 0.2,
+        duration: 3.5,
+        ease: "linear",
+        onStart: () => {
+            mainManAnimation.goToAndPlay(4);
+            mainManAnimation.play();
+        },
+        onComplete: () => {
+            mainManAnimation.pause();
+            textCard.classList.add("glow");
+        }
+    })
+
+    // Click events
+    textCard.addEventListener('click', () => {
+        textCard.remove();
+        (restaurantsCard as HTMLDivElement).style.cssText = "display: block;";
+    });
+
+    restaurantsCard.addEventListener('click', (e) => {
+        const target = e.target as Element;
+        if (target.classList.contains("restaurant-header") || target.classList.contains("restaurant-data")) {
+            allRestaurants.forEach((restaurant) => {
+                restaurant.classList.remove("active");
+            })
+            const parent = target.closest('.restaurant-item')!;
+            parent.classList.add("active");
+        }
+    })
+</script>

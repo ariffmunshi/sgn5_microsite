@@ -1,0 +1,219 @@
+---
+import { Image } from "astro:assets";
+import mainMan from "../../images/main-man.svg";
+import scene1Foreground from "../../images/brand-intro/intro1/Scene1_Foreground.svg";
+import scene1Midground from "../../images/brand-intro/intro1/Scene1_Midground_Updated.svg";
+import scene1Background from "../../images/brand-intro/intro1/Scene1_Background.svg";
+import scene2Midground from "../../images/brand-intro/intro1/Scene2_Midground.svg";
+import scene2Background from "../../images/brand-intro/intro1/Scene2_Background.svg";
+import footStepsAudio from "../../audio/Intro_2_Nature_Footstep.mp3"
+---
+
+<section id="brand-intro-1-container">
+    <div id="brand-intro-1-content">
+        <!-- Scene 1 -->
+        <Image id="main-man-intro1" class="scene-1"src={mainMan} alt="main man" />
+        <Image id="scene1-midground" class="scene-1" src={scene1Midground} alt="scene 1 midground" />
+        <Image id="scene1-foreground" class="scene-1" src={scene1Foreground} alt="scene 1 foreground" />
+        <Image id="scene1-background" class="scene-1" src={scene1Background} alt="scene 1 background" />
+        <div id="group4-trees" class="popping-trees scene-1" style="right: 25%; bottom: 45%"></div>
+        <div id="group3-trees" class="popping-trees scene-1" style="left: 15%; bottom: 35%"></div>
+        <div id="group2-trees" class="popping-trees scene-1" style="right: 15%; bottom: 20%"></div>
+        <div id="card-scene-1" class="card scene-1">
+            <p class="card-text-main">As we reflect on five incredible years, we want to celebrate the unique paths each of us has taken and the friendships that tie us together.​</p>
+        </div>
+        <!-- Scene 2 -->
+        <Image id="scene2-midground" class="scene-2" src={scene2Midground} alt="scene 2 midground" />
+        <Image id="scene2-background" class="scene-2" src={scene2Background} alt="scene 2 background" />
+        <div id="card-scene-2" class="card scene-2">
+            <p class="card-text-main">So, take a moment to explore and discover this world that our team has created for you.​</p>
+            <p class="card-text-main">You are a valued and integral part of this journey!​</p>
+        </div>
+        <audio id="foot-steps-audio" src={footStepsAudio}></audio>
+    </div>
+</section>
+
+<style>
+    #brand-intro-1-container {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    #main-man-intro1 {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        height: 55%;
+        transform: translate(-50%, 0);
+        z-index: 5;
+    }
+
+    #scene1-background {
+        position: absolute;
+        bottom: 200px;
+        width: 100%;
+        z-index: 1;
+    }
+    #scene1-midground {
+        position: absolute;
+        bottom: -120px;
+        width: 100%;
+        z-index: 2;
+    }
+
+    #scene1-foreground {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 92%;
+        z-index: 4;
+    }
+
+    .popping-trees {
+        position: absolute;
+        z-index: 3;
+        transform: scale(0.65);
+        transform-origin: bottom;
+    }
+
+    #scene2-midground {
+        position: absolute;
+        bottom: -240px;
+        width: 100%;
+        z-index: 4;
+    }
+
+    #scene2-background {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 3;
+    }
+
+    .card {
+        position: absolute;
+        left: 50%;
+        width: 680px;
+        transform: translate(-50%, 50%);
+        z-index: 5;
+    }
+</style>
+
+<script>
+    // Imports
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import lottie from "lottie-web";
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    // Initialise lottie animation
+    const group2Trees = document.querySelector("#group2-trees")!;
+    const group3Trees = document.querySelector("#group3-trees")!;
+    const group4Treess = document.querySelector("#group4-trees")!;
+    const natureSoundsAudio = document.querySelector("#nature-sounds-audio")!;
+    const footStepsAudio = document.querySelector("#foot-steps-audio")!;
+    footStepsAudio.volume = 0.2;
+
+    const group2TreesAnimation = lottie.loadAnimation({
+        container: group2Trees,
+        renderer: "svg",
+        loop: false,
+        autoplay: false,
+        path: "/Scene1_G2_Tree1.json",
+    });
+
+    const group3TreesAnimation = lottie.loadAnimation({
+        container: group3Trees,
+        renderer: "svg",
+        loop: false,
+        autoplay: false,
+        path: "/Scene1_G3_Tree1.json",
+    });
+
+    const group4TreesAnimation = lottie.loadAnimation({
+        container: group4Treess,
+        renderer: "svg",
+        loop: false,
+        autoplay: false,
+        path: "/Scene1_G4_Trees1.json",
+    });
+
+    // Scroll Animation
+    // Initialise Timeline
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#brand-intro-1-container",
+            pin: "#brand-intro-1-container",
+            pinSpacing: false,
+            scrub: true,
+            start: "top top",
+            end: "bottom top",
+            onEnter: () => {
+                footStepsAudio.play().then(() => 
+                    console.log("foot sounds play on enter"))
+                .catch(() => {
+                    console.log("error")
+                })
+            },
+            onLeave: () => {
+                natureSoundsAudio.pause()
+                footStepsAudio.pause()
+            },
+            onEnterBack:  () => {
+                natureSoundsAudio.play().then(() => 
+                    console.log("nature sounds play on enter back"))
+                .catch(() => {
+                    console.log("error")
+                })
+                footStepsAudio.play().then(() => 
+                    console.log("foot sounds play on enter back"))
+                .catch(() => {
+                    console.log("error")
+                })
+            },
+            onLeaveBack:  () => {
+                natureSoundsAudio.pause()
+                footStepsAudio.pause()
+            },
+        }
+    });
+
+    // Scene 1
+    timeline
+    .from("#main-man-intro1", { opacity: 0 })
+    .from("#scene1-midground", { opacity: 0 })
+    .from("#scene1-foreground", { opacity: 0 })
+    .from("#scene1-background", { opacity: 0 })
+    .from(
+        ".popping-trees",
+        {
+            opacity: 0,
+            delay: 0.5,
+            stagger: 2,
+            onStart: () => {
+                group2TreesAnimation.goToAndStop(0, true);
+                group3TreesAnimation.goToAndStop(0, true);
+                group4TreesAnimation.goToAndStop(0, true);
+                group2TreesAnimation.play();
+                group3TreesAnimation.play();
+                group4TreesAnimation.play();
+            },
+        }
+    )
+    .from("#card-scene-1", { opacity: 0 })
+    .from(".scene-1", { opacity: 1, delay: 1 })
+
+    // Scene 2
+    .to("#main-man-intro1", { y: "20vh", opacity: 0, duration: 0 })
+    .to("#main-man-intro1", { scale: 2.1, transformOrigin: "top", y: "-15vh" })
+    .to("#main-man-intro1", { opacity: 1, duration: 1 })
+    .to("#main-man-intro1", { scale: 1.6, duration: 2 })
+    .from("#scene2-midground", { opacity: 0 }, "<+=0")
+    .from("#scene2-background", { opacity: 0, scale: 0.9 }, ">")
+    .from("#card-scene-2", { opacity: 0 })
+    .to("#brand-intro-1-content", { opacity: 0, delay: 2 })
+</script>

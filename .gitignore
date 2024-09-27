@@ -12,8 +12,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-#test coverage files
-coverage/
 
 # environment variables
 .env
@@ -24,3 +22,9 @@ coverage/
 
 # jetbrains setting folder
 .idea/
+
+# vscode settings folder
+.vscode/
+
+# code coverage
+coverage/

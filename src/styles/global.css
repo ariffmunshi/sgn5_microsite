@@ -1,0 +1,117 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #E6EBFF;
+  color: #414042;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.header-font {
+  margin: 0;
+  font-family: "Lora", "Times New Roman", Times, serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+  color: #414042;
+}
+
+body,
+p,
+.body-font {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+  color: #414042;
+}
+
+.card {
+  border: 5px solid #ffffff;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  background-color: #EEE7E0;
+  padding: 30px;
+}
+
+.card-text-main {
+  font-family: 'Lora', serif;
+  font-size: 21px;
+  font-weight: 400px;
+  line-height: 35px;
+  text-align: center;
+}
+
+.card-text-alt {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 400px;
+}
+
+.card-text-sub {
+  font-family: 'Lora', serif;
+  font-size: 12px;
+  line-height: auto;
+  text-align: center;
+  font-style: italic;
+}
+
+.primary-btn {
+  display: inline-block;
+  margin: 0;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 10px 25px;
+  font-family: "Lora", "Times New Roman", Times, serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
+  color: #904723;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+      text-decoration: underline;
+  }
+}
+
+.glow {
+  animation: pulseGlow 3s infinite alternate;
+
+  &:hover {
+      animation: none;
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+      filter: drop-shadow(0 0 5px #ffdf8a) drop-shadow(0 0 10px #ffdf8a);
+  }
+  50% {
+      filter: drop-shadow(0 0 15px #ffdf8a) drop-shadow(0 0 25px #ffdf8a);
+  }
+}

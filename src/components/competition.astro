@@ -1,0 +1,911 @@
+---
+import { Image } from "astro:assets";
+import scoreBoardOpenIcon from "../images/competition/scoreboard-open-icon.svg";
+import title from "../images/competition/title.svg";
+import layer1 from "../images/competition/layer-1.png";
+import layer2 from "../images/competition/layer-2.png";
+import layer3 from "../images/competition/layer-3.png";
+import layer4 from "../images/competition/layer-4.png";
+import competitionTable from "../images/competition/modal-content-1.svg";
+---
+
+<section id="competition-container">
+  <div class="falling-objects-container"></div>
+  <div class="scoreboard-open scoreboard-icon">
+	  <Image
+		src={scoreBoardOpenIcon}
+		alt="scoreboard open icon"
+	  />
+  </div>
+  <Image src={title} alt="Title" class="title" />
+  <div class="voting-container">
+    <div class="vote-item">
+      <div class="ellipse-container">
+        <button class="ellipse" data-icon="layer1">
+          <Image src={layer4} class="icon-image" alt="layer4" />
+        </button>
+        <svg
+          class="progress-ring"
+          width="127"
+          height="127"
+          viewBox="0 0 127 127"
+        >
+          <circle
+            class="progress-ring__circle"
+            cx="63.5"
+            cy="63.5"
+            r="55.5"
+            stroke="#D9C8B6"
+            stroke-width="16"
+            fill="none"></circle>
+          <circle
+            class="progress-ring__circle-fill"
+            cx="63.5"
+            cy="63.5"
+            r="55.5"
+            stroke="#FFC803"
+            stroke-width="16"
+            fill="none"
+            stroke-linecap="round"></circle>
+        </svg>
+        <div class="heart-container"></div>
+      </div>
+    </div>
+    <div class="vote-item">
+      <div class="ellipse-container">
+        <button class="ellipse" data-icon="layer2">
+          <Image src={layer3} class="icon-image" alt="layer3" />
+        </button>
+        <svg
+          class="progress-ring"
+          width="127"
+          height="127"
+          viewBox="0 0 127 127"
+        >
+          <circle
+            class="progress-ring__circle"
+            cx="63.5"
+            cy="63.5"
+            r="55.5"
+            stroke="#D9C8B6"
+            stroke-width="16"
+            fill="none"></circle>
+          <circle
+            class="progress-ring__circle-fill"
+            cx="63.5"
+            cy="63.5"
+            r="55.5"
+            stroke="#FFC803"
+            stroke-width="16"
+            fill="none"
+            stroke-linecap="round"></circle>
+        </svg>
+        <div class="heart-container"></div>
+      </div>
+    </div>
+    <div class="vote-item">
+      <div class="ellipse-container">
+        <button class="ellipse" data-icon="layer3">
+          <Image src={layer2} class="icon-image" alt="layer2" />
+        </button>
+        <svg
+          class="progress-ring"
+          width="127"
+          height="127"
+          viewBox="0 0 127 127"
+        >
+          <circle
+            class="progress-ring__circle"
+            cx="63.5"
+            cy="63.5"
+            r="55.5"
+            stroke="#D9C8B6"
+            stroke-width="16"
+            fill="none"></circle>
+          <circle
+            class="progress-ring__circle-fill"
+            cx="63.5"
+            cy="63.5"
+            r="55.5"
+            stroke="#FFC803"
+            stroke-width="16"
+            fill="none"
+            stroke-linecap="round"></circle>
+        </svg>
+        <div class="heart-container"></div>
+      </div>
+    </div>
+    <div class="vote-item">
+      <div class="ellipse-container">
+        <button class="ellipse" data-icon="layer4">
+          <Image src={layer1} class="icon-image" alt="layer1" />
+        </button>
+        <svg
+          class="progress-ring"
+          width="127"
+          height="127"
+          viewBox="0 0 127 127"
+        >
+          <circle
+            class="progress-ring__circle"
+            cx="63.5"
+            cy="63.5"
+            r="55.5"
+            stroke="#D9C8B6"
+            stroke-width="16"
+            fill="none"></circle>
+          <circle
+            class="progress-ring__circle-fill"
+            cx="63.5"
+            cy="63.5"
+            r="55.5"
+            stroke="#FFC803"
+            stroke-width="16"
+            fill="none"
+            stroke-linecap="round"></circle>
+        </svg>
+        <div class="heart-container"></div>
+      </div>
+    </div>
+  </div>
+  <div id="scoreboard-modal" class="modal">
+    <div class="scoreboard-close scoreboard-icon">
+      <svg
+        width="25"
+        height="25"
+        viewBox="0 0 25 25"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M24.0473 20.2072C25.1899 21.1852 25.3227 22.9049 24.3448 24.0475C23.3668 25.1901 21.6471 25.3229 20.5045 24.345C20.3985 24.2543 20.299 24.1547 20.207 24.0475L12.4997 16.3402L4.79238 24.0475C3.81444 25.1901 2.09475 25.3229 0.952118 24.345C-0.190513 23.367 -0.323288 21.6473 0.654651 20.5047C0.745295 20.3987 0.844876 20.2991 0.952118 20.2072L8.65945 12.4999L0.952118 4.79256C-0.0270979 3.64993 0.106954 1.93024 1.24831 0.952301C2.26838 0.0790498 3.77231 0.0790498 4.7911 0.952301L12.4984 8.65963L20.207 0.952301C21.185 -0.19033 22.9047 -0.323105 24.0473 0.654834C25.1899 1.63277 25.3227 3.35246 24.3448 4.4951C24.2541 4.60106 24.1545 4.70064 24.0473 4.79256L16.34 12.4999L24.0473 20.2072Z"
+          fill="black"></path>
+      </svg>
+    </div>
+    <div class="modal-left-section">
+      <h2>The Ultimate SG icon</h2>
+      <p>
+        Meet the contenders, each one a true reflection of our vibrant culture.
+      </p>
+      <p>
+        Each week, we unveil a category that embodies the Singapore spirit and
+        heritage.
+      </p>
+      <p>You decide which icon truly deserves the crown!</p>
+    </div>
+    <div class="modal-right-section">
+      <Image
+        src={competitionTable}
+        alt="Competition table"
+        class="competition-table"
+      />
+    </div>
+  </div>
+</section>
+<template id="heart-svg">
+  <svg
+    width="24"
+    height="21"
+    viewBox="0 0 48 42"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="heart-svg"
+  >
+    <path
+      d="M2.30308 21.3975C0.104676 17.4559 -1.28479 12.1399 1.75427 8.78224C4.7394 5.47771 10.31 6.16798 14.1516 8.46054C17.9615 10.7344 20.8737 14.1763 23.7129 17.5527C24.8359 13.7515 26.3618 10.0659 28.2588 6.5709C29.5499 4.18776 31.1519 1.77339 33.6422 0.63961C37.928 -1.3125 43.1591 1.4673 45.6525 5.41525C47.1022 7.71093 47.9207 10.3908 47.9968 13.0956C48.1459 18.4803 45.4368 23.5308 42.3533 27.9816C39.6442 31.8921 36.5892 35.5683 33.233 38.954C32.1004 40.0972 30.8855 41.2372 29.3659 41.7901C25.4672 43.2143 17.4032 37.1706 14.3134 34.9093C9.3995 31.3143 5.25331 26.6917 2.30308 21.4007V21.3975Z"
+      fill="#F4333D"></path>
+  </svg>
+</template>
+
+<style lang="scss">
+  #competition-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: #eee7e0;
+  }
+
+  .falling-objects-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .title {
+    margin-top: 60px;
+    width: 560px;
+    height: auto;
+    object-fit: contain;
+    z-index: 2;
+  }
+
+  .voting-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    width: 100%;
+    gap: 50px;
+  }
+
+  .vote-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 160px;
+    height: 160px;
+  }
+
+  .ellipse-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ellipse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 0.2s ease-in-out;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .ellipse:active {
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .icon-image {
+    width: 50%;
+    height: auto;
+    margin-bottom: 10px;
+    transition: transform 0.001s ease-in-out;
+  }
+
+  .ellipse:active .icon-image {
+    transform: scale(0.8);
+  }
+
+  .progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .progress-ring__circle {
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+  }
+
+  .progress-ring__circle-fill {
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+  }
+
+  .heart-container {
+    position: absolute;
+    top: -5px;
+    right: -15px;
+    width: 38px;
+    height: 32px;
+    pointer-events: none;
+    z-index: 2;
+    overflow: visible;
+  }
+
+  .heart-svg {
+    position: absolute;
+    opacity: 1;
+    transition:
+      opacity 2s,
+      transform 2s;
+    width: 100%;
+    height: 100%;
+  }
+
+  .scoreboard-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    background-color: #ffffff;
+  }
+
+  .scoreboard-open {
+    position: absolute;
+    right: 6rem;
+    top: 3rem;
+    width: 4rem;
+    cursor: pointer;
+  }
+
+  .scoreboard-open > img {
+	position: relative;
+	top: -3px;
+	width: 1.75rem;
+  }
+
+  .scoreboard-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(30%, -30%);
+  }
+
+  .scoreboard-close > svg {
+	height: 1rem;
+	width: 1rem;
+  }
+
+  .modal {
+	display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #ffffff;
+    width: 85%;
+    height: 85%;
+    z-index: 2;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 100px;
+    transform: translate(-50%, -50%);
+  }
+
+  .modal-left-section {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 35%;
+    justify-content: center;
+    height: 100%;
+    background-color: #e9bba4;
+    border-bottom-left-radius: 100px;
+    padding: 40px 40px;
+  }
+
+  .modal-left-section > h2 {
+    margin-bottom: 20px;
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  .modal-left-section > p {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .modal-right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+
+  .competition-table {
+    width: calc(100% - 80px);
+  }
+</style>
+
+<script>
+	// @ts-nocheck
+	// Imports
+	import Matter from 'matter-js';
+	import { fetchInitialVoteCounts, updateAPIVotes } from '../../src/scripts/voting.js';
+
+	// Set up Matter.js
+	const Engine = Matter.Engine,
+		Render = Matter.Render,
+		Runner = Matter.Runner,
+		Bodies = Matter.Bodies,
+		World = Matter.World;
+
+	// Create an engine
+	const engine = Engine.create({
+		positionIterations: 20,
+		velocityIterations: 20
+	});
+
+	// Create a renderer
+	const render = Render.create({
+		element: document.querySelector('.falling-objects-container'),
+		engine: engine,
+		options: {
+			width: 1200,
+			height: 600,
+			wireframes: false,
+			background: 'transparent'
+		}
+	});
+
+	// Array to store preloaded images
+	const preloadedImages = {
+		layer1: null,
+		layer2: null,
+		layer3: null,
+		layer4: null
+	};
+
+	// Object to store vote counts
+	const voteCounts = {
+		layer1: 0,
+		layer2: 0,
+		layer3: 0,
+		layer4: 0
+	};
+
+	// Object to store accumulated votes
+	const accumulatedVotes = {
+		layer1: 0,
+		layer2: 0,
+		layer3: 0,
+		layer4: 0
+	};
+
+	// Image URLs to preload
+	const imageUrls = [
+		'src/images/competition/mascot-racoon.png',
+		'src/images/competition/mascot-eagle.png',
+		'src/images/competition/mascot-tiger.png',
+		'src/images/competition/mascot-bulldog.png'
+	];
+
+	let currentRound = 1;
+
+	const MAX_BODIES = 200;
+	let isGroundOpen = false;
+	let groundOpenTimeout;
+
+	// Function to preload images
+	function preloadImages(imageUrls) {
+		return Promise.all(imageUrls.map((url, index) => {
+		return new Promise((resolve, reject) => {
+			const img = new Image();
+			img.onload = () => {
+			const icon = ['layer1', 'layer2', 'layer3', 'layer4'][index];
+			preloadedImages[icon] = img;
+			resolve(img);
+			};
+			img.onerror = reject;
+			img.src = url;
+		});
+		}));
+	}
+
+	// Function to create a falling object
+	function createFallingObject(image, x, y) {
+		const size = 70;
+		const collisionRadius = size / 2;
+		
+		const body = Bodies.circle(x, y, collisionRadius, {
+			restitution: 0.3,
+			friction: 0.1,
+			frictionAir: 0.01,
+			slop: 0,
+			render: {
+				sprite: {
+					texture: image.src,
+					xScale: size / image.width,
+					yScale: size / image.height
+				}
+			}
+		});
+	
+		// Check if we need to reset bodies
+		const bodies = Matter.Composite.allBodies(engine.world);
+		if (bodies.length > MAX_BODIES && !isGroundOpen) {
+			resetBodies();
+		}
+	
+		return body;
+	}  
+
+	// Function to reset bodies
+	function resetBodies() {
+		isGroundOpen = true;
+		
+		// Remove the ground
+		World.remove(engine.world, ground);
+		
+		// Set a timeout to close the ground after 3 seconds
+		groundOpenTimeout = setTimeout(() => {
+			closeGround();
+		}, 3000);
+	}
+
+	// Function to close the ground
+	function closeGround() {
+		isGroundOpen = false;
+		
+		const container = document.querySelector('.falling-objects-container');
+		const rect = container.getBoundingClientRect();
+		
+		// Recreate the ground
+		ground = Bodies.rectangle(rect.width / 2, rect.height, rect.width, 20, { 
+			isStatic: true,
+			render: {
+				fillStyle: 'transparent',
+				strokeStyle: 'transparent'
+			}
+		});
+		
+		World.add(engine.world, ground);
+		
+		// Remove any bodies that have fallen below the ground
+		const bodies = Matter.Composite.allBodies(engine.world);
+		bodies.forEach(body => {
+			if (body !== ground && body !== leftWall && body !== rightWall && body.position.y > rect.height) {
+				World.remove(engine.world, body);
+			}
+		});
+	}
+
+	// Variable to store the timeout
+	let updateTimeout;
+
+	// Function to update progress ring
+	function updateProgressRing(button, percentage) {
+		const ellipseContainer = button.closest('.ellipse-container');
+		const circle = ellipseContainer.querySelector('.progress-ring__circle-fill');
+		if (circle) {
+			const radius = circle.r.baseVal.value;
+			const circumference = radius * 2 * Math.PI;
+			
+			circle.style.strokeDasharray = `${circumference} ${circumference}`;
+			circle.style.strokeDashoffset = circumference - (percentage / 100) * circumference;
+		}
+	}
+
+	// Function to update vote percentages
+	function updateVotePercentages() {
+		const totalVotes = Object.values(voteCounts).reduce((sum, count) => sum + count, 0);
+		
+		// Find the maximum vote count
+		const maxVotes = Math.max(...Object.values(voteCounts));
+		
+		document.querySelectorAll('.ellipse').forEach(button => {
+			const iconId = button.dataset.icon;
+			const percentage = totalVotes > 0 ? Math.round((voteCounts[iconId] / totalVotes) * 100) : 0;
+			updateProgressRing(button, percentage);
+			
+			// Get the progress ring circle
+			const circle = button.closest('.ellipse-container').querySelector('.progress-ring__circle-fill');
+			
+			// Set the color based on whether it's leading or not
+			if (circle) {
+				circle.style.stroke = voteCounts[iconId] === maxVotes ? '#F32530' : '';
+			}
+		});
+	}
+
+	// Function to fetch initial vote counts
+	async function fetchInitialVoteCounts() {
+		const corsProxy = 'https://cors-anywhere.herokuapp.com/'; // Remove for production
+		const apiUrl = `https://8ofnowhrs8.execute-api.ap-southeast-1.amazonaws.com/voting?round=${currentRound}`;
+		try {
+			const response = await fetch(corsProxy + apiUrl);
+			const data = await response.json();
+			
+			if (data) {
+				// Update individual properties
+				voteCounts.layer1 = data.layer1;
+				voteCounts.layer2 = data.layer2;
+				voteCounts.layer3 = data.layer3;
+				voteCounts.layer4 = data.layer4;
+			} else {
+				console.error('No data found for the specified round');
+				return;
+			}
+			
+			updateVotePercentages();
+			dropInitialObjects();
+		} catch (error) {
+			console.error('Error fetching initial vote counts:', error);
+		}
+	}
+
+	// Function to drop initial objects
+	function dropInitialObjects() {
+		const container = document.querySelector('.falling-objects-container');
+		const rect = container.getBoundingClientRect();
+		const totalVotes = Object.values(voteCounts).reduce((sum, count) => sum + count, 0);
+	
+		Object.entries(voteCounts).forEach(([icon, count]) => {
+			const percentage = (count / totalVotes) * 100;
+			const objectCount = Math.min(Math.round(percentage), 30);
+			
+			if (preloadedImages[icon]) {
+				for (let i = 0; i < objectCount; i++) {
+					const x = Math.random() * (rect.width - 40) + 20;
+					const y = Math.random() * (rect.height / 2) - 50;
+					const body = createFallingObject(preloadedImages[icon], x, y);
+					World.add(engine.world, body);
+				}
+			}
+		});
+	}
+
+	// Function to update API with accumulated votes
+	async function updateAPIVotes() {
+		const corsProxy = 'https://cors-anywhere.herokuapp.com/'; // Remove for production
+		const apiUrl = 'https://8ofnowhrs8.execute-api.ap-southeast-1.amazonaws.com/voting';
+
+		const updates = Object.entries(accumulatedVotes).filter(([_, count]) => count > 0);
+
+		if (updates.length === 0) return;
+
+		const body = {
+			round: currentRound,
+			votes: {
+				layer1: accumulatedVotes.layer1 || 0,
+				layer2: accumulatedVotes.layer2 || 0,
+				layer3: accumulatedVotes.layer3 || 0,
+				layer4: accumulatedVotes.layer4 || 0
+			}
+		};
+
+		try {
+			const response = await fetch(corsProxy + apiUrl, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(body),
+			});
+
+			if (!response.ok) {
+				throw new Error('API update failed');
+			}
+
+			// Reset accumulated votes after successful update
+			Object.keys(accumulatedVotes).forEach(key => {
+				accumulatedVotes[key] = 0;
+			});
+
+			console.log('Votes updated successfully');
+
+		} catch (error) {
+			console.error('Error updating vote counts:', error);
+		}
+	}
+
+	// Function to create and animate heart
+	function animateHeart(button) {
+		const heartContainer = button.closest('.ellipse-container').querySelector('.heart-container');
+		const heartTemplate = document.getElementById('heart-svg');
+		const heart = heartTemplate.content.cloneNode(true).querySelector('svg');
+
+		heartContainer.appendChild(heart);
+
+		// Generate random values
+		const randomX = Math.floor(Math.random() * 61) + 30;
+		const randomY = Math.floor(Math.random() * 31) - 60;
+		const duration = 2; // Fixed duration of 2 seconds
+
+		// Set initial styles
+		heart.style.transition = `opacity ${duration}s, transform ${duration}s`;
+		heart.style.opacity = '1';
+		heart.style.transform = 'translate(0, 0)';
+
+		// Start animation
+		requestAnimationFrame(() => {
+			heart.style.opacity = '0';
+			heart.style.transform = `translate(${randomX}px, ${randomY}px)`;
+		});
+
+		// Remove heart from DOM after animation
+		setTimeout(() => {
+			heartContainer.removeChild(heart);
+		}, duration * 1000);
+	}
+
+	// Add event listeners to buttons
+	document.querySelectorAll('.ellipse').forEach((button) => {
+		button.addEventListener('click', (event) => {
+			const iconId = button.dataset.icon;
+			if (preloadedImages[iconId]) {
+				const container = document.querySelector('.falling-objects-container');
+				const rect = container.getBoundingClientRect();
+				const x = Math.random() * (rect.width - 40) + 20;
+				const y = -50;
+				const body = createFallingObject(preloadedImages[iconId], x, y);
+				World.add(engine.world, body);
+				
+				// Update vote count and progress ring
+				voteCounts[iconId]++;
+				accumulatedVotes[iconId]++;
+				updateVotePercentages();
+
+				// Animate heart
+				animateHeart(event.currentTarget);
+
+				// Clear existing timeout and set a new one
+				clearTimeout(updateTimeout);
+				updateTimeout = setTimeout(() => {
+					updateAPIVotes(currentRound, accumulatedVotes)
+					.then(voteData => {
+						if (voteData) {
+							accumulatedVotes.layer1 = voteData.layer1;
+							accumulatedVotes.layer2 = voteData.layer2;
+							accumulatedVotes.layer3 = voteData.layer3;
+							accumulatedVotes.layer4 = voteData.layer4;
+						} else {
+							throw new Error('voteData is undefined or null');
+						}
+					})
+					.catch(error => {
+						console.error('Error during initialization:', error);
+					})
+				}, 5000)
+			}
+		});
+	});  
+
+	// Debounce function
+	function debounce(func, wait) {
+		let timeout;
+		return function executedFunction(...args) {
+			const later = () => {
+				clearTimeout(timeout);
+				func(...args);
+			};
+			clearTimeout(timeout);
+			timeout = setTimeout(later, wait);
+		};
+	}
+
+	// Create initial boundaries
+	let ground, leftWall, rightWall;
+
+	function createOrUpdateBoundaries() {
+		const container = document.querySelector('.falling-objects-container');
+		const rect = container.getBoundingClientRect();
+
+		if (!ground && !isGroundOpen) {
+			// Create ground if it doesn't exist and is not open
+			ground = Bodies.rectangle(rect.width / 2, rect.height, rect.width, 20, { 
+				isStatic: true,
+				render: {
+					fillStyle: 'transparent',
+					strokeStyle: 'transparent'
+				}
+			});
+			World.add(engine.world, ground);
+		} else if (ground && !isGroundOpen) {
+			// Update existing ground if it's not open
+			Matter.Body.setPosition(ground, { x: rect.width / 2, y: rect.height });
+			Matter.Body.setVertices(ground, Matter.Vertices.fromPath(`0 0 ${rect.width} 0 ${rect.width} 20 0 20`));
+		}
+
+		if (!leftWall) {
+			// Create left wall if it doesn't exist
+			leftWall = Bodies.rectangle(0, rect.height / 2, 20, rect.height, { 
+				isStatic: true,
+				render: {
+					fillStyle: 'transparent',
+					strokeStyle: 'transparent'
+				}
+			});
+			World.add(engine.world, leftWall);
+		} else {
+			// Update existing left wall
+			Matter.Body.setPosition(leftWall, { x: 0, y: rect.height / 2 });
+			Matter.Body.setVertices(leftWall, Matter.Vertices.fromPath(`0 0 20 0 20 ${rect.height} 0 ${rect.height}`));
+		}
+
+		if (!rightWall) {
+			// Create right wall if it doesn't exist
+			rightWall = Bodies.rectangle(rect.width, rect.height / 2, 20, rect.height, { 
+				isStatic: true,
+				render: {
+					fillStyle: 'transparent',
+					strokeStyle: 'transparent'
+				}
+			});
+			World.add(engine.world, rightWall);
+		} else {
+			// Update existing right wall
+			Matter.Body.setPosition(rightWall, { x: rect.width, y: rect.height / 2 });
+			Matter.Body.setVertices(rightWall, Matter.Vertices.fromPath(`0 0 20 0 20 ${rect.height} 0 ${rect.height}`));
+		}
+
+		// Update renderer bounds
+		render.bounds.max.x = rect.width;
+		render.bounds.max.y = rect.height;
+		render.options.width = rect.width;
+		render.options.height = rect.height;
+		render.canvas.width = rect.width;
+		render.canvas.height = rect.height;
+
+		// Keep objects within bounds
+		const bodies = Matter.Composite.allBodies(engine.world);
+		bodies.forEach(body => {
+			if (body !== ground && body !== leftWall && body !== rightWall) {
+				const { x, y } = body.position;
+				const newX = Math.max(20, Math.min(x, rect.width - 20));
+				const newY = Math.max(20, Math.min(y, isGroundOpen ? rect.height + 100 : rect.height - 20));
+				Matter.Body.setPosition(body, { x: newX, y: newY });
+			}
+		});
+	}
+
+	// Call createOrUpdateBoundaries immediately after creating the engine and renderer
+	createOrUpdateBoundaries();
+
+	// Update boundaries on window resize with debounce
+	window.addEventListener('resize', debounce(() => {
+		createOrUpdateBoundaries();
+	}, 100));
+
+	// Run the renderer
+	Render.run(render);
+
+	// Create and run the runner
+	const runner = Runner.create();
+	Runner.run(runner, engine);
+
+	// Preload images and fetch initial vote counts before starting the game
+	Promise.all([preloadImages(imageUrls), fetchInitialVoteCounts(currentRound, voteCounts)])
+		.then(response => {
+			const voteData = response[1]; 
+			
+			if (voteData) {
+				voteCounts.layer1 = voteData.layer1;
+				voteCounts.layer2 = voteData.layer2;
+				voteCounts.layer3 = voteData.layer3;
+				voteCounts.layer4 = voteData.layer4;
+			}
+
+			updateVotePercentages();
+            dropInitialObjects();
+		})
+		.catch(error => {
+			console.error('Error during initialization:', error);
+		});
+</script>
+
+<script>
+	// @ts-nocheck
+	// script for modal
+	document.addEventListener('DOMContentLoaded', () => {
+    const openIcon = document.querySelector('.scoreboard-open');
+    const closeIcon = document.querySelector('.scoreboard-close');
+    const modal = document.querySelector('#scoreboard-modal');
+  
+    openIcon.addEventListener("click", () => {
+        openIcon.style.display = 'none';
+        modal.style.display = 'flex';
+    })
+
+    closeIcon.addEventListener("click", () => {
+			openIcon.style.display = 'flex';
+			modal.style.display = 'none';
+		})
+	});
+</script>

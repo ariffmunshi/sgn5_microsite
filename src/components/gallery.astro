@@ -1,0 +1,242 @@
+---
+import { Image } from "astro:assets";
+import Facebook from "../images/gallery/facebook.svg";
+import Instagram from "../images/gallery/instagram.svg";
+import LinkedIn from "../images/gallery/linkedin.svg";
+import Youtube from "../images/gallery/youtube.svg";
+import X from "../images/gallery/x.svg";
+import Telegram from "../images/gallery/telegram.svg";
+import Tiktok from "../images/gallery/tiktok.svg";
+---
+
+<section id="gallery-container">
+	<div class="back-wall">
+		<h2>A Big Thank You to Our Partners</h2>
+		<p>We are grateful for your support in growing and making meaningful impact to our communities!</p>
+		<div class="gallery-midground">
+			<div class="carousel-container">
+				<div class="carousel-content">
+					<div class="media-placeholder large color1"></div>
+
+					<div class="column-container">
+						<div class="horizontal-container">
+							<div class="media-placeholder small color2"></div>
+							<div class="media-placeholder small color3"></div>
+						</div>
+						<div class="media-placeholder long color4"></div>
+					</div>
+
+					<div class="media-placeholder large color2"></div>
+
+					<div class="column-container">
+						<div class="horizontal-container">
+							<div class="media-placeholder small color6"></div>
+							<div class="media-placeholder small color2"></div>
+						</div>
+						<div class="media-placeholder long color8"></div>
+					</div>
+
+					<div class="media-placeholder large color1"></div>
+
+					<!-- ... (repeat the content to ensure smooth looping) ... -->
+
+					<div class="media-placeholder large color1"></div>
+
+					<div class="column-container">
+						<div class="horizontal-container">
+							<div class="media-placeholder small color2"></div>
+							<div class="media-placeholder small color3"></div>
+						</div>
+						<div class="media-placeholder long color4"></div>
+					</div>
+
+					<div class="media-placeholder large color2"></div>
+
+					<div class="column-container">
+						<div class="horizontal-container">
+							<div class="media-placeholder small color6"></div>
+							<div class="media-placeholder small color2"></div>
+						</div>
+						<div class="media-placeholder long color8"></div>
+					</div>
+
+					<div class="media-placeholder large color1"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="gallery-foreground"></div>
+	<div class="media-container">
+		<div class="social-container">
+			<a href="https://www.facebook.com/singaporeglobalnetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
+				<Image src={Facebook} alt="Facebook" class="social-img facebook-icon" />
+			</a>
+			<a href="https://www.instagram.com/singaporeglobalnetwork/" class="social-icon" target="_blank" rel="noopener noreferrer">
+				<Image src={Instagram} alt="Instagram" class="social-img instagram-icon" />
+			</a>
+			<a href="https://www.linkedin.com/company/singaporeglobalnetwork/posts/?feedView=all" class="social-icon" target="_blank" rel="noopener noreferrer">
+				<Image src={LinkedIn} alt="LinkedIn" class="social-img linkedin-icon" />
+			</a>
+			<a href="https://x.com/sgglobalnetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
+				<Image src={X} alt="X" class="social-img x-icon" />
+			</a>
+			<a href="https://t.me/singaporeglobalnetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
+				<Image src={Telegram} alt="Telegram" class="social-img telegram-icon" />
+			</a>
+			<a href="https://www.youtube.com/SingaporeGlobalNetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
+				<Image src={Youtube} alt="Youtube" class="social-img youtube-icon" />
+			</a>
+			<a href="https://www.tiktok.com/@singaporeglobalnetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
+				<Image src={Tiktok} alt="Tiktok" class="social-img tiktok-icon" />
+			</a>
+		</div>            
+	</div>
+</section>
+
+
+<style>
+    #gallery-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+    }
+
+	.back-wall {
+		background-color: #490407;
+		padding: 20px 0 30px;
+		text-align: center;
+		color: #EEE7E0;
+    }
+
+	h2 {
+		font-size: 55px;
+		font-weight: bold;
+	}
+
+	p {
+		padding-bottom: 30px;
+		font-size: 24px;
+	}
+
+    .gallery-midground {
+		padding: 20px 0;
+        height: 40%;
+        background-color: #EEE7E0;
+		overflow: hidden;
+    }
+
+    .gallery-foreground {
+		position: absolute;
+		bottom: 0;
+        width: 100%;
+        height: 50%;
+        background: url('../images/gallery/gallery_foreground.svg') no-repeat bottom center;
+        background-size: contain;
+        pointer-events: none;
+    }
+
+	.media-placeholder {
+		border-top-left-radius: 60px;
+		border-bottom-right-radius: 60px;
+    }
+
+    .media-placeholder.small {
+        width: 223px;
+        height: 215px;
+    }
+
+    .media-placeholder.long {
+        width: 472px;
+        height: 215px;
+    }
+
+    .media-placeholder.large {
+        width: 409px;
+        height: 464px;
+    }
+
+	.color1 { background-color: #909090; }
+    .color2 { background-color: #BEBEBE; }
+    .color3 { background-color: #CFCFCF; }
+    .color4 { background-color: #4F4F4F; }
+    .color6 { background-color: #8F8F8F; }
+    .color8 { background-color: #D3D3D3; }
+
+	.carousel-container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+
+    .carousel-content {
+        display: flex;
+        height: 464px;
+        gap: 26px;
+        animation: carousel 15s linear infinite;
+    }
+
+    @keyframes carousel {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-50% - 13px));
+        }
+    }
+
+	.column-container {
+        display: flex;
+		flex-direction: column;
+        justify-content: space-between;
+		gap: 30px;
+    }
+
+    .horizontal-container {
+        display: flex;
+        flex-direction: row;
+        gap: 26px;
+    }
+
+    .media-container {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: #333333;
+		padding: 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .social-container {
+        display: flex;
+        width: 400px;
+        height: 22px;
+        gap: 45px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .facebook-icon { content: url('../images/gallery/facebook.svg'); }
+    .facebook-icon:hover { content: url('../images/gallery/facebook-hover.svg'); }
+
+    .instagram-icon { content: url('../images/gallery/instagram.svg'); }
+    .instagram-icon:hover { content: url('../images/gallery/instagram-hover.svg'); }
+
+    .linkedin-icon { content: url('../images/gallery/linkedin.svg'); }
+    .linkedin-icon:hover { content: url('../images/gallery/linkedin-hover.svg'); }
+
+    .x-icon { content: url('../images/gallery/x.svg'); }
+    .x-icon:hover { content: url('../images/gallery/x-hover.svg'); }
+
+    .telegram-icon { content: url('../images/gallery/telegram.svg'); }
+    .telegram-icon:hover { content: url('../images/gallery/telegram-hover.svg'); }
+
+    .youtube-icon { content: url('../images/gallery/youtube.svg'); }
+    .youtube-icon:hover { content: url('../images/gallery/youtube-hover.svg'); }
+
+    .tiktok-icon { content: url('../images/gallery/tiktok.svg'); }
+    .tiktok-icon:hover { content: url('../images/gallery/tiktok-hover.svg'); }
+</style>
