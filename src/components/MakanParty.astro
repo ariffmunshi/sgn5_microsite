@@ -2,9 +2,9 @@
 import { Image, getImage } from "astro:assets";
 import sceneBackground from "../images/makan-party/makan-party-background.svg";
 import { restaurantsArr as restaurants } from "../data/restaurants.js";
-import makanCoffeeshopAudio from "../audio/Makan_Coffeeshop.mp3"
+import makanCoffeeshopAudio from "../audio/Makan_Coffeeshop.mp3";
 
-const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'});
+const optimizedBackground = await getImage({ src: sceneBackground, format: "svg" });
 ---
 
 <section id="makan-party-container">
@@ -12,30 +12,53 @@ const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'}
         <div id="main-man-makan"></div>
         <div id="makan-party-text" class="card scene-3">
             <p class="card-text-main">
-                We've worked with some of the best Singapore dining spots all around the world to offer you exclusive perks. Grab a friend and share a great meal. Enjoy the flavours that unite us!
+                We've worked with some of the best Singapore dining sports all around the world to offer you exclusive
+                perks. Grab a friend and share a great meal. Enjoy the flavours that unite us!
             </p>
+            <p class="card-text-sub">Click to view the list of restaurants</p>
         </div>
         <div id="makan-party-restaurants" class="makan-party-restaurants card" style="display: none;">
+            <div class="close close-icon">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M24.0473 20.2072C25.1899 21.1852 25.3227 22.9049 24.3448 24.0475C23.3668 25.1901 21.6471 25.3229 20.5045 24.345C20.3985 24.2543 20.299 24.1547 20.207 24.0475L12.4997 16.3402L4.79238 24.0475C3.81444 25.1901 2.09475 25.3229 0.952118 24.345C-0.190513 23.367 -0.323288 21.6473 0.654651 20.5047C0.745295 20.3987 0.844876 20.2991 0.952118 20.2072L8.65945 12.4999L0.952118 4.79256C-0.0270979 3.64993 0.106954 1.93024 1.24831 0.952301C2.26838 0.0790498 3.77231 0.0790498 4.7911 0.952301L12.4984 8.65963L20.207 0.952301C21.185 -0.19033 22.9047 -0.323105 24.0473 0.654834C25.1899 1.63277 25.3227 3.35246 24.3448 4.4951C24.2541 4.60106 24.1545 4.70064 24.0473 4.79256L16.34 12.4999L24.0473 20.2072Z"
+                        fill="black"></path>
+                </svg>
+            </div>
             <div class="restaurants-header body-font">
                 <h3>Restaurant Name</h3>
                 <h3>Location</h3>
             </div>
             <div class="restaurant-items">
-                {restaurants.map(restaurant => (
-                    <div class="restaurant-item">
-                        <div class="restaurant-header body-font">
-                            <h4 class="restaurant-data">{restaurant.name}</h4>
-                            <h4 class="restaurant-data">{restaurant.location}</h4>
-                        </div>
-                        <div class="restaurant-info">
-                            <img src={restaurant.image} alt="" class="restaurant-img">
-                            <div class="restaurant-content">
-                                <p class="restaurant-text">{restaurant.content}</p>
-                                <a class="primary-btn" href={restaurant.link}>Dine here</a>
+                {
+                    restaurants.map((restaurant) => (
+                        <div class="restaurant-item">
+                            <div class="restaurant-header body-font">
+                                <h4 class="restaurant-data">{restaurant.name}</h4>
+                                <h4 class="restaurant-data">{restaurant.location}</h4>
+                            </div>
+                            <div class="restaurant-info">
+                                <img src={restaurant.image} alt="" class="restaurant-img" />
+                                <div class="restaurant-content">
+                                    <p class="restaurant-text">{restaurant.promotion}</p>
+                                    <p class="restaurant-text">{restaurant.condition}</p>
+                                    <p class="restaurant-text">
+                                        <span class="restaurant-terms">{restaurant.terms}</span>
+                                        <span class="restaurant-validity"> {restaurant.validity}</span>
+                                    </p>
+                                    <a
+                                        class="primary-btn"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        href={restaurant.link}
+                                    >
+                                        Find out more
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                }
             </div>
         </div>
         <audio id="makan-coffeeshop-audio" src={makanCoffeeshopAudio}></audio>
@@ -49,8 +72,10 @@ const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'}
         width: 100vw;
         overflow: hidden;
         z-index: 1;
+        scroll-padding-top: 5vh;
     }
-    #makan-party-content{
+
+    #makan-party-content {
         position: relative;
         height: 100vh;
         width: 100vw;
@@ -67,24 +92,64 @@ const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'}
         height: 80%;
     }
 
+    .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translate(40%, -40%);
+        cursor: pointer;
+    }
+
+    .close > svg {
+        height: 1rem;
+        width: 1rem;
+    }
+
+    .close-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+        background-color: #ffffff;
+    }
+
     .card.scene-3 {
         position: absolute;
-        left: 50%;
+        left: 70%;
         top: 50%;
+        transform: translate(-50%, -50%);
         width: 600px;
         cursor: pointer;
     }
 
+    @media only screen and (max-height: 575.98px) and (orientation: landscape) {
+        .card.scene-3 {
+            position: absolute;
+            width: 40%;
+            cursor: pointer;
+        }
+
+        .card.scene-3 p {
+            font-size: 16px;
+        }
+    }
+
     .card.makan-party-restaurants {
         position: absolute;
-        left: 50%;
-        top: 10%;
+        left: 55%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         border-top-right-radius: 0;
         border-top-left-radius: 40px;
         border-bottom-right-radius: 40px;
         border-bottom-left-radius: 0;
         height: calc(100vh - 20%);
-        width: 600px;
+        width: calc(100vw - 20%);
+        max-width: 1000px;
+        max-height: 800px;
+        min-width: 600px;
     }
 
     .restaurant-items {
@@ -99,7 +164,8 @@ const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'}
         display: flex;
         justify-content: space-between;
         padding: 5px 0;
-        h3, h4 {
+        h3,
+        h4 {
             font: inherit;
             color: inherit;
         }
@@ -107,12 +173,22 @@ const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'}
 
     .restaurants-header {
         padding: 10px 20px 0;
+        font-weight: bold;
     }
-
 
     .restaurant-header,
     .restaurant-text {
+        font-weight: bold;
         color: #904723;
+    }
+
+    .restaurant-terms,
+    .restaurant-validity {
+        font-style: italic;
+    }
+
+    .restaurant-terms {
+        font-weight: normal;
     }
 
     .restaurant-header {
@@ -132,17 +208,17 @@ const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'}
     }
 
     .restaurant-item.active {
-        .restaurant-info {            
+        .restaurant-info {
             display: flex;
             height: auto;
             opacity: 1;
             transform: scaleY(1);
         }
         .restaurant-header {
-            color: #ED8387;
-        }   
+            color: #ed8387;
+        }
     }
-    
+
     .restaurant-img {
         border-top-right-radius: 40px;
         border-bottom-left-radius: 40px;
@@ -161,7 +237,7 @@ const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'}
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     import lottie from "lottie-web";
-    
+
     gsap.registerPlugin(ScrollTrigger);
 
     // Initialise variables
@@ -170,6 +246,7 @@ const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'}
     const allRestaurants = document.querySelectorAll(".restaurant-item")!;
     const restaurantsCard = document.querySelector("#makan-party-restaurants")!;
     const makanCoffeeshopAudio = document.querySelector("#makan-coffeeshop-audio")!;
+    const closeIcon = document.querySelector(".close");
 
     const mainManAnimation = lottie.loadAnimation({
         container: mainMan,
@@ -188,51 +265,57 @@ const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'}
             pinSpacing: false,
             toggleActions: "restart complete none reset",
             onEnter: () => {
-                makanCoffeeshopAudio.play()
+                makanCoffeeshopAudio.play();
             },
             onLeave: () => {
-                makanCoffeeshopAudio.pause()
+                makanCoffeeshopAudio.pause();
             },
-            onEnterBack:  () => {
-                makanCoffeeshopAudio.play()
+            onEnterBack: () => {
+                makanCoffeeshopAudio.play();
             },
-            onLeaveBack:  () => {
-                makanCoffeeshopAudio.pause()
+            onLeaveBack: () => {
+                makanCoffeeshopAudio.pause();
             },
-        }
+        },
     });
 
-    timeline
-    .from("#makan-party-content", { opacity: 0, delay: 0.2, duration: 0.5 })
-    .to(mainMan,{
-        x: 500,
+    timeline.from("#makan-party-container", { autoAlpha: 0, delay: 0.2, duration: 0.5 }).to(mainMan, {
+        x: "35vw",
         delay: 0.2,
         duration: 3.5,
         ease: "linear",
         onStart: () => {
             mainManAnimation.goToAndPlay(4);
             mainManAnimation.play();
+            textCard.classList.add("glow");
         },
         onComplete: () => {
             mainManAnimation.pause();
-            textCard.classList.add("glow");
-        }
-    })
+        },
+    });
 
     // Click events
-    textCard.addEventListener('click', () => {
-        textCard.remove();
+    textCard.addEventListener("click", () => {
+        textCard.style.display = "none";
+        closeIcon.style.display = "flex";
         (restaurantsCard as HTMLDivElement).style.cssText = "display: block;";
     });
 
-    restaurantsCard.addEventListener('click', (e) => {
+    restaurantsCard.addEventListener("click", (e) => {
         const target = e.target as Element;
         if (target.classList.contains("restaurant-header") || target.classList.contains("restaurant-data")) {
             allRestaurants.forEach((restaurant) => {
                 restaurant.classList.remove("active");
-            })
-            const parent = target.closest('.restaurant-item')!;
+            });
+            const parent = target.closest(".restaurant-item")!;
             parent.classList.add("active");
         }
-    })
+    });
+
+    // close modal
+    closeIcon.addEventListener("click", () => {
+        closeIcon.style.display = "none";
+        restaurantsCard.style.display = "none";
+        textCard.style.display = "block";
+    });
 </script>

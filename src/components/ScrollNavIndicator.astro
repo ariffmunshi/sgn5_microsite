@@ -1,0 +1,236 @@
+<nav class="scroll-nav-indicator">
+    <ul class="desktop-navigator">
+        <li class="active">
+            <a href="#brand-intro-clouds-container" class="scroll-indicator" data-item="Thank you for 5 Years"></a>
+        </li>
+        <li>
+            <a href="#brand-intro-3-container" class="scroll-indicator" data-item="Community Storie"></a>
+        </li>
+        <li>
+            <a href="#makan-party-container" class="scroll-indicator" data-item="Makan Party"></a>
+        </li>
+        <li>
+            <a href="#ice-cream-quiz-container" class="scroll-indicator" data-item="Quiz"></a>
+        </li>
+        <li>
+            <a href="#competition-container" class="scroll-indicator" data-item="Ultimate SG Icon"></a>
+        </li>
+        <li>
+            <a href="#well-wishes-container" class="scroll-indicator" data-item="Giveaway"></a>
+        </li>
+        <li>
+            <a href="#gallery-container" class="scroll-indicator" data-item="Gallery"></a>
+        </li>
+    </ul>
+    <!-- <div class="mobile-navigator">
+        <a href="#" id="prev-arrow">
+            <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g opacity="0.5" clip-path="url(#clip0_1164_671)">
+                <path d="M6.55139 0.226711L11.817 5.44387C12.0901 5.75947 12.053 6.23453 11.7339 6.50498C11.4495 6.74627 11.0302 6.74627 10.7458 6.50498L6.757 2.55402L6.757 15.2503C6.757 15.6646 6.41748 16 5.99914 16C5.58127 16 5.2427 15.6642 5.24222 15.2503L5.24222 2.55496L1.25346 6.50592C0.934836 6.77638 0.455235 6.73969 0.182195 6.42361C-0.0614043 6.14187 -0.0614043 5.72655 0.182195 5.44481L5.44831 0.227652C5.75127 -0.0743147 6.24416 -0.0757261 6.54902 0.224359C6.54997 0.2253 6.55044 0.22577 6.55139 0.226711Z" fill="white"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1164_671">
+                <rect width="12" height="16" fill="white"/>
+                </clipPath>
+                </defs>
+            </svg>
+        </a>
+        <h4 id="current-section">Introduction</h4>
+        <a href="#" id="next-arrow">
+            <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g opacity="0.5" clip-path="url(#clip0_1164_671)">
+                <path d="M6.55139 0.226711L11.817 5.44387C12.0901 5.75947 12.053 6.23453 11.7339 6.50498C11.4495 6.74627 11.0302 6.74627 10.7458 6.50498L6.757 2.55402L6.757 15.2503C6.757 15.6646 6.41748 16 5.99914 16C5.58127 16 5.2427 15.6642 5.24222 15.2503L5.24222 2.55496L1.25346 6.50592C0.934836 6.77638 0.455235 6.73969 0.182195 6.42361C-0.0614043 6.14187 -0.0614043 5.72655 0.182195 5.44481L5.44831 0.227652C5.75127 -0.0743147 6.24416 -0.0757261 6.54902 0.224359C6.54997 0.2253 6.55044 0.22577 6.55139 0.226711Z" fill="white"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1164_671">
+                <rect width="12" height="16" fill="white"/>
+                </clipPath>
+                </defs>
+            </svg>    
+        </a>
+    </div> -->
+</nav>
+
+<style>
+    /* .mobile-navigator {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        width: 8rem;
+    }
+
+    .mobile-navigator h4 {
+        color: white;
+    }
+
+    .mobile-navigator svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    #next-arrow svg {
+        transform: rotate(180deg);
+    } */
+
+    .scroll-nav-indicator {
+        position: fixed;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        z-index: 10;
+    }
+
+    .desktop-navigator {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .desktop-navigator li {
+        position: relative;
+    }
+
+    .desktop-navigator li::before {
+        content: "";
+        position: absolute;
+        top: -1.9rem;
+        left: calc(50% - 1px);
+        display: block;
+        border: 1px dashed white;
+        height: 1.5rem;
+        width: 0;
+    }
+
+    .desktop-navigator li:first-child::before {
+        display: none;
+    }
+
+    .desktop-navigator li.active a {
+        background-color: white;
+    }
+
+    .desktop-navigator li.active::before {
+        border: 1px solid white;
+    }
+
+    .desktop-navigator a {
+        position: relative;
+        display: inline-block;
+        border: 2px solid white;
+        border-radius: 50%;
+        width: 1rem;
+        height: 1rem;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .desktop-navigator a:hover {
+        box-shadow: 0 0 0 2px white;
+        border: 4px solid white;
+        background-color: white;
+    }
+
+    .desktop-navigator a::before {
+        content: attr(data-item);
+        position: absolute;
+        top: -7px;
+        border-top-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        background-color: white;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.6rem;
+        color: black;
+        white-space: nowrap;
+        opacity: 0;
+        transform-origin: left;
+        transition: all 0.3s ease;
+    }
+
+    .desktop-navigator a:hover::before {
+        transform: translate(calc(-100% - 1rem), -2px);
+        opacity: 1;
+    }
+
+    @media only screen and (max-height: 575.98px) and (orientation: landscape) {
+        .mobile-navigator {
+            /* display: flex; */
+        }
+
+        .desktop-navigator {
+            /* display: none; */
+        }
+    }
+</style>
+
+<script>
+    const scrollIndicators = document.querySelectorAll(".scroll-nav-indicator li");
+    const scrollIndicatorDots = document.querySelectorAll(".scroll-indicator");
+    const prevArrow = document.querySelector("#prev-arrow");
+    const nextArrow = document.querySelector("#next-arrow");
+    const allSections = document.querySelectorAll("section");
+    const currentSection = document.querySelector("#current-section")!;
+    const observedSections = [...scrollIndicatorDots].map((dot) => dot.hash);
+    const sectionHeadings = [...scrollIndicatorDots].map((dot) => dot.dataset.item);
+
+    const updateIndicators = (indicatorIndex) => {
+        scrollIndicators.forEach((li, j) => {
+            li.className = j <= indicatorIndex ? "active" : "";
+        });
+        // prevArrow.style.display = "none";
+        // nextArrow.style.display = "none";
+        // if (indicatorIndex > 0) {
+        //     prevArrow.style.display = "block";
+        //     prevArrow.hash = observedSections[indicatorIndex - 1]
+        // }
+        // if (indicatorIndex < observedSections.length - 1) {
+        //     nextArrow.style.display = "block";
+        //     nextArrow.hash = observedSections[indicatorIndex + 1]
+        // }
+        // currentSection.textContent = sectionHeadings[indicatorIndex];
+    };
+
+    scrollIndicatorDots.forEach((indicatorDot, i) => {
+        indicatorDot.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            updateIndicators(i);
+
+            const topElement = document.querySelector("#brand-intro-clouds-container")!;
+            const targetId = indicatorDot.getAttribute("href")!;
+            if (targetId) {
+                topElement.scrollIntoView({ behavior: "instant" });
+
+                setTimeout(() => {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: "instant" });
+                    }
+                }, 100);
+            }
+        });
+    });
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const targetID = `#${entry.target.id}`;
+                    updateIndicators(observedSections.indexOf(targetID));
+                }
+            });
+        },
+        { threshold: 0.9 }
+    );
+
+    allSections.forEach((section) => {
+        observedSections.includes(`#${section.id}`) && observer.observe(section);
+    });
+</script>

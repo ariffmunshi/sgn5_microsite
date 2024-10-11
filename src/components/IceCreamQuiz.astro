@@ -1,103 +1,132 @@
 ---
 import { Image, getImage } from "astro:assets";
-import sceneBackground from "../images/ice-cream-quiz/quiz-background.svg";
-import iceCreamMenu from "../images/ice-cream-quiz/ice-cream-menu.svg"
-import handRingBell from "../images/ice-cream-quiz/hand-ring-bell.svg"
-import mainMan2 from "../images/main-man-2.svg"
-import bellSound from "../audio/ice-cream-bell.mp3"
-import kidsLaughterAudio from "../audio/Ice_Cream_Trunk.mp3"
+import sceneBackground from "../images/ice-cream-quiz/quiz-background.png";
+import iceCreamMenu from "../images/ice-cream-quiz/ice-cream-menu.svg";
+import handRingBell from "../images/ice-cream-quiz/hand-ring-bell.svg";
+import mainMan2 from "../images/main-man-3.svg";
+import bellSound from "../audio/ice-cream-bell.mp3";
+import kidsLaughterAudio from "../audio/Ice_Cream_Trunk.mp3";
 
-const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'});
+const optimizedBackground = await getImage({ src: sceneBackground, format: "png" });
 ---
 
 <section id="ice-cream-quiz-container">
-	<div id="ice-cream-quiz-content" style={`background-image: url(${optimizedBackground.src});`}>
-		<div id="boy-container"></div>    
-		<div id="girl-container"></div>
-		<div id="ice-cream-quiz-text" class="card ice-cream-card">
-			<p class="card-text-main">What ice cream flavour do you want to be?</p>
-		</div>
-		<Image id="main-man-icecream" src = {mainMan2} alt="main man"/>
-		<Image id="hand-ring-bell" src={handRingBell} alt="hand ring bell" /> 
-		<Image id="ice-cream-menu" src={iceCreamMenu} alt="ice cream menu" />
-		<audio id="bell-sound" src={bellSound}></audio>
-		<audio id="kids-laughter-audio" src={kidsLaughterAudio}></audio>
-	</div>
+    <div id="ice-cream-quiz-content" style={`background-image: url(${optimizedBackground.src});`}>
+        <div id="ice-cream-truck-container"></div>
+        <div id="boy-container"></div>
+        <div id="girl-container"></div>
+        <div id="ice-cream-quiz-text" class="card ice-cream-card">
+            <p class="card-text-main">Back by popular demand, take our local ice-cream personality quiz!</p>
+        </div>
+        <Image id="main-man-icecream" src={mainMan2} alt="main man" />
+        <a href="https://singaporeglobalnetwork.gov.sg/ice-cream-quiz/" target="_blank">
+            <Image id="ice-cream-menu" src={iceCreamMenu} alt="ice cream menu" />
+        </a>
+        <audio id="bell-sound" src={bellSound}></audio>
+        <audio id="kids-laughter-audio" src={kidsLaughterAudio}></audio>
+    </div>
 </section>
 
 <style>
-	#ice-cream-quiz-container {
-		position: relative;
-		height: 100vh;
-		width: 100vw;
-		overflow: hidden;
-	}
-	#ice-cream-quiz-content {
-		position: relative;
-		height: 100vh;
-		width: 100vw;
-		overflow: hidden;
-		background-position: bottom left;
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
+    #ice-cream-quiz-container {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        scroll-padding-top: 5vh;
+    }
 
-	#main-man-icecream {
-		position: absolute;
-    	left: 5%;
-    	bottom: 0;
-		transform: scale(0.75);
-    	transform-origin: bottom;
-	}
+    #ice-cream-quiz-content {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        background-position: bottom left;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 
-	#girl-container {
-		position: absolute;
-		left: -10%;
-		bottom: -2%;
-		transform: scale(0.8);
-		transform-origin: bottom;
-	}
+    #main-man-icecream {
+        position: absolute;
+        left: 5%;
+        bottom: 0;
+        height: 75%;
+    }
 
-	#boy-container {
-		position: absolute;
-		left: -10%;
-	    bottom: 5%;
-		transform: scale(0.8);
-    	transform-origin: bottom;
-	}
+    #ice-cream-truck-container {
+        position: absolute;
+        left: 25%;
+        bottom: -5%;
+        height: 100%;
+        width: 100%;
+        transform-origin: bottom;
+    }
 
-	.card.ice-cream-card {
+    #girl-container {
+        position: absolute;
+        left: -10%;
+        bottom: -2%;
+        height: 55%;
+    }
+
+    #boy-container {
+        position: absolute;
+        left: -10%;
+        bottom: 5%;
+        height: 55%;
+    }
+
+    @media only screen and (max-height: 575.98px) and (orientation: landscape) {
+        #main-man-icecream {
+            left: 0;
+        }
+    }
+
+    .card.ice-cream-card {
         position: absolute;
         left: 40%;
         top: 20%;
         width: 420px;
+    }
+
+    @media only screen and (max-height: 575.98px) and (orientation: landscape) {
+        .card.ice-cream-card {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 20%);
+            width: calc(100vw - 60%);
+            padding: 20px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+    }
+
+    #ice-cream-menu {
+        position: absolute;
+        height: 20%;
+        width: 10%;
+        right: 19%;
+        bottom: 45%;
+        animation: pulseGlow 1.5s infinite alternate;
         cursor: pointer;
     }
 
-	#hand-ring-bell {
-		position: absolute;
-		width: 10%;
-		right: 26%;
-		bottom: 35%;
-        transform-origin: top right; 
-        animation: ringBell 1s ease-in-out infinite alternate;
+    @keyframes ringBell {
+        0% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate(12deg);
+        }
+        100% {
+            transform: rotate(-8deg);
+        }
     }
 
-	#ice-cream-menu {
-		position: absolute;
-		width: 10%;
-		right: 22%;
-		bottom: 40%;
-		animation: pulseGlow 1.5s infinite alternate;
-	}
-
-	@keyframes ringBell {
-        0%   { transform: rotate(0deg); }
-        50%  { transform: rotate(12deg); }
-        100%  { transform: rotate(-8deg); }
-    }
-
-	@keyframes pulseGlow {
+    @keyframes pulseGlow {
         0%,
         100% {
             filter: drop-shadow(0 0 5px #ffdf8a) drop-shadow(0 0 10px #ffdf8a);
@@ -109,85 +138,101 @@ const optimizedBackground = await getImage({src: sceneBackground, format: 'svg'}
 </style>
 
 <script>
-	// Imports
-	import { gsap } from "gsap";
+    // Imports
+    import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     import lottie from "lottie-web";
-	
-	document.addEventListener("DOMContentLoaded", (event) => {
-		gsap.registerPlugin(ScrollTrigger);
 
-		// Initialise variables
-		const iceCreamMenu = document.querySelector("#ice-cream-menu")!;
-		const girlContainer = document.querySelector("#girl-container")!;
-		const boyContainer = document.querySelector("#boy-container")!;
-		const bellSound = document.querySelector("#bell-sound")!;
-		const kidsLaughterAudio = document.querySelector("#kids-laughter-audio")
+    document.addEventListener("DOMContentLoaded", (event) => {
+        gsap.registerPlugin(ScrollTrigger);
 
-		iceCreamMenu.addEventListener('click', () => {
-			window.location.href = 'https://google.com'; 
-		});
+        // Initialise variables
+        const iceCreamTruckContainer = document.querySelector("#ice-cream-truck-container")!;
+        const girlContainer = document.querySelector("#girl-container")!;
+        const boyContainer = document.querySelector("#boy-container")!;
+        const bellSound = document.querySelector("#bell-sound")! as HTMLAudioElement;
+        const kidsLaughterAudio = document.querySelector("#kids-laughter-audio") as HTMLAudioElement;
 
-		const boyAnimation = lottie.loadAnimation({
-			container: boyContainer,
-			renderer: "svg",
-			loop: false,
-			autoplay: false,
-			path: "/boy.json",
-		});
+        const iceCreamTruckAnimation = lottie.loadAnimation({
+            container: iceCreamTruckContainer,
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            path: "/ice-cream-truck.json",
+        });
 
-		const girlAnimation = lottie.loadAnimation({
-			container: girlContainer,
-			renderer: "svg",
-			loop: false,
-			autoplay: false,
-			path: "/girl.json",
-		});
+        const boyAnimation = lottie.loadAnimation({
+            container: boyContainer,
+            renderer: "svg",
+            loop: false,
+            autoplay: false,
+            path: "/boy.json",
+        });
 
-		const timeline = gsap.timeline({
+        const girlAnimation = lottie.loadAnimation({
+            container: girlContainer,
+            renderer: "svg",
+            loop: false,
+            autoplay: false,
+            path: "/girl.json",
+        });
+
+        const timeline = gsap.timeline({
             scrollTrigger: {
                 trigger: "#ice-cream-quiz-container",
                 start: "top top",
-				end: "bottom top",
+                end: "bottom top",
                 pin: true,
-				toggleActions: "restart complete none reset",
-				onEnter: () => {
-					bellSound.play()
-					kidsLaughterAudio.play()
-				},
-				onLeave: () => {
-					bellSound.pause()
-					kidsLaughterAudio.pause()
-				},
-				onEnterBack:  () => {
-					bellSound.play()
-					kidsLaughterAudio.play()
-				},
-  				onLeaveBack:  () => {
-					bellSound.pause()
-					kidsLaughterAudio.pause()
-				},
-            }
+                toggleActions: "restart complete none reset",
+                // onEnter: () => {
+                // 	bellSound.play()
+                // 	kidsLaughterAudio.play()
+                // },
+                onLeave: () => {
+                    bellSound.pause();
+                    kidsLaughterAudio.pause();
+                },
+                onEnterBack: () => {
+                    bellSound.play();
+                    kidsLaughterAudio.play();
+                },
+                onLeaveBack: () => {
+                    bellSound.pause();
+                    kidsLaughterAudio.pause();
+                },
+            },
         });
 
-		timeline
-		.to("#makan-party-content", { opacity: 0, duration: 0.5 })
-		.from("#ice-cream-quiz-content", { opacity: 0, duration: 0.5 })
-		.to(boyContainer, {
-			x: 600,
-			duration: 3,
-			onStart: () => {
-				boyAnimation.goToAndPlay(4);
-				boyAnimation.play();
-			},
-		})
-		.to(girlContainer, {
-			x: 400,
-			duration: 2,
-			onStart: () => {
-				girlAnimation.goToAndPlay(4);
-				girlAnimation.play();
-			}
-		}, "-=2")
-	});
+        timeline
+            .to("#makan-party-container", { autoAlpha: 0, duration: 0.5 })
+            .from("#ice-cream-quiz-content", { opacity: 0, duration: 0.5 })
+            .to(iceCreamTruckContainer, {
+                delay: 1,
+                onStart: () => {
+                    iceCreamTruckAnimation.play();
+                    bellSound.play();
+                    kidsLaughterAudio.play();
+                },
+            })
+            .to(boyContainer, {
+                x: "45vw",
+                duration: 3,
+                onStart: () => {
+                    boyAnimation.goToAndPlay(4);
+                    boyAnimation.play();
+                },
+            })
+            .to(
+                girlContainer,
+                {
+                    x: "25vw",
+                    duration: 2,
+                    onStart: () => {
+                        girlAnimation.goToAndPlay(4);
+                        girlAnimation.play();
+                    },
+                },
+                "-=2"
+            );
+    });
 </script>

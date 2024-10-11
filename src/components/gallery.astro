@@ -7,204 +7,335 @@ import Youtube from "../images/gallery/youtube.svg";
 import X from "../images/gallery/x.svg";
 import Telegram from "../images/gallery/telegram.svg";
 import Tiktok from "../images/gallery/tiktok.svg";
+import portrait1 from "../images/gallery/Portrait/4x3-1.jpg";
+import portrait2 from "../images/gallery/Portrait/4x3-2.jpg";
+import portrait3 from "../images/gallery/Portrait/4x3-3.jpg";
+import portrait4 from "../images/gallery/Portrait/4x3-4.jpg";
+import portrait5 from "../images/gallery/Portrait/4x3-5.jpg";
+import square2 from "../images/gallery/Square/1x1-2.jpg";
+import square3 from "../images/gallery/Square/1x1-3.jpg";
+import square4 from "../images/gallery/Square/1x1-4.jpg";
+import square5 from "../images/gallery/Square/1x1-5.jpg";
+import square6 from "../images/gallery/Square/1x1-6.jpg";
+import square7 from "../images/gallery/Square/1x1-7.jpg";
+import square8 from "../images/gallery/Square/1x1-8.jpg";
+import landscape1 from "../images/gallery/Landscape/1x2-1.jpg";
+import landscape2 from "../images/gallery/Landscape/1x2-2.jpg";
+import landscape3 from "../images/gallery/Landscape/1x2-3.jpg";
+import landscape4 from "../images/gallery/Landscape/1x2-4.jpg";
+import landscape5 from "../images/gallery/Landscape/1x2-5.jpg";
+import landscape6 from "../images/gallery/Landscape/1x2-6.jpg";
+import landscape7 from "../images/gallery/Landscape/1x2-7.jpg";
+import landscape8 from "../images/gallery/Landscape/1x2-8.jpg";
 ---
 
 <section id="gallery-container">
-	<div class="back-wall">
-		<h2>A Big Thank You to Our Partners</h2>
-		<p>We are grateful for your support in growing and making meaningful impact to our communities!</p>
-		<div class="gallery-midground">
-			<div class="carousel-container">
-				<div class="carousel-content">
-					<div class="media-placeholder large color1"></div>
-
-					<div class="column-container">
-						<div class="horizontal-container">
-							<div class="media-placeholder small color2"></div>
-							<div class="media-placeholder small color3"></div>
-						</div>
-						<div class="media-placeholder long color4"></div>
-					</div>
-
-					<div class="media-placeholder large color2"></div>
-
-					<div class="column-container">
-						<div class="horizontal-container">
-							<div class="media-placeholder small color6"></div>
-							<div class="media-placeholder small color2"></div>
-						</div>
-						<div class="media-placeholder long color8"></div>
-					</div>
-
-					<div class="media-placeholder large color1"></div>
-
-					<!-- ... (repeat the content to ensure smooth looping) ... -->
-
-					<div class="media-placeholder large color1"></div>
-
-					<div class="column-container">
-						<div class="horizontal-container">
-							<div class="media-placeholder small color2"></div>
-							<div class="media-placeholder small color3"></div>
-						</div>
-						<div class="media-placeholder long color4"></div>
-					</div>
-
-					<div class="media-placeholder large color2"></div>
-
-					<div class="column-container">
-						<div class="horizontal-container">
-							<div class="media-placeholder small color6"></div>
-							<div class="media-placeholder small color2"></div>
-						</div>
-						<div class="media-placeholder long color8"></div>
-					</div>
-
-					<div class="media-placeholder large color1"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="gallery-foreground"></div>
-	<div class="media-container">
-		<div class="social-container">
-			<a href="https://www.facebook.com/singaporeglobalnetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
-				<Image src={Facebook} alt="Facebook" class="social-img facebook-icon" />
-			</a>
-			<a href="https://www.instagram.com/singaporeglobalnetwork/" class="social-icon" target="_blank" rel="noopener noreferrer">
-				<Image src={Instagram} alt="Instagram" class="social-img instagram-icon" />
-			</a>
-			<a href="https://www.linkedin.com/company/singaporeglobalnetwork/posts/?feedView=all" class="social-icon" target="_blank" rel="noopener noreferrer">
-				<Image src={LinkedIn} alt="LinkedIn" class="social-img linkedin-icon" />
-			</a>
-			<a href="https://x.com/sgglobalnetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
-				<Image src={X} alt="X" class="social-img x-icon" />
-			</a>
-			<a href="https://t.me/singaporeglobalnetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
-				<Image src={Telegram} alt="Telegram" class="social-img telegram-icon" />
-			</a>
-			<a href="https://www.youtube.com/SingaporeGlobalNetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
-				<Image src={Youtube} alt="Youtube" class="social-img youtube-icon" />
-			</a>
-			<a href="https://www.tiktok.com/@singaporeglobalnetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
-				<Image src={Tiktok} alt="Tiktok" class="social-img tiktok-icon" />
-			</a>
-		</div>            
-	</div>
+    <div class="back-wall">
+        <h2>A Big Thank You to Our Partners</h2>
+        <p>We are grateful for your support in growing and making meaningful impact to our communities!</p>
+        <div class="gallery-midground">
+            <div class="carousel-container">
+                <div class="media-placeholder portrait">
+                    <Image src={portrait1} alt="portrait 1" class="media-placeholder portrait" />
+                </div>
+                <div class="column-container">
+                    <div class="row-container">
+                        <div class="media-placeholder square">
+                            <Image src={portrait5} alt="square 1" class="media-placeholder square" />
+                        </div>
+                        <div class="media-placeholder square">
+                            <Image src={square2} alt="square 2" class="media-placeholder square" />
+                        </div>
+                    </div>
+                    <div class="media-placeholder landscape">
+                        <Image src={landscape1} alt="landscape 1" class="media-placeholder landscape" />
+                    </div>
+                </div>
+                <div class="media-placeholder portrait">
+                    <Image src={portrait2} alt="portrait 2" class="media-placeholder portrait" />
+                </div>
+                <div class="column-container">
+                    <div class="row-container">
+                        <div class="media-placeholder square">
+                            <Image src={square3} alt="square 3" class="media-placeholder square" />
+                        </div>
+                        <div class="media-placeholder square">
+                            <Image src={square4} alt="square 4" class="media-placeholder square" />
+                        </div>
+                    </div>
+                    <div class="media-placeholder landscape">
+                        <Image src={landscape2} alt="landscape 2" class="media-placeholder landscape" />
+                    </div>
+                </div>
+                <div class="media-placeholder portrait">
+                    <Image src={portrait3} alt="portrait 3" class="media-placeholder portrait" />
+                </div>
+                <div class="column-container">
+                    <div class="row-container">
+                        <div class="media-placeholder square">
+                            <Image src={square5} alt="square 5" class="media-placeholder square" />
+                        </div>
+                        <div class="media-placeholder square">
+                            <Image src={square6} alt="square 6" class="media-placeholder square" />
+                        </div>
+                    </div>
+                    <div class="media-placeholder landscape">
+                        <Image src={landscape3} alt="landscape 3" class="media-placeholder landscape" />
+                    </div>
+                </div>
+                <div class="media-placeholder portrait">
+                    <Image src={portrait4} alt="portrait 4" class="media-placeholder portrait" />
+                </div>
+                <div class="column-container">
+                    <div class="row-container">
+                        <div class="media-placeholder square">
+                            <Image src={square7} alt="square 7" class="media-placeholder square" />
+                        </div>
+                        <div class="media-placeholder square">
+                            <Image src={square8} alt="square 8" class="media-placeholder square" />
+                        </div>
+                    </div>
+                    <div class="media-placeholder landscape">
+                        <Image src={landscape4} alt="landscape 4" class="media-placeholder landscape" />
+                    </div>
+                </div>
+                <div class="media-placeholder portrait">
+                    <Image src={portrait1} alt="portrait 1" class="media-placeholder portrait" />
+                </div>
+                <div class="column-container">
+                    <div class="row-container">
+                        <div class="media-placeholder square">
+                            <Image src={portrait5} alt="square 1" class="media-placeholder square" />
+                        </div>
+                        <div class="media-placeholder square">
+                            <Image src={square2} alt="square 2" class="media-placeholder square" />
+                        </div>
+                    </div>
+                    <div class="media-placeholder landscape">
+                        <Image src={landscape1} alt="landscape 1" class="media-placeholder landscape" />
+                    </div>
+                </div>
+                <div class="media-placeholder portrait">
+                    <Image src={portrait2} alt="portrait 2" class="media-placeholder portrait" />
+                </div>
+                <div class="column-container">
+                    <div class="row-container">
+                        <div class="media-placeholder square">
+                            <Image src={square3} alt="square 3" class="media-placeholder square" />
+                        </div>
+                        <div class="media-placeholder square">
+                            <Image src={square4} alt="square 4" class="media-placeholder square" />
+                        </div>
+                    </div>
+                    <div class="media-placeholder landscape">
+                        <Image src={landscape2} alt="landscape 2" class="media-placeholder landscape" />
+                    </div>
+                </div>
+                <div class="media-placeholder portrait">
+                    <Image src={portrait3} alt="portrait 3" class="media-placeholder portrait" />
+                </div>
+                <div class="column-container">
+                    <div class="row-container">
+                        <div class="media-placeholder square">
+                            <Image src={square5} alt="square 5" class="media-placeholder square" />
+                        </div>
+                        <div class="media-placeholder square">
+                            <Image src={square6} alt="square 6" class="media-placeholder square" />
+                        </div>
+                    </div>
+                    <div class="media-placeholder landscape">
+                        <Image src={landscape3} alt="landscape 3" class="media-placeholder landscape" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gallery-foreground"></div>
+    <footer class="footer-container">
+        <div class="social-container">
+            <a
+                href="https://www.facebook.com/singaporeglobalnetwork"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <Image src={Facebook} alt="Facebook" class="social-img facebook-icon" />
+            </a>
+            <a
+                href="https://www.instagram.com/singaporeglobalnetwork/"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <Image src={Instagram} alt="Instagram" class="social-img instagram-icon" />
+            </a>
+            <a
+                href="https://www.linkedin.com/company/singaporeglobalnetwork/posts/?feedView=all"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <Image src={LinkedIn} alt="LinkedIn" class="social-img linkedin-icon" />
+            </a>
+            <a href="https://x.com/sgglobalnetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
+                <Image src={X} alt="X" class="social-img x-icon" />
+            </a>
+            <a href="https://t.me/singaporeglobalnetwork" class="social-icon" target="_blank" rel="noopener noreferrer">
+                <Image src={Telegram} alt="Telegram" class="social-img telegram-icon" />
+            </a>
+            <a
+                href="https://www.youtube.com/SingaporeGlobalNetwork"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <Image src={Youtube} alt="Youtube" class="social-img youtube-icon" />
+            </a>
+            <a
+                href="https://www.tiktok.com/@singaporeglobalnetwork"
+                class="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <Image src={Tiktok} alt="Tiktok" class="social-img tiktok-icon" />
+            </a>
+        </div>
+    </footer>
 </section>
 
-
 <style>
+    :root {
+        --carousel-shift: 40px;
+    }
+    @media only screen and (max-height: 575.98px) and (orientation: landscape) {
+        :root {
+            --carousel-shift: 60px;
+        }
+    }
     #gallery-container {
         position: relative;
         width: 100vw;
         height: 100vh;
     }
 
-	.back-wall {
-		background-color: #490407;
-		padding: 20px 0 30px;
-		text-align: center;
-		color: #EEE7E0;
+    .back-wall {
+        background-color: #490407;
+        padding: 20px 0 40px;
+        text-align: center;
+        color: #eee7e0;
     }
 
-	h2 {
-		font-size: 55px;
-		font-weight: bold;
-	}
+    h2 {
+        font-size: 42px;
+        font-weight: bold;
+        color: inherit;
+    }
 
-	p {
-		padding-bottom: 30px;
-		font-size: 24px;
-	}
+    p {
+        margin-bottom: 40px;
+        font-size: 21px;
+        color: inherit;
+    }
 
     .gallery-midground {
-		padding: 20px 0;
-        height: 40%;
-        background-color: #EEE7E0;
-		overflow: hidden;
+        padding: 20px 0;
+        height: 50vh;
+        background-color: #eee7e0;
+        overflow: hidden;
     }
 
     .gallery-foreground {
-		position: absolute;
-		bottom: 0;
-        width: 100%;
-        height: 50%;
-        background: url('../images/gallery/gallery_foreground.svg') no-repeat bottom center;
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+        min-height: 50%;
+        background: url("../images/gallery/gallery_foreground.svg") no-repeat bottom center;
         background-size: contain;
         pointer-events: none;
     }
 
-	.media-placeholder {
-		border-top-left-radius: 60px;
-		border-bottom-right-radius: 60px;
-    }
-
-    .media-placeholder.small {
-        width: 223px;
-        height: 215px;
-    }
-
-    .media-placeholder.long {
-        width: 472px;
-        height: 215px;
-    }
-
-    .media-placeholder.large {
-        width: 409px;
-        height: 464px;
-    }
-
-	.color1 { background-color: #909090; }
-    .color2 { background-color: #BEBEBE; }
-    .color3 { background-color: #CFCFCF; }
-    .color4 { background-color: #4F4F4F; }
-    .color6 { background-color: #8F8F8F; }
-    .color8 { background-color: #D3D3D3; }
-
-	.carousel-container {
-        width: 100%;
+    .carousel-container {
         height: 100%;
-        overflow: hidden;
         display: flex;
         align-items: center;
+        gap: 30px;
+        animation: carousel 20s linear infinite;
     }
 
-    .carousel-content {
-        display: flex;
-        height: 464px;
-        gap: 26px;
-        animation: carousel 15s linear infinite;
+    .carousel-container:hover {
+        animation-play-state: paused;
     }
+
+    /*  CALCULATION OF CAROUSEL WIDTH
+		(container-height * 3/4 + container-height) * 4 sections
+	
+		Desktop - 350vh - 40px
+		Mobile - 350vh - 60px
+	*/
 
     @keyframes carousel {
         0% {
             transform: translateX(0);
         }
         100% {
-            transform: translateX(calc(-50% - 13px));
+            transform: translateX(calc(-350vh + var(--carousel-shift)));
         }
     }
 
-	.column-container {
+    .column-container {
         display: flex;
-		flex-direction: column;
+        flex-direction: column;
         justify-content: space-between;
-		gap: 30px;
+        gap: 30px;
+        height: 100%;
+        aspect-ratio: 1 / 1;
     }
 
-    .horizontal-container {
+    .row-container {
         display: flex;
-        flex-direction: row;
-        gap: 26px;
+        justify-content: space-between;
+        gap: 30px;
+        height: calc(50% - 15px);
+        aspect-ratio: 2 / 1;
     }
 
-    .media-container {
+    .media-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .media-placeholder.portrait {
+        height: 100%;
+        aspect-ratio: 3 / 4;
+        border-top-left-radius: 60px;
+        border-bottom-right-radius: 60px;
+        background-color: red;
+    }
+
+    .media-placeholder.square {
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        border-top-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        background-color: red;
+    }
+
+    .media-placeholder.landscape {
+        height: calc(50% - 15px);
+        aspect-ratio: 2 / 1;
+        border-top-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        background-color: red;
+    }
+
+    .footer-container {
         position: absolute;
         bottom: 0;
-        width: 100%;
+        width: 100vw;
         background-color: #333333;
-		padding: 20px 0;
+        padding: 20px 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -212,31 +343,87 @@ import Tiktok from "../images/gallery/tiktok.svg";
 
     .social-container {
         display: flex;
-        width: 400px;
-        height: 22px;
-        gap: 45px;
-        justify-content: space-between;
+        gap: 40px;
         align-items: center;
     }
 
-    .facebook-icon { content: url('../images/gallery/facebook.svg'); }
-    .facebook-icon:hover { content: url('../images/gallery/facebook-hover.svg'); }
+    .social-container img {
+        color: #e7e0d9;
+    }
 
-    .instagram-icon { content: url('../images/gallery/instagram.svg'); }
-    .instagram-icon:hover { content: url('../images/gallery/instagram-hover.svg'); }
+    .social-container img:hover {
+        filter: invert(60%) sepia(46%) saturate(386%) hue-rotate(346deg) brightness(200%) contrast(105%);
+    }
 
-    .linkedin-icon { content: url('../images/gallery/linkedin.svg'); }
-    .linkedin-icon:hover { content: url('../images/gallery/linkedin-hover.svg'); }
+    @media only screen and (max-height: 575.98px) and (orientation: landscape) {
+        .back-wall {
+            padding: 15px 0;
+        }
 
-    .x-icon { content: url('../images/gallery/x.svg'); }
-    .x-icon:hover { content: url('../images/gallery/x-hover.svg'); }
+        h2 {
+            font-size: 28px;
+        }
 
-    .telegram-icon { content: url('../images/gallery/telegram.svg'); }
-    .telegram-icon:hover { content: url('../images/gallery/telegram-hover.svg'); }
+        p {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
 
-    .youtube-icon { content: url('../images/gallery/youtube.svg'); }
-    .youtube-icon:hover { content: url('../images/gallery/youtube-hover.svg'); }
+        .gallery-midground {
+            padding: 10px 0;
+        }
 
-    .tiktok-icon { content: url('../images/gallery/tiktok.svg'); }
-    .tiktok-icon:hover { content: url('../images/gallery/tiktok-hover.svg'); }
+        .carousel-container,
+        .column-container,
+        .row-container {
+            gap: 10px;
+        }
+
+        .row-container,
+        .media-placeholder.landscape {
+            height: calc(50% - 5px);
+        }
+
+        .media-placeholder.portrait {
+            border-top-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        .media-placeholder.square {
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .media-placeholder.landscape {
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .footer-container {
+            padding: 10px 0;
+        }
+    }
 </style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const container = document.querySelector("#gallery-container");
+
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: container,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            snap: {
+                snapTo: 1,
+                duration: 0.2,
+                ease: "expoScale(0.5,7,none)",
+            },
+        },
+    });
+</script>

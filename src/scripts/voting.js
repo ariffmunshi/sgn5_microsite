@@ -1,10 +1,7 @@
 // Function to fetch initial vote counts
-export async function fetchInitialVoteCounts(currentRound, voteCounts) {
-    const corsProxy = "https://cors-anywhere.herokuapp.com/"; // Remove for production
-    const apiUrl = `https://8ofnowhrs8.execute-api.ap-southeast-1.amazonaws.com/voting?round=${currentRound}`;
-
+export async function fetchInitialVoteCounts(voteCounts) {
     try {
-        const response = await fetch(corsProxy + apiUrl);
+        const response = await fetch(`https://8ofnowhrs8.execute-api.ap-southeast-1.amazonaws.com/voting?round=1`);
         const data = await response.json();
 
         if (data) {
@@ -25,16 +22,13 @@ export async function fetchInitialVoteCounts(currentRound, voteCounts) {
 }
 
 // Function to update API with accumulated votes
-export async function updateAPIVotes(currentRound, accumulatedVotes) {
-    const corsProxy = "https://cors-anywhere.herokuapp.com/"; // Remove for production
-    const apiUrl = "https://8ofnowhrs8.execute-api.ap-southeast-1.amazonaws.com/voting";
-
+export async function updateAPIVotes(accumulatedVotes) {
     const updates = Object.entries(accumulatedVotes).filter(([_, count]) => count > 0);
 
     if (updates.length === 0) return accumulatedVotes;
 
     const body = {
-        round: currentRound,
+        round: 1,
         votes: {
             layer1: accumulatedVotes.layer1 || 0,
             layer2: accumulatedVotes.layer2 || 0,
@@ -44,7 +38,7 @@ export async function updateAPIVotes(currentRound, accumulatedVotes) {
     };
 
     try {
-        const response = await fetch(corsProxy + apiUrl, {
+        const response = await fetch(`https://8ofnowhrs8.execute-api.ap-southeast-1.amazonaws.com/voting`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

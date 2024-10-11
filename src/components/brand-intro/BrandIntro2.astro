@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets";
-import mainMan from "../../images/main-man.svg";
-import scene3Background from "../../images/brand-intro/intro2/Scene3_Background.svg";
-import womanFormalAttire from "../../images/brand-intro/intro2/Scene3_Women-formal-attire.svg";
-import manRedBag from "../../images/brand-intro/intro2/Scene3_Men-red-bag.svg";
-import couple from "../../images/brand-intro/intro2/Scene3_Couple.svg";
-import manInSuit from "../../images/brand-intro/intro2/Scene3_Man-in-suit.svg";
-import manYellowShirt from "../../images/brand-intro/intro2/Scene3_Man-yellow-shirt.svg";
-import momAndChild from "../../images/brand-intro/intro2/Scene3_Mom-and-child.svg";
+import mainMan from "../../images/main-man-1.png";
+import scene3Background from "../../images/brand-intro/intro2/Scene3_Background_Full.png";
+import womanFormalAttire from "../../images/brand-intro/intro2/Scene3_Women-formal-attire_Full.png";
+import manRedBag from "../../images/brand-intro/intro2/Scene3_Men-red-bag_Full.png";
+import couple from "../../images/brand-intro/intro2/Scene3_Couple_Full.png";
+import manInSuit from "../../images/brand-intro/intro2/Scene3_Man-in-suit_Full.png";
+import manYellowShirt from "../../images/brand-intro/intro2/Scene3_Man-yellow-shirt_Full.png";
+import momAndChild from "../../images/brand-intro/intro2/Scene3_Mom-and-child_Full.png";
 import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
 ---
 
@@ -29,6 +29,7 @@ import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
                 of
                 <span id="brand-intro-2-count1" class="typed-text fixed-width-1">0</span>
                 people from 
+                <br>
                 <span id="brand-intro-2-count2" class="typed-text fixed-width-2">0</span>
                 nationalities and
                 <span id="brand-intro-2-count3" class="typed-text fixed-width-2">0</span>
@@ -48,65 +49,42 @@ import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
         z-index: 3;
     }
 
+	img {
+		object-fit: cover;
+	}
+
     #scene3-background {
         position: absolute;
-        bottom: -120px;
+        bottom: 0;
+		left: 0;
         width: 100%;
+		height: 100%;
         z-index: 1;
         opacity: 0;
     }
 
     #main-man-intro2 {
         position: absolute;
-        z-index: 5;
-        left: 50%;
-        bottom: -25%;
-        height: 100%;
-        transform: translate(-50%, 0);
-        transform-origin: top center;
+		left: 0;
+        bottom: 0;
+        width: 100%;
+		height: 100%;
         opacity: 0;
+		z-index: 5;
     }
 
     .person {
         position: absolute;
+		left: 0;
+        bottom: 0;
+        width: 100%;
+		height: 100%;
         z-index: 2;
-        transform: scale(0.8);
-    }
-
-    #man-red-bag {
-        bottom: 5%;
-        left: 2%
-    }
-
-    #woman-formal-attire {
-        bottom: 0;
-        left: 6%;
-        transform-origin: bottom left;
-    }
-
-    #mom-and-child {
-        bottom: 10%;
-        left: 25%;
-    }
-
-    #man-yellow-shirt {
-        bottom: 0%;
-        right: 30%;
-    }
-
-    #couple {
-        bottom: 13%;
-        right: 15%;
-    }
-
-    #man-in-suit {
-        bottom: 0;
-        right: 0;
-        transform-origin: bottom right;
     }
 
     .card {
         position: absolute;
+		top: 0;
         left: 50%;
         width: 580px;
         transform: translate(-50%, 10%);
@@ -127,6 +105,30 @@ import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
         width: 50px;
     }
 
+	@media only screen and (max-height: 575.98px) and (orientation: landscape) {
+		.card {
+			transform: translate(-50%, 20%);
+			width: calc(100vw - 30%);
+			padding: 20px;
+		}
+		
+		.card p {
+			font-size: 16px;
+			line-height: 26px;
+		}
+
+		.typed-text {
+			font-size: 23px;
+		}
+
+		.fixed-width-1 {
+			width: 84px;
+		}
+
+		.fixed-width-2 {
+			width: 38px;
+		}
+	}
 </style>
 
 <script>
@@ -137,7 +139,7 @@ import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
     gsap.registerPlugin(ScrollTrigger)
 
     // Initialise variables
-    const citySoundsAudio = document.querySelector("#city-sounds-audio");
+    const citySoundsAudio = document.querySelector("#city-sounds-audio")! as HTMLAudioElement;
 
     // Scroll Animation
     // Initialise custom GSAP effect for counter
