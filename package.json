@@ -17,6 +17,7 @@
     "gsap": "^3.12.5",
     "lottie-web": "^5.12.2",
     "matter-js": "^0.20.0",
+    "path-to-regexp": "^8.2.0",
     "postcss": "^8.4.45",
     "postcss-preset-env": "^10.0.3",
     "sass": "^1.78.0",
