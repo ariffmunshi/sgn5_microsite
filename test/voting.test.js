@@ -27,7 +27,7 @@ describe("Function to fetch initial vote counts", () => {
         });
 
         // Call the function
-        const response = await fetchInitialVoteCounts(1, voteCounts);
+        const response = await fetchInitialVoteCounts(voteCounts);
 
         // Assert fetch was called correctly
         expect(fetch).toHaveBeenCalled();
@@ -98,7 +98,7 @@ describe("Function to update votes using API", () => {
             ok: true,
         });
 
-        const response = await updateAPIVotes(1, accumulatedVotes);
+        const response = await updateAPIVotes(accumulatedVotes);
 
         expect(fetch).toHaveBeenCalled();
 
@@ -111,7 +111,7 @@ describe("Function to update votes using API", () => {
         vi.spyOn(console, "error");
         vi.spyOn(global, "fetch").mockRejectedValue(new Error("Fetch failed"));
 
-        await updateAPIVotes(1, accumulatedVotes);
+        await updateAPIVotes(accumulatedVotes);
 
         expect(console.error).toHaveBeenCalledWith("Error updating vote counts:", new Error("Fetch failed"));
     });
@@ -120,7 +120,7 @@ describe("Function to update votes using API", () => {
         const accumulatedVotes = { layer1: 0, layer2: 0, layer3: 0, layer4: 0 };
         const mockFetch = vi.spyOn(global, "fetch");
 
-        const result = await updateAPIVotes(1, accumulatedVotes);
+        const result = await updateAPIVotes(accumulatedVotes);
 
         expect(mockFetch).not.toHaveBeenCalled();
         expect(result).toEqual(accumulatedVotes);
@@ -134,7 +134,7 @@ describe("Function to update votes using API", () => {
             ok: false,
         });
 
-        await updateAPIVotes(1, accumulatedVotes);
+        await updateAPIVotes(accumulatedVotes);
 
         expect(console.error).toHaveBeenCalledWith("Error updating vote counts:", new Error("API update failed"));
     });
