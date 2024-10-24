@@ -2,21 +2,27 @@
 import { Image } from "astro:assets";
 import scoreBoardOpenIcon from "../images/competition/scoreboard-open-icon.svg";
 import competitionHeaderLogo from "../images/competition/competition-header.svg";
+/* 
+UPDATE VOTING IMAGES HERE (THIS IS FOR THE BUTTON)
+*/ 
 import layer1 from "../images/competition/01_Mynah.svg";
 import layer2 from "../images/competition/02_Cat.svg";
 import layer3 from "../images/competition/03_Otter.svg";
 import layer4 from "../images/competition/04_Orchid.svg";
+/* 
+UPDATE COMPETITION OVERVIEW
+*/ 
 import competitionTable from "../images/competition/ultimate-icon-firstweek.svg";
 ---
 
-<section id="competition-container">
+<section id="sgtournament">
     <div class="falling-objects-container"></div>
     <div class="scoreboard-open scoreboard-icon">
         <Image src={scoreBoardOpenIcon} alt="scoreboard open icon" />
     </div>
     <header class="competition-header">
         <Image src={competitionHeaderLogo} alt="competition-header" class="competition-header-logo" />
-        <p class="header-font">Your click counts! May the most iconic Singaporean symbol claim victory!</p>
+        <p class="header-font">Each week, we unveil a category that embodies the Singapore spirit and heritage. May the most iconic Singaporean symbol claim victory!</p>
         <h4 class="body-font">Theme: Nature</h4>
     </header>
     <div class="voting-container">
@@ -157,7 +163,7 @@ import competitionTable from "../images/competition/ultimate-icon-firstweek.svg"
 </template>
 
 <style lang="scss">
-    #competition-container {
+    #sgtournament {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -330,6 +336,7 @@ import competitionTable from "../images/competition/ultimate-icon-firstweek.svg"
         height: 4rem;
         width: 4rem;
         background-color: #ffffff;
+        z-index: 1;
     }
 
     .scoreboard-open {
@@ -482,13 +489,30 @@ import competitionTable from "../images/competition/ultimate-icon-firstweek.svg"
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     import { fetchInitialVoteCounts, updateAPIVotes } from "../../src/scripts/voting.js";
 
+    // Define constants
+    const mediaQuery = window.matchMedia("(max-height: 575.98px) and (orientation: landscape)");
+    let MAX_BODIES = 200;
+    let OBJECT_SIZE = 120;
+    let INITIAL_DROP_COUNT = 15;
+    let isGroundOpen = false;
+    let groundOpenTimeout;
+
+    // Media query check
+    function handleMediaQueryChange(e) {
+        if (e.matches) {
+            MAX_BODIES = 100;
+            OBJECT_SIZE = 80;
+        } else {
+            MAX_BODIES = 150;
+            OBJECT_SIZE = 120;
+        }
+    }
+    handleMediaQueryChange(mediaQuery);
+    mediaQuery.addListener(handleMediaQueryChange);
+
     // SCRIPT - VOTES
     // Set up Matter.js
-    const Engine = Matter.Engine,
-        Render = Matter.Render,
-        Runner = Matter.Runner,
-        Bodies = Matter.Bodies,
-        World = Matter.World;
+    const { Engine, Render, Runner, Bodies, World } = Matter;
 
     // Create an engine
     const engine = Engine.create({
@@ -533,16 +557,15 @@ import competitionTable from "../images/competition/ultimate-icon-firstweek.svg"
     };
 
     // Image URLs to preload
+    /* 
+    UPDATE VOTING IMAGES HERE (THIS IS THE DROPPING ICONS)
+    */ 
     const imageUrls = [
-        "/competition/01_Mynah.png",
-        "/competition/02_Cat.png",
-        "/competition/03_Otter.png",
-        "/competition/04_Orchid.png",
+        "/competition/01_Mynah.svg",
+        "/competition/02_Cat.svg",
+        "/competition/03_Otter.svg",
+        "/competition/04_Orchid.svg",
     ];
-
-    const MAX_BODIES = 200;
-    let isGroundOpen = false;
-    let groundOpenTimeout;
 
     // Function to preload images
     function preloadImages(imageUrls) {
@@ -564,7 +587,7 @@ import competitionTable from "../images/competition/ultimate-icon-firstweek.svg"
 
     // Function to create a falling object
     function createFallingObject(image, x, y) {
-        const size = 80;
+        const size = OBJECT_SIZE;
         const collisionRadius = size / 3;
 
         const body = Bodies.circle(x, y, collisionRadius, {
@@ -577,6 +600,7 @@ import competitionTable from "../images/competition/ultimate-icon-firstweek.svg"
                     texture: image.src,
                     xScale: size / image.width,
                     yScale: size / image.height,
+                    imageSmoothingEnabled: true,
                 },
             },
         });
@@ -686,11 +710,13 @@ import competitionTable from "../images/competition/ultimate-icon-firstweek.svg"
             }
 
             updateVotePercentages();
-            dropInitialObjects();
+            // dropInitialObjects();
         } catch (error) {
             console.error("Error fetching initial vote counts:", error);
         }
     }
+
+    let isDropped = false;
 
     // Function to drop initial objects
     function dropInitialObjects() {
@@ -700,7 +726,7 @@ import competitionTable from "../images/competition/ultimate-icon-firstweek.svg"
 
         Object.entries(voteCounts).forEach(([icon, count]) => {
             const percentage = (count / totalVotes) * 100;
-            const objectCount = Math.min(Math.round(percentage), 30);
+            const objectCount = Math.round((percentage / 100) * INITIAL_DROP_COUNT);
 
             if (preloadedImages[icon]) {
                 for (let i = 0; i < objectCount; i++) {
@@ -904,45 +930,53 @@ import competitionTable from "../images/competition/ultimate-icon-firstweek.svg"
             }
 
             updateVotePercentages();
-            dropInitialObjects();
         })
         .catch((error) => {
             console.error("Error during initialization:", error);
         });
 
     // SCRIPT - SCOREBOARD
-    document.addEventListener("DOMContentLoaded", () => {
-        const openIcon = document.querySelector(".scoreboard-open");
-        const closeIcon = document.querySelector(".scoreboard-close");
-        const modal = document.querySelector("#scoreboard-modal");
+    const openIcon = document.querySelector(".scoreboard-open");
+    const closeIcon = document.querySelector(".scoreboard-close");
+    const modal = document.querySelector("#scoreboard-modal");
 
-        openIcon.addEventListener("click", () => {
-            openIcon.style.display = "none";
-            modal.style.display = "flex";
-        });
+    openIcon.addEventListener("click", () => {
+        openIcon.style.display = "none";
+        modal.style.display = "flex";
+    });
 
-        closeIcon.addEventListener("click", () => {
-            openIcon.style.display = "flex";
-            modal.style.display = "none";
-        });
+    closeIcon.addEventListener("click", () => {
+        openIcon.style.display = "flex";
+        modal.style.display = "none";
     });
 
     // SCRIPT - SCROLL SNAP
     gsap.registerPlugin(ScrollTrigger);
 
-    const container = document.querySelector("#competition-container");
+    const currContainer = document.querySelector("#sgtournament");
 
-    const timeline = gsap.timeline({
+    gsap.timeline({
         scrollTrigger: {
-            trigger: container,
+            trigger: currContainer,
             start: "top top",
             end: "bottom top",
             scrub: true,
             snap: {
-                snapTo: 1,
+                snapTo: (progress, self) => {
+                    const snapPoint = Math.round(progress);
+                    return snapPoint;
+                },
                 duration: 0.2,
+                delay: 0,
                 ease: "expoScale(0.5,7,none)",
+            },
+            onEnter: () => {
+                if (!isDropped){
+                    dropInitialObjects();
+                    isDropped = true;
+                }
             },
         },
     });
+
 </script>

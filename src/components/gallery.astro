@@ -5,7 +5,7 @@ import Instagram from "../images/gallery/instagram.svg";
 import LinkedIn from "../images/gallery/linkedin.svg";
 import Youtube from "../images/gallery/youtube.svg";
 import X from "../images/gallery/x.svg";
-import Telegram from "../images/gallery/telegram.svg";
+import Telegram from "../images/gallery/telegram_new.svg";
 import Tiktok from "../images/gallery/tiktok.svg";
 import portrait1 from "../images/gallery/Portrait/4x3-1.jpg";
 import portrait2 from "../images/gallery/Portrait/4x3-2.jpg";
@@ -29,7 +29,7 @@ import landscape7 from "../images/gallery/Landscape/1x2-7.jpg";
 import landscape8 from "../images/gallery/Landscape/1x2-8.jpg";
 ---
 
-<section id="gallery-container">
+<section id="gallery">
     <div class="back-wall">
         <h2>A Big Thank You to Our Partners</h2>
         <p>We are grateful for your support in growing and making meaningful impact to our communities!</p>
@@ -212,7 +212,7 @@ import landscape8 from "../images/gallery/Landscape/1x2-8.jpg";
             --carousel-shift: 60px;
         }
     }
-    #gallery-container {
+    #gallery {
         position: relative;
         width: 100vw;
         height: 100vh;
@@ -249,7 +249,7 @@ import landscape8 from "../images/gallery/Landscape/1x2-8.jpg";
         bottom: 0;
         width: 100vw;
         min-height: 50%;
-        background: url("../images/gallery/gallery_foreground.svg") no-repeat bottom center;
+        background: url("../images/gallery/gallery_foreground_new.svg") no-repeat bottom center;
         background-size: contain;
         pointer-events: none;
     }
@@ -411,17 +411,21 @@ import landscape8 from "../images/gallery/Landscape/1x2-8.jpg";
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const container = document.querySelector("#gallery-container");
+    const container = document.querySelector("#gallery");
 
-    const timeline = gsap.timeline({
+    gsap.timeline({
         scrollTrigger: {
             trigger: container,
             start: "top top",
             end: "bottom top",
             scrub: true,
             snap: {
-                snapTo: 1,
+                snapTo: (progress, self) => {
+                    const snapPoint = Math.round(progress);
+                    return snapPoint;
+                },
                 duration: 0.2,
+                delay: 0,
                 ease: "expoScale(0.5,7,none)",
             },
         },

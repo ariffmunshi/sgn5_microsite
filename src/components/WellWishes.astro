@@ -3,18 +3,21 @@ import { Image } from "astro:assets";
 import flower from "../images/well-wishes/flower.svg";
 ---
 
-<section id="well-wishes-container">
+<section id="giveaway">
     <Image src={flower} alt="flower" class="flower" />
     <div class="text-container">
         <h3>To Friendships That Know No Boundaries</h3>
         <p>
-            Share a photo of a cherished memory with a friend, tell us what you miss about them and how you keep the
-            connection alive.
+            Here’s to your ride or die! We’re giving away 20 customised illustrated portraits to celebrate your friendships!
         </p>
         <p>
-            The cozy moments that give us the warm fuzzies enter a giveaway draw to win an immortalised illustration by
-            friends of our network.
-            <a href="https://go.gov.sg/sgnfriendshipstories">Enter to win</a>.
+            <strong class="bold-text">How it works:</strong> Share a photo of a cherished memory with a friend, tell us what you miss about them and how you keep the connection alive.
+        </p>
+        <p>
+            The cozy moments that give us the warm fuzzies enter a giveaway draw to have your picture immortalised by <a href="https://www.instagram.com/sliceofwhit/" target="_blank" >@sliceofwhit</a> or <a href="https://www.instagram.com/sketchingonthefly/" target="_blank" >@sketchingonthefly</a>
+        </p>
+        <p>
+            <a class="primary-btn" style="margin-top: 10px" href="https://go.gov.sg/sgnfriendshipstories"  target="_blank"> Enter to win</a>
         </p>
     </div>
     <div class="right-section">
@@ -34,7 +37,7 @@ import flower from "../images/well-wishes/flower.svg";
 </section>
 
 <style>
-    #well-wishes-container {
+    #giveaway {
         position: relative;
         display: flex;
         justify-content: center;
@@ -72,12 +75,17 @@ import flower from "../images/well-wishes/flower.svg";
         line-height: 1.5;
     }
 
+    .bold-text {
+        font-weight: bold;
+    }
+
     .right-section {
         position: relative;
         flex: 1;
         background-color: #d9d9d9;
         height: 100%;
         overflow: hidden;
+        padding-top: 50px;
     }
     .padlet-container {
         height: 100%;
@@ -85,6 +93,7 @@ import flower from "../images/well-wishes/flower.svg";
         /*Hide scrollbar for IE, Edge and Firefox */
         -ms-overflow-style: none;
         scrollbar-width: none;
+        
     }
 
     /* Hide scrollbar for Chrome, Safari and Opera */
@@ -105,14 +114,19 @@ import flower from "../images/well-wishes/flower.svg";
     }
 
     @media only screen and (max-height: 575.98px) and (orientation: landscape) {
-        #well-wishes-container {
+        #giveaway {
             gap: 20px;
             padding: 20px;
         }
 
         .text-container {
+            padding-left: 20px;
             width: 35%;
             z-index: 1;
+        }
+        
+        .flower {
+            transform: scale(0.20);
         }
 
         .right-section {
@@ -135,15 +149,15 @@ import flower from "../images/well-wishes/flower.svg";
         }
 
         h3 {
-            font-size: 36px;
+            font-size: 1.5rem;
             font-weight: bold;
             line-height: 1.2;
         }
 
         p {
             margin: 0.5rem 0;
-            font-size: 1rem;
-            line-height: 1.2;
+            font-size: 0.85rem;
+            line-height: 1.1;
         }
     }
 </style>
@@ -154,7 +168,7 @@ import flower from "../images/well-wishes/flower.svg";
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const container = document.querySelector("#well-wishes-container");
+    const container = document.querySelector("#giveaway");
 
     gsap.timeline({
         scrollTrigger: {
@@ -163,8 +177,12 @@ import flower from "../images/well-wishes/flower.svg";
             end: "bottom top",
             scrub: true,
             snap: {
-                snapTo: 1,
+                snapTo: (progress, self) => {
+                    const snapPoint = Math.round(progress);
+                    return snapPoint;
+                },
                 duration: 0.2,
+                delay: 0,
                 ease: "expoScale(0.5,7,none)",
             },
         },

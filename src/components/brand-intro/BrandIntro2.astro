@@ -8,10 +8,10 @@ import couple from "../../images/brand-intro/intro2/Scene3_Couple_Full.png";
 import manInSuit from "../../images/brand-intro/intro2/Scene3_Man-in-suit_Full.png";
 import manYellowShirt from "../../images/brand-intro/intro2/Scene3_Man-yellow-shirt_Full.png";
 import momAndChild from "../../images/brand-intro/intro2/Scene3_Mom-and-child_Full.png";
-import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
+import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3";
 ---
 
-<section id="brand-intro-2-container">
+<section id="brand-intro-2">
     <div id="brand-intro-2-content">
         <!-- Scene 3 -->
         <Image id="scene3-background" class="scene-3" src={scene3Background} alt="scene 3 background" />
@@ -25,11 +25,10 @@ import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
 
         <div id="card-scene-3" class="card scene-3">
             <p class="card-text-main">
-                What began as a small group of overseas Singaporeans has blossomed into a vibrant, diverse community
-                of
+                What began as a small group of overseas Singaporeans has blossomed into a vibrant, diverse community of
                 <span id="brand-intro-2-count1" class="typed-text fixed-width-1">0</span>
-                people from 
-                <br>
+                people from
+                <br />
                 <span id="brand-intro-2-count2" class="typed-text fixed-width-2">0</span>
                 nationalities and
                 <span id="brand-intro-2-count3" class="typed-text fixed-width-2">0</span>
@@ -41,50 +40,52 @@ import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
 </section>
 
 <style>
-    #brand-intro-2-container {
+    #brand-intro-2 {
         position: relative;
         height: 100vh;
         width: 100vw;
         overflow: hidden;
         z-index: 3;
+        pointer-events: none;
+        margin-top: -100vh;
     }
 
-	img {
-		object-fit: cover;
-	}
+    img {
+        object-fit: cover;
+    }
 
     #scene3-background {
         position: absolute;
         bottom: 0;
-		left: 0;
+        left: 0;
         width: 100%;
-		height: 100%;
+        height: 100%;
         z-index: 1;
         opacity: 0;
     }
 
     #main-man-intro2 {
         position: absolute;
-		left: 0;
+        left: 0;
         bottom: 0;
         width: 100%;
-		height: 100%;
+        height: 100%;
         opacity: 0;
-		z-index: 5;
+        z-index: 5;
     }
 
     .person {
         position: absolute;
-		left: 0;
+        left: 0;
         bottom: 0;
         width: 100%;
-		height: 100%;
+        height: 100%;
         z-index: 2;
     }
 
     .card {
         position: absolute;
-		top: 0;
+        top: 0;
         left: 50%;
         width: 580px;
         transform: translate(-50%, 10%);
@@ -94,7 +95,7 @@ import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
     .typed-text {
         display: inline-block;
         font-size: 30px;
-        color: #B95B2D;
+        color: #b95b2d;
     }
 
     .fixed-width-1 {
@@ -105,30 +106,30 @@ import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
         width: 50px;
     }
 
-	@media only screen and (max-height: 575.98px) and (orientation: landscape) {
-		.card {
-			transform: translate(-50%, 20%);
-			width: calc(100vw - 30%);
-			padding: 20px;
-		}
-		
-		.card p {
-			font-size: 16px;
-			line-height: 26px;
-		}
+    @media only screen and (max-height: 575.98px) and (orientation: landscape) {
+        .card {
+            transform: translate(-50%, 20%);
+            width: calc(100vw - 30%);
+            padding: 20px;
+        }
 
-		.typed-text {
-			font-size: 23px;
-		}
+        .card p {
+            font-size: 16px;
+            line-height: 26px;
+        }
 
-		.fixed-width-1 {
-			width: 84px;
-		}
+        .typed-text {
+            font-size: 23px;
+        }
 
-		.fixed-width-2 {
-			width: 38px;
-		}
-	}
+        .fixed-width-1 {
+            width: 84px;
+        }
+
+        .fixed-width-2 {
+            width: 38px;
+        }
+    }
 </style>
 
 <script>
@@ -136,7 +137,7 @@ import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger);
 
     // Initialise variables
     const citySoundsAudio = document.querySelector("#city-sounds-audio")! as HTMLAudioElement;
@@ -177,44 +178,53 @@ import citySoundsAudio from "../../audio/Intro_3_City_Sounds.mp3"
             return tl;
         },
     });
-    
+
     // Initialise Timeline
     const timeline = gsap.timeline({
         scrollTrigger: {
-            trigger: "#brand-intro-2-container",
-            pin: "#brand-intro-2-container",
-            pinSpacing: false,
+            trigger: "#brand-intro-2",
+            pin: "#brand-intro-2",
+            pinSpacing: true,
             scrub: true,
             start: "top top",
-            end: "bottom top",
+            end: () => `+=${isLandscapeMobile() ? "250%" : "100%"}`,
             onEnter: () => {
-                citySoundsAudio.play()
+                citySoundsAudio.play().catch((error) => {
+                    console.log("Error playing audio:", error);
+                });
             },
             onLeave: () => {
-                citySoundsAudio.pause()
+                citySoundsAudio.pause();
             },
-            onEnterBack:  () => {
-                citySoundsAudio.play()
+            onEnterBack: () => {
+                citySoundsAudio.play().catch((error) => {
+                    console.log("Error playing audio:", error);
+                });
             },
-            onLeaveBack:  () => {
-                citySoundsAudio.pause()
+            onLeaveBack: () => {
+                citySoundsAudio.pause();
             },
         },
     });
-    
+
     // Scroll Animation
     timeline
-    .from("#card-scene-3", { opacity: 0 })
-    .to("#main-man-intro2", { opacity: 1, y: "0vh" }, "<")
-    .to("#scene3-background", { opacity: 1, scale: 1.05, transformOrigin: "50% 50%" })
-    .from("#mom-and-child", { opacity: 0 } )
-    .from("#man-yellow-shirt", { opacity: 0 }  )
-    .from("#woman-formal-attire", { opacity: 0 } )
-    .from("#man-red-bag", { opacity: 0 } )
-    .from("#couple", { opacity: 0 } )
-    .from("#man-in-suit", { opacity: 0 } )
-    .counter("#brand-intro-2-count1", { end: 123000, ease: "linear", duration: 2 }, "-=3")
-    .counter("#brand-intro-2-count2", { end: 183, ease: "linear", duration: 2 }, "-=3")
-    .counter("#brand-intro-2-count3", { end: 168, ease: "linear", duration: 2 }, "-=3")
-    .to("#brand-intro-2-content", {opacity: 0, delay: 1})
+        .from("#card-scene-3", { opacity: 0 })
+        .to("#main-man-intro2", { opacity: 1, y: "0vh" }, "<")
+        .to("#scene3-background", { opacity: 1, scale: 1.05, transformOrigin: "50% 50%" })
+        .from("#mom-and-child", { opacity: 0 })
+        .from("#man-yellow-shirt", { opacity: 0 })
+        .from("#woman-formal-attire", { opacity: 0 })
+        .from("#man-red-bag", { opacity: 0 })
+        .from("#couple", { opacity: 0 })
+        .from("#man-in-suit", { opacity: 0 })
+        .counter("#brand-intro-2-count1", { end: 123000, ease: "linear", duration: 2 }, "-=3")
+        .counter("#brand-intro-2-count2", { end: 183, ease: "linear", duration: 2 }, "-=3")
+        .counter("#brand-intro-2-count3", { end: 168, ease: "linear", duration: 2 }, "-=3")
+        .to("#brand-intro-2-content", { opacity: 0, delay: 1 });
+
+    // Functions
+    function isLandscapeMobile() {
+        return window.matchMedia("only screen and (max-height: 575.98px) and (orientation: landscape)").matches;
+    }
 </script>

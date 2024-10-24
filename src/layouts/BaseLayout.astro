@@ -9,20 +9,34 @@ import mobileRotate from "../images/mobile-rotate.svg";
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/sgn_logo_favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="generator" content={Astro.generator} />
     <title>{SITE_TITLE}</title>
     <meta name="description" content={DESCRIPTION} />
     <meta name="keywords" content="" />
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PVWTZCSF');
+    </script>
+    <!-- End Google Tag Manager -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
-    <script src="https://assets.dcube.cloud/scripts/wogaa.js"></script>
+    <script src="https://assets.wogaa.sg/scripts/wogaa.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component@2.1.2/components/Masthead/index.umd.js"></script>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVWTZCSF" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <sgds-masthead></sgds-masthead>
     <Image id="texture-overlay" src={textureOverlay} alt="texture overlay" />
     <div id="portrait-alert">
@@ -30,7 +44,7 @@ import mobileRotate from "../images/mobile-rotate.svg";
       <h2 class="">
         Rotate your device to landscape
       </h2>
-      <p>*Best experience with sound on</p>
+      <small><sup>*</sup>Best experience with sound on</small>
     </div>
     <slot />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -58,8 +72,8 @@ import mobileRotate from "../images/mobile-rotate.svg";
     position: fixed;
     top: 0;
     left: 0;
-	height: 100%;
-	width: 100%;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     z-index: 100;
     mix-blend-mode: multiply;
@@ -71,6 +85,11 @@ import mobileRotate from "../images/mobile-rotate.svg";
   }
 
   @media screen and (orientation: portrait) {    
+    body {
+      overflow: hidden;
+      height: 100vh;
+      height: 100svh;
+    }
     #portrait-alert {
       display: block;
       position: fixed;
@@ -112,7 +131,7 @@ import mobileRotate from "../images/mobile-rotate.svg";
 
   .sgds.footer .footer-mandatory-links ul li {
     display: inline-block;
-    margin-right: 15px; 
+    margin-right: 15px;
   }
 
   .sgds.footer .footer-mandatory-links ul li:hover {
@@ -137,10 +156,3 @@ import mobileRotate from "../images/mobile-rotate.svg";
     }
   }
 </style>
-
-<script>
-  if (document.documentElement.fullscreenElement) {
-    await document.documentElement.requestFullScreen();
-    await screen.orientation.lock("landscape-primary")
-  }
-</script>

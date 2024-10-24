@@ -5,10 +5,10 @@ import cloud2 from "../../images/brand-intro/clouds/Cloud2.png";
 import cloud3 from "../../images/brand-intro/clouds/Cloud3.png";
 import cloud4 from "../../images/brand-intro/clouds/Cloud4.png";
 import cloud5 from "../../images/brand-intro/clouds/Cloud5.png";
-import natureSoundsAudio from "../../audio/Landing_Nature_Ambience.mp3"
+import natureSoundsAudio from "../../audio/Landing_Nature_Ambience_New.mp3"
 ---
 
-<section id="brand-intro-clouds-container">
+<section id="brand-intro">
     <div id="brand-intro-content">
         <div class="welcome-text">
             <h3>Welcome!</h3>
@@ -32,7 +32,7 @@ import natureSoundsAudio from "../../audio/Landing_Nature_Ambience.mp3"
 </section>
 
 <style>
-    #brand-intro-clouds-container {
+    #brand-intro {
         margin-bottom: -50vh;
         position: relative;
         height: 100vh;
@@ -73,7 +73,7 @@ import natureSoundsAudio from "../../audio/Landing_Nature_Ambience.mp3"
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        z-index: 6;
+        z-index: 7;
     }
 
     .cloud {
@@ -110,6 +110,8 @@ import natureSoundsAudio from "../../audio/Landing_Nature_Ambience.mp3"
     
     // Initialise variables
     const natureSoundsAudio = document.querySelector("#nature-sounds-audio")! as HTMLAudioElement;
+    natureSoundsAudio.loop = true; // set audio to loop
+    natureSoundsAudio.volume = 0.3;
     const clouds = [...document.querySelectorAll(".cloud")];
     const leftClouds = clouds.slice(0, 3);
     const rightClouds = clouds.slice(3);
@@ -141,16 +143,15 @@ import natureSoundsAudio from "../../audio/Landing_Nature_Ambience.mp3"
     // Initialise Timelines
     const cloudTimeline = gsap.timeline({
         scrollTrigger: {
-            trigger: "#brand-intro-clouds-container",
+            trigger: "#brand-intro",
             scrub: 1,
             start: "top top",
             end: "bottom center",
             onEnter: () => {
-                natureSoundsAudio.play().then(() => 
-                    console.log("nature sounds play on enter"))
-                .catch(() => {
-                    console.log("error")
-                })
+                natureSoundsAudio.play()
+                .catch((error) => {
+                        console.log("Error playing audio:", error);
+                });
             },
         },
     });

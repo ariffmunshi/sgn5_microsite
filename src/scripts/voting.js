@@ -1,6 +1,9 @@
 // Function to fetch initial vote counts
 export async function fetchInitialVoteCounts(voteCounts) {
     try {
+        /*
+        UPDATE VOTING ROUND HERE
+        */
         const response = await fetch(`https://8ofnowhrs8.execute-api.ap-southeast-1.amazonaws.com/voting?round=1`);
         const data = await response.json();
 
@@ -28,6 +31,9 @@ export async function updateAPIVotes(accumulatedVotes) {
     if (updates.length === 0) return accumulatedVotes;
 
     const body = {
+        /* 
+        UPDATE VOTING ROUND HERE
+        */
         round: 1,
         votes: {
             layer1: accumulatedVotes.layer1 || 0,
@@ -54,9 +60,6 @@ export async function updateAPIVotes(accumulatedVotes) {
         Object.keys(accumulatedVotes).forEach((key) => {
             accumulatedVotes[key] = 0;
         });
-
-        console.log("Votes updated successfully");
-
         return accumulatedVotes;
     } catch (error) {
         console.error("Error updating vote counts:", error);

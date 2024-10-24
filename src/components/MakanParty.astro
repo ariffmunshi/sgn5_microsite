@@ -2,18 +2,16 @@
 import { Image, getImage } from "astro:assets";
 import sceneBackground from "../images/makan-party/makan-party-background.svg";
 import { restaurantsArr as restaurants } from "../data/restaurants.js";
-import makanCoffeeshopAudio from "../audio/Makan_Coffeeshop.mp3";
+import makanCoffeeshopAudio from "../audio/Makan_Coffeeshop_New.mp3";
 
 const optimizedBackground = await getImage({ src: sceneBackground, format: "svg" });
 ---
 
-<section id="makan-party-container">
+<section id="makan-party">
     <div id="makan-party-content" style={`background-image: url(${optimizedBackground.src});`}>
         <div id="main-man-makan"></div>
         <div id="makan-party-text" class="card scene-3">
-            <p class="card-text-main">
-                We've worked with some of the best Singapore dining sports all around the world to offer you exclusive
-                perks. Grab a friend and share a great meal. Enjoy the flavours that unite us!
+            <p class="card-text-main"> We've worked with some of the best Singapore dining spots around the world to offer you an exclusive perk! Grab a friend and share a great meal!
             </p>
             <p class="card-text-sub">Click to view the list of restaurants</p>
         </div>
@@ -66,13 +64,15 @@ const optimizedBackground = await getImage({ src: sceneBackground, format: "svg"
 </section>
 
 <style lang="scss">
-    #makan-party-container {
+    #makan-party {
         position: relative;
         height: 100vh;
         width: 100vw;
         overflow: hidden;
         z-index: 1;
-        scroll-padding-top: 5vh;
+        scroll-padding-top: 20vh;
+        -webkit-scroll-padding-top: 20vh;
+        margin-top: -100vh;
     }
 
     #makan-party-content {
@@ -258,20 +258,24 @@ const optimizedBackground = await getImage({ src: sceneBackground, format: "svg"
 
     const timeline = gsap.timeline({
         scrollTrigger: {
-            trigger: "#makan-party-container",
+            trigger: "#makan-party",
             start: "top top",
             end: "bottom top",
             pin: true,
             pinSpacing: false,
             toggleActions: "restart complete none reset",
             onEnter: () => {
-                makanCoffeeshopAudio.play();
+                makanCoffeeshopAudio.play().catch((error) => {
+                    console.log("Error playing audio:", error);
+                });
             },
             onLeave: () => {
                 makanCoffeeshopAudio.pause();
             },
             onEnterBack: () => {
-                makanCoffeeshopAudio.play();
+                makanCoffeeshopAudio.play().catch((error) => {
+                    console.log("Error playing audio:", error);
+                });
             },
             onLeaveBack: () => {
                 makanCoffeeshopAudio.pause();
@@ -279,7 +283,7 @@ const optimizedBackground = await getImage({ src: sceneBackground, format: "svg"
         },
     });
 
-    timeline.from("#makan-party-container", { autoAlpha: 0, delay: 0.2, duration: 0.5 }).to(mainMan, {
+    timeline.from("#makan-party", { autoAlpha: 0, delay: 0.2, duration: 0.5 }).to(mainMan, {
         x: "35vw",
         delay: 0.2,
         duration: 3.5,
