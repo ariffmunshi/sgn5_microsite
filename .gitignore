@@ -1,10 +1,10 @@
 # build output
-dist/
+app/dist/
 # generated types
-.astro/
+app/.astro/
 
 # dependencies
-node_modules/
+app/node_modules/
 
 # logs
 npm-debug.log*
@@ -14,8 +14,8 @@ pnpm-debug.log*
 
 
 # environment variables
-.env
-.env.production
+app/.env
+app/.env.production
 
 # macOS-specific files
 .DS_Store
@@ -27,4 +27,11 @@ pnpm-debug.log*
 .vscode/
 
 # code coverage
-coverage/
+app/coverage/
+
+# Terraform
+infra/**/.terraform/
+infra/**/*.tfstate
+infra/**/*.tfstate.backup
+infra/**/.terraform.lock.hcl
+infra/**/.terragrunt-cache/
