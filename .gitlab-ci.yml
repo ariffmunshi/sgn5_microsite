@@ -3,17 +3,25 @@ include:
       ref: "v1.0.9"
       file:
           - /templates/.gitlab-ci-common.yml
+    - local: ".gitlab-ci-terraform.yml"
 
 image: $NEXUSREPO_DOCKER_PROXY_HOSTNAME/node:18-alpine
 
 stages:
+    - tf-validate
+    - tf-build
+    - tf-deploy
     - unit-test
     - static-test # static test after getting output from build
-    - runtime-test # runtime testing
-    - sign # after all is good for testing, sign the output from build and push to an external repository
-    - deploy-to-prod # finally deploy with safety rules
+    - build
+    - deploy-to-dev
+    - deploy-to-prod # manual deploy
 
-# unit-test-SGN5:
+variables:
+    AWS_PROFILE_NAME: "sgn-microsite"
+    AWS_ROLE_ARN: arn:aws:iam::211125747707:role/rol-microsite_tf
+
+# unit-test-app:
 #     stage: unit-test
 #     script:
 #         - cd app
@@ -23,11 +31,72 @@ stages:
 #         paths:
 #             - app/coverage
 
+build-app:
+    stage: build
+    script:
+        - cd app
+        - npm ci
+        - npm run build
+    artifacts:
+        paths:
+            - app/dist
+        expire_in: 1 week
+
+# Deploy to dev environment
+deploy-app-dev:
+    stage: deploy-to-dev
+    image: $NEXUSREPO_DOCKER_PROXY_HOSTNAME/amazon/aws-cli:latest
+    id_tokens:
+        GITLAB_OIDC_TOKEN:
+            aud: https://sgts.gitlab-dedicated.com
+    before_script:
+        # Set AWS profile
+        - |
+            mkdir -p ~/.aws
+            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
+            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
+        # Load environment variables
+        - export $(cat .env.dev | xargs)
+    script:
+        - aws --profile sgn-microsite s3 sync app/dist/ s3://${microsite_bucket_name}/ --delete
+    dependencies:
+        - build-app
+    environment:
+        name: development
+    rules:
+        - if: '$CI_COMMIT_BRANCH == "main"'
+
+# Deploy to production environment
+deploy-app-prod:
+    stage: deploy-to-prod
+    image: $NEXUSREPO_DOCKER_PROXY_HOSTNAME/amazon/aws-cli:latest
+    id_tokens:
+        GITLAB_OIDC_TOKEN:
+            aud: https://sgts.gitlab-dedicated.com
+    before_script:
+        # Set AWS profile
+        - |
+            mkdir -p ~/.aws
+            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
+            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
+        # Load environment variables
+        - export $(cat .env.prod | xargs)
+    script:
+        - aws --profile sgn-microsite s3 sync app/dist/ s3://${microsite_bucket_name}/ --delete
+    dependencies:
+        - build-app
+    environment:
+        name: production
+    when: manual
+    rules:
+        - if: '$CI_COMMIT_BRANCH == "main"'
+
 ship-sonarqube-scan:
     variables:
         SONAR_PROJECTKEY: SGN-EDB-SGN-SGN5_Microsite
         SONAR_SOURCES: "app/src"
 
+# Disabled jobs
 deploy-prod-manual-job:
     rules:
         - when: never
