@@ -1,0 +1,151 @@
+# This is the base script which we build our image from
+# We modify the Terraform/Base.gitlab-ci.yml template  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Terraform/Base.gitlab-ci.yml
+
+image:
+    name: "hashicorp/terraform:1.5.5"
+
+stages:
+    - tf-validate
+    - tf-build
+    - tf-deploy
+
+variables:
+    TF_ROOT_DEV: "infra/environments/development"
+    TF_ROOT_PROD: "infra/environments/production"
+    AWS_PROFILE_NAME: "sgn-microsite"
+    AWS_ROLE_ARN: arn:aws:iam::211125747707:role/rol-microsite_tf
+    PLAN: "plan.cache"
+
+.validate:
+    stage: tf-validate
+    id_tokens:
+        GITLAB_OIDC_TOKEN:
+            aud: https://sgts.gitlab-dedicated.com
+    before_script:
+        # Set AWS profile
+        - |
+            mkdir -p ~/.aws
+            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
+            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
+        # cd to relevant env directory
+        - cd ${TF_ROOT}
+    script:
+        - terraform init -reconfigure
+        - terraform validate
+
+.build:
+    stage: tf-build
+    id_tokens:
+        GITLAB_OIDC_TOKEN:
+            aud: https://sgts.gitlab-dedicated.com
+    before_script:
+        # Set AWS profile
+        - |
+            mkdir -p ~/.aws
+            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
+            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
+        # cd to relevant env directory
+        - cd ${TF_ROOT}
+    artifacts:
+        paths:
+            - ${TF_ROOT}/${PLAN}
+            - ${ENV_FILE}
+    script:
+        - terraform init -reconfigure
+        - terraform plan -out=${PLAN}
+        - terraform output -json > ${ENV_FILE}
+    after_script:
+        - rm /tmp/web_identity_token
+        - unset GITLAB_OIDC_TOKEN
+
+.deploy:
+    stage: tf-deploy
+    id_tokens:
+        GITLAB_OIDC_TOKEN:
+            aud: https://sgts.gitlab-dedicated.com
+    before_script:
+        - |
+            mkdir -p ~/.aws
+            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
+            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
+        - cd ${TF_ROOT}
+    script:
+        - terraform init -reconfigure
+        - terraform apply -input=false ${PLAN}
+        - terraform output -json > ${ENV_FILE}
+    artifacts:
+        paths:
+            - ${ENV_FILE}
+    after_script:
+        - rm /tmp/web_identity_token
+        - unset GITLAB_OIDC_TOKEN
+        - rm ~/.aws/config
+
+# DEV ENVIRONMENT
+validate:dev:
+    extends: .validate
+    variables:
+        TF_ROOT: ${TF_ROOT_DEV}
+    rules:
+        - changes:
+              - ${TF_ROOT_DEV}/**/*
+
+build:dev:
+    extends: .build
+    variables:
+        TF_ROOT: ${TF_ROOT_DEV}
+        ENV_FILE: ".env.dev"
+    environment:
+        name: development
+    rules:
+        - changes:
+              - ${TF_ROOT_DEV}/**/*
+        - if: '$CI_COMMIT_BRANCH == "main"'
+
+deploy:dev:
+    extends: .deploy
+    variables:
+        TF_ROOT: ${TF_ROOT_DEV}
+        ENV_FILE: ".env.dev"
+    environment:
+        name: development
+    dependencies:
+        - build:dev
+    resource_group: development
+    rules:
+        - if: '$CI_COMMIT_BRANCH == "main"'
+
+# PRODUCTION ENVIRONMENT
+validate:prod:
+    extends: .validate
+    variables:
+        TF_ROOT: ${TF_ROOT_PROD}
+    rules:
+        - changes:
+              - ${TF_ROOT_PROD}/**/*
+
+build:prod:
+    extends: .build
+    variables:
+        TF_ROOT: ${TF_ROOT_PROD}
+        ENV_FILE: ".env.prod"
+    environment:
+        name: production
+    rules:
+        - changes:
+              - ${TF_ROOT_PROD}/**/*
+        - if: '$CI_COMMIT_BRANCH == "main"'
+
+deploy:prod:
+    extends: .deploy
+    variables:
+        TF_ROOT: ${TF_ROOT_PROD}
+        ENV_FILE: ".env.prod"
+    environment:
+        name: production
+    dependencies:
+        - build:prod
+    resource_group: production
+    when: manual
+    only:
+        - main
