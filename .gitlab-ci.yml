@@ -13,6 +13,8 @@ stages:
     - tf-deploy
     - unit-test
     - static-test # static test after getting output from build
+    - runtime-test # runtime testing
+    - sign # after all is good for testing, sign the output from build and push to an external repository
     - build
     - deploy-to-dev
     - deploy-to-prod # manual deploy
