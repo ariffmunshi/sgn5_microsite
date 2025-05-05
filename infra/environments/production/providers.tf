@@ -14,7 +14,7 @@ terraform {
     region         = "ap-southeast-1"
     encrypt        = true
     dynamodb_table = "microsite-terraform-lock"
-    profile        = "sgn-aws"
+    profile        = "sgn-microsite"
   }
 }
 
