@@ -70,7 +70,7 @@ deploy-app-dev:
             with open(".env.export", "w") as f:
                 for k, v in vars.items():
                     value = v["value"]
-                    f.write(f"export {k}=\"{value}\"\n")
+                    f.write("export {}=\"{}\"\n".format(k, value))
             '
         - source .env.export
         - |
@@ -99,7 +99,7 @@ deploy-app-prod:
             with open(".env.export", "w") as f:
                 for k, v in vars.items():
                     value = v["value"]
-                    f.write(f"export {k}=\"{value}\"\n")
+                    f.write("export {}=\"{}\"\n".format(k, value))
             '
         - source .env.export
         - |
