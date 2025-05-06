@@ -69,7 +69,8 @@ deploy-app-dev:
                 vars = json.load(f)
             with open(".env.export", "w") as f:
                 for k, v in vars.items():
-                    f.write(f"export {k}=\"{v[\"value\"]}\"\n")
+                    value = v["value"]
+                    f.write(f"export {k}=\"{value}\"\n")
             '
         - source .env.export
         - |
@@ -97,7 +98,8 @@ deploy-app-prod:
                 vars = json.load(f)
             with open(".env.export", "w") as f:
                 for k, v in vars.items():
-                    f.write(f"export {k}=\"{v[\"value\"]}\"\n")
+                    value = v["value"]
+                    f.write(f"export {k}=\"{value}\"\n")
             '
         - source .env.export
         - |
