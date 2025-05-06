@@ -20,7 +20,6 @@ variables:
         - export AWS_SDK_LOAD_CONFIG="${AWS_SDK_LOAD_CONFIG}"
         # Debug: verify which identity is being used
         - env | grep AWS || echo "No AWS env vars found"
-        - aws sts get-caller-identity
     after_script:
         - rm /tmp/web_identity_token
         - unset GITLAB_OIDC_TOKEN
