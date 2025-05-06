@@ -29,6 +29,7 @@ variables:
         # cd to relevant env directory
         - cd ${TF_ROOT}
     script:
+        - export TF_LOG=DEBUG
         - terraform init -reconfigure
         - terraform validate
 
@@ -52,6 +53,7 @@ variables:
             - ${TF_ROOT}/${PLAN}
             - ${ENV_FILE}
     script:
+        - export TF_LOG=DEBUG
         - terraform init -reconfigure
         - terraform plan -out=${PLAN}
         - terraform output -json > ${ENV_FILE}
@@ -73,6 +75,7 @@ variables:
             echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
         - cd ${TF_ROOT}
     script:
+        - export TF_LOG=DEBUG
         - terraform init -reconfigure
         - terraform apply -input=false ${PLAN}
         - terraform output -json > ${ENV_FILE}
