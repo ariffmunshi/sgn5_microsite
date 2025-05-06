@@ -4,6 +4,7 @@ include:
       file:
           - /templates/.gitlab-ci-common.yml
     - local: ".gitlab-ci-terraform.yml"
+    - local: ".gitlab-ci-base.yml"
 
 image: $NEXUSREPO_DOCKER_PROXY_HOSTNAME/node:18-alpine
 
@@ -19,9 +20,14 @@ stages:
     - deploy-to-dev
     - deploy-to-prod # manual deploy
 
-variables:
-    AWS_PROFILE_NAME: "sgn-microsite"
-    AWS_ROLE_ARN: arn:aws:iam::211125747707:role/rol-microsite_tf
+.deploy-app-base:
+    extends: .aws-auth
+    image: $NEXUSREPO_DOCKER_PROXY_HOSTNAME/amazon/aws-cli:latest
+    dependencies:
+        - build-app
+    script:
+        - aws s3 sync app/dist/ s3://${microsite_bucket_name}/ --delete
+        - aws cloudfront create-invalidation --distribution-id ${cloudfront_distribution_id} --paths "/*"
 
 # unit-test-app:
 #     stage: unit-test
@@ -35,6 +41,9 @@ variables:
 
 build-app:
     stage: build
+    cache:
+        paths:
+            - app/node_modules
     script:
         - cd app
         - npm ci
@@ -46,23 +55,11 @@ build-app:
 
 # Deploy to dev environment
 deploy-app-dev:
+    extends: .deploy-app-base
     stage: deploy-to-dev
-    image: $NEXUSREPO_DOCKER_PROXY_HOSTNAME/amazon/aws-cli:latest
-    id_tokens:
-        GITLAB_OIDC_TOKEN:
-            aud: https://sgts.gitlab-dedicated.com
     before_script:
-        # Set AWS profile
-        - |
-            mkdir -p ~/.aws
-            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
-            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
-        # Load environment variables
+        - !reference [.aws-auth, before_script]
         - export $(cat .env.dev | xargs)
-    script:
-        - aws --profile sgn-microsite s3 sync app/dist/ s3://${microsite_bucket_name}/ --delete
-    dependencies:
-        - build-app
     environment:
         name: development
     rules:
@@ -70,23 +67,11 @@ deploy-app-dev:
 
 # Deploy to production environment
 deploy-app-prod:
+    extends: .deploy-app-base
     stage: deploy-to-prod
-    image: $NEXUSREPO_DOCKER_PROXY_HOSTNAME/amazon/aws-cli:latest
-    id_tokens:
-        GITLAB_OIDC_TOKEN:
-            aud: https://sgts.gitlab-dedicated.com
     before_script:
-        # Set AWS profile
-        - |
-            mkdir -p ~/.aws
-            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
-            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
-        # Load environment variables
+        - !reference [.aws-auth, before_script]
         - export $(cat .env.prod | xargs)
-    script:
-        - aws --profile sgn-microsite s3 sync app/dist/ s3://${microsite_bucket_name}/ --delete
-    dependencies:
-        - build-app
     environment:
         name: production
     when: manual

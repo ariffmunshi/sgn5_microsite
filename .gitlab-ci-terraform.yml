@@ -1,6 +1,9 @@
 # This is the base script which we build our image from
 # We modify the Terraform/Base.gitlab-ci.yml template  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Terraform/Base.gitlab-ci.yml
 
+include:
+    - local: ".gitlab-ci-base.yml"
+
 stages:
     - tf-validate
     - tf-build
@@ -9,83 +12,54 @@ stages:
 variables:
     TF_ROOT_DEV: "infra/environments/development"
     TF_ROOT_PROD: "infra/environments/production"
-    AWS_PROFILE_NAME: "sgn-microsite"
-    AWS_ROLE_ARN: arn:aws:iam::211125747707:role/rol-microsite_tf
     PLAN: "plan.cache"
 
-.validate:
-    stage: tf-validate
+.tf-base:
+    extends: .aws-auth
     image:
         name: "hashicorp/terraform:1.5.5"
-    id_tokens:
-        GITLAB_OIDC_TOKEN:
-            aud: https://sgts.gitlab-dedicated.com
     before_script:
-        # Set AWS profile
-        - |
-            mkdir -p ~/.aws
-            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
-            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
-        # cd to relevant env directory
+        - !reference [.aws-auth, before_script]
+        # Install jq if not available
+        - command -v jq || apk add --no-cache jq
+        # Change directory
         - cd ${TF_ROOT}
+
+.validate:
+    extends: .tf-base
+    stage: tf-validate
     script:
+        # Debug: print logs
         - export TF_LOG=DEBUG
         - terraform init -reconfigure
         - terraform validate
 
 .build:
+    extends: .tf-base
     stage: tf-build
-    image:
-        name: "hashicorp/terraform:1.5.5"
-    id_tokens:
-        GITLAB_OIDC_TOKEN:
-            aud: https://sgts.gitlab-dedicated.com
-    before_script:
-        # Set AWS profile
-        - |
-            mkdir -p ~/.aws
-            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
-            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
-        # cd to relevant env directory
-        - cd ${TF_ROOT}
     artifacts:
         paths:
             - ${TF_ROOT}/${PLAN}
             - ${ENV_FILE}
     script:
+        # Debug: print logs
         - export TF_LOG=DEBUG
         - terraform init -reconfigure
         - terraform plan -out=${PLAN}
-        - terraform output -json > ${ENV_FILE}
-    after_script:
-        - rm /tmp/web_identity_token
-        - unset GITLAB_OIDC_TOKEN
+        - terraform output -json | jq -r 'to_entries | map("\(.key)=\(.value.value)") | .[]' > ${ENV_FILE}
 
 .deploy:
+    extends: .tf-base
     stage: tf-deploy
-    image:
-        name: "hashicorp/terraform:1.5.5"
-    id_tokens:
-        GITLAB_OIDC_TOKEN:
-            aud: https://sgts.gitlab-dedicated.com
-    before_script:
-        - |
-            mkdir -p ~/.aws
-            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
-            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
-        - cd ${TF_ROOT}
-    script:
-        - export TF_LOG=DEBUG
-        - terraform init -reconfigure
-        - terraform apply -input=false ${PLAN}
-        - terraform output -json > ${ENV_FILE}
     artifacts:
         paths:
             - ${ENV_FILE}
-    after_script:
-        - rm /tmp/web_identity_token
-        - unset GITLAB_OIDC_TOKEN
-        - rm ~/.aws/config
+    script:
+        # Debug: print logs
+        - export TF_LOG=DEBUG
+        - terraform init -reconfigure
+        - terraform apply -input=false ${PLAN}
+        - terraform output -json | jq -r 'to_entries | map("\(.key)=\(.value.value)") | .[]' > ${ENV_FILE}
 
 # DEV ENVIRONMENT
 validate:dev:
@@ -153,5 +127,5 @@ deploy:prod:
         - build:prod
     resource_group: production
     when: manual
-    only:
-        - main
+    rules:
+        - if: '$CI_COMMIT_BRANCH == "main"'

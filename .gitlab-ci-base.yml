@@ -1,0 +1,27 @@
+variables:
+    AWS_PROFILE_NAME: "sgn-microsite"
+    AWS_ROLE_ARN: arn:aws:iam::211125747707:role/rol-microsite_tf
+    AWS_SDK_LOAD_CONFIG: "true"
+
+.aws-auth:
+    id_tokens:
+        GITLAB_OIDC_TOKEN:
+            aud: https://sgts.gitlab-dedicated.com
+    before_script:
+        # Unset any existing AWS credentials
+        - unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_DEFAULT_REGION
+        # Set AWS profile
+        - |
+            mkdir -p ~/.aws
+            echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
+            echo -e "[profile ${AWS_PROFILE_NAME}]\nrole_arn=${AWS_ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token\nregion=ap-southeast-1" > ~/.aws/config
+        # Export AWS profile variables
+        - export AWS_PROFILE="${AWS_PROFILE_NAME}"
+        - export AWS_SDK_LOAD_CONFIG="${AWS_SDK_LOAD_CONFIG}"
+        # Debug: verify which identity is being used
+        - env | grep AWS || echo "No AWS env vars found"
+        - aws sts get-caller-identity
+    after_script:
+        - rm /tmp/web_identity_token
+        - unset GITLAB_OIDC_TOKEN
+        - rm ~/.aws/config || true
