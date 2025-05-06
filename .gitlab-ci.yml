@@ -60,7 +60,6 @@ deploy-app-dev:
         - deploy:dev
     before_script:
         - !reference [.aws-auth, before_script]
-        - find . -name ".env.dev" -type f
         - |
             python -c '
             import json, os
@@ -89,7 +88,6 @@ deploy-app-prod:
         - deploy:prod
     before_script:
         - !reference [.aws-auth, before_script]
-        - find . -name ".env.dev" -type f
         - |
             python -c '
             import json, os

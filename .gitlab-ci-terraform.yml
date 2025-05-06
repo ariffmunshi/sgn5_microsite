@@ -27,8 +27,6 @@ variables:
     extends: .tf-base
     stage: tf-validate
     script:
-        # Debug: print logs
-        - export TF_LOG=DEBUG
         - terraform init -reconfigure
         - terraform validate
 
@@ -40,8 +38,6 @@ variables:
             - ${TF_ROOT}/${PLAN}
             - ${TF_ROOT}/${ENV_FILE}
     script:
-        # Debug: print logs
-        - export TF_LOG=DEBUG
         - terraform init -reconfigure
         - terraform plan -out=${PLAN}
         - terraform output -json > ${ENV_FILE}
@@ -53,8 +49,6 @@ variables:
         paths:
             - ${TF_ROOT}/${ENV_FILE}
     script:
-        # Debug: print logs
-        - export TF_LOG=DEBUG
         - terraform init -reconfigure
         - terraform apply -input=false ${PLAN}
         - terraform output -json > ${ENV_FILE}
@@ -67,6 +61,7 @@ validate:dev:
     rules:
         - changes:
               - ${TF_ROOT_DEV}/**/*
+        - when: never
 
 build:dev:
     extends: .build
@@ -78,6 +73,7 @@ build:dev:
     rules:
         - changes:
               - ${TF_ROOT_DEV}/**/*
+        - when: never
         - if: '$CI_COMMIT_BRANCH == "main"'
 
 deploy:dev:
@@ -103,6 +99,7 @@ validate:prod:
     rules:
         - changes:
               - ${TF_ROOT_PROD}/**/*
+        - when: never
 
 build:prod:
     extends: .build
@@ -114,6 +111,7 @@ build:prod:
     rules:
         - changes:
               - ${TF_ROOT_PROD}/**/*
+        - when: never
         - if: '$CI_COMMIT_BRANCH == "main"'
 
 deploy:prod:
@@ -129,4 +127,5 @@ deploy:prod:
     rules:
         - changes:
               - ${TF_ROOT_PROD}/**/*
+        - when: never
         - if: '$CI_COMMIT_BRANCH == "main"'
