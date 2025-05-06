@@ -38,7 +38,7 @@ variables:
     artifacts:
         paths:
             - ${TF_ROOT}/${PLAN}
-            - ${ENV_FILE}
+            - ${TF_ROOT}/${ENV_FILE}
     script:
         # Debug: print logs
         - export TF_LOG=DEBUG
@@ -51,7 +51,7 @@ variables:
     stage: tf-deploy
     artifacts:
         paths:
-            - ${ENV_FILE}
+            - ${TF_ROOT}/${ENV_FILE}
     script:
         # Debug: print logs
         - export TF_LOG=DEBUG

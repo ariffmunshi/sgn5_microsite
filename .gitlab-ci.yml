@@ -62,7 +62,7 @@ deploy-app-dev:
         - |
             python -c '
             import json, os
-            vars = json.load(open(".env.dev"))
+            vars = json.load(open("infra/environments/development/.env.dev"))
             for k, v in vars.items():
               os.environ[k] = str(v["value"])
             '
@@ -82,7 +82,7 @@ deploy-app-prod:
         - |
             python -c '
             import json, os
-            vars = json.load(open(".env.prod"))
+            vars = json.load(open("infra/environments/production/.env.prod"))
             for k, v in vars.items():
               os.environ[k] = str(v["value"])
             '
