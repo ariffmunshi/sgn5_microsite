@@ -88,7 +88,8 @@ deploy:dev:
     resource_group: development
     rules:
         - changes:
-              - ${TF_ROOT_PROD}/**/*
+              - ${TF_ROOT_DEV}/**/*
+        - when: never
         - if: '$CI_COMMIT_BRANCH == "main"'
 
 # PRODUCTION ENVIRONMENT
