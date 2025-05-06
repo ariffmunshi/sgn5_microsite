@@ -59,7 +59,15 @@ deploy-app-dev:
     stage: deploy-to-dev
     before_script:
         - !reference [.aws-auth, before_script]
-        - export $(cat .env.dev | xargs)
+        - |
+            python -c '
+            import json, os
+            vars = json.load(open(".env.dev"))
+            for k, v in vars.items():
+              os.environ[k] = str(v["value"])
+            '
+        - |
+            env | grep microsite_bucket_name || echo "Warning: Variables not properly exported"
     environment:
         name: development
     rules:
@@ -71,7 +79,15 @@ deploy-app-prod:
     stage: deploy-to-prod
     before_script:
         - !reference [.aws-auth, before_script]
-        - export $(cat .env.prod | xargs)
+        - |
+            python -c '
+            import json, os
+            vars = json.load(open(".env.prod"))
+            for k, v in vars.items():
+              os.environ[k] = str(v["value"])
+            '
+        - |
+            env | grep microsite_bucket_name || echo "Warning: Variables not properly exported"
     environment:
         name: production
     when: manual

@@ -20,8 +20,6 @@ variables:
         name: "hashicorp/terraform:1.5.5"
     before_script:
         - !reference [.aws-auth, before_script]
-        # Install jq if not available
-        - command -v jq || apk add --no-cache jq
         # Change directory
         - cd ${TF_ROOT}
 
@@ -46,7 +44,7 @@ variables:
         - export TF_LOG=DEBUG
         - terraform init -reconfigure
         - terraform plan -out=${PLAN}
-        - terraform output -json | jq -r 'to_entries | map("\(.key)=\(.value.value)") | .[]' > ${ENV_FILE}
+        - terraform output -json > ${ENV_FILE}
 
 .deploy:
     extends: .tf-base
@@ -59,7 +57,7 @@ variables:
         - export TF_LOG=DEBUG
         - terraform init -reconfigure
         - terraform apply -input=false ${PLAN}
-        - terraform output -json | jq -r 'to_entries | map("\(.key)=\(.value.value)") | .[]' > ${ENV_FILE}
+        - terraform output -json > ${ENV_FILE}
 
 # DEV ENVIRONMENT
 validate:dev:
