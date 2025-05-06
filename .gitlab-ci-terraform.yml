@@ -71,9 +71,6 @@ build:dev:
     environment:
         name: development
     rules:
-        - changes:
-              - ${TF_ROOT_DEV}/**/*
-        - when: never
         - if: '$CI_COMMIT_BRANCH == "main"'
 
 deploy:dev:
@@ -107,9 +104,6 @@ build:prod:
     environment:
         name: production
     rules:
-        - changes:
-              - ${TF_ROOT_PROD}/**/*
-        - when: never
         - if: '$CI_COMMIT_BRANCH == "main"'
 
 deploy:prod:
