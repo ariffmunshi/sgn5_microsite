@@ -23,8 +23,6 @@ stages:
 .deploy-app-base:
     extends: .aws-auth
     image: $NEXUSREPO_DOCKER_PROXY_HOSTNAME/amazon/aws-cli:latest
-    dependencies:
-        - build-app
     script:
         - aws s3 sync app/dist/ s3://${microsite_bucket_name}/ --delete
         - aws cloudfront create-invalidation --distribution-id ${cloudfront_distribution_id} --paths "/*"
@@ -57,8 +55,12 @@ build-app:
 deploy-app-dev:
     extends: .deploy-app-base
     stage: deploy-to-dev
+    dependencies:
+        - build-app
+        - deploy:dev
     before_script:
         - !reference [.aws-auth, before_script]
+        - find . -name ".env.dev" -type f
         - |
             python -c '
             import json, os
@@ -77,8 +79,12 @@ deploy-app-dev:
 deploy-app-prod:
     extends: .deploy-app-base
     stage: deploy-to-prod
+    dependencies:
+        - build-app
+        - deploy:prod
     before_script:
         - !reference [.aws-auth, before_script]
+        - find . -name ".env.dev" -type f
         - |
             python -c '
             import json, os

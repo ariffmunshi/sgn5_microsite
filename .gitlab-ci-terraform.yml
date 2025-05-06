@@ -91,6 +91,8 @@ deploy:dev:
         - build:dev
     resource_group: development
     rules:
+        - changes:
+              - ${TF_ROOT_PROD}/**/*
         - if: '$CI_COMMIT_BRANCH == "main"'
 
 # PRODUCTION ENVIRONMENT
@@ -124,6 +126,7 @@ deploy:prod:
     dependencies:
         - build:prod
     resource_group: production
-    when: manual
     rules:
+        - changes:
+              - ${TF_ROOT_PROD}/**/*
         - if: '$CI_COMMIT_BRANCH == "main"'
