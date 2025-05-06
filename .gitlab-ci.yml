@@ -64,10 +64,14 @@ deploy-app-dev:
         - |
             python -c '
             import json, os
-            vars = json.load(open("infra/environments/development/.env.dev"))
-            for k, v in vars.items():
-              os.environ[k] = str(v["value"])
+            env_file = "infra/environments/development/.env.dev"
+            with open(env_file) as f:
+                vars = json.load(f)
+            with open(".env.export", "w") as f:
+                for k, v in vars.items():
+                    f.write(f"export {k}=\"{v[\"value\"]}\"\n")
             '
+        - source .env.export
         - |
             env | grep microsite_bucket_name || echo "Warning: Variables not properly exported"
     environment:
@@ -88,10 +92,14 @@ deploy-app-prod:
         - |
             python -c '
             import json, os
-            vars = json.load(open("infra/environments/production/.env.prod"))
-            for k, v in vars.items():
-              os.environ[k] = str(v["value"])
+            env_file = "infra/environments/production/.env.prod"
+            with open(env_file) as f:
+                vars = json.load(f)
+            with open(".env.export", "w") as f:
+                for k, v in vars.items():
+                    f.write(f"export {k}=\"{v[\"value\"]}\"\n")
             '
+        - source .env.export
         - |
             env | grep microsite_bucket_name || echo "Warning: Variables not properly exported"
     environment:
