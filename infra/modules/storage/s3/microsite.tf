@@ -8,19 +8,6 @@ resource "aws_s3_bucket" "microsite_bucket" {
   }
 }
 
-# Enable website hosting
-resource "aws_s3_bucket_website_configuration" "microsite" {
-  bucket = aws_s3_bucket.microsite_bucket.id
-
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "error.html"
-  }
-}
-
 # Block public access
 resource "aws_s3_bucket_public_access_block" "microsite" {
   bucket = aws_s3_bucket.microsite_bucket.id
