@@ -8,6 +8,15 @@ resource "aws_s3_bucket" "cloudtrail_logs_bucket" {
   }
 }
 
+# Enable versioning for the bucket
+resource "aws_s3_bucket_versioning" "cloudtrail_logs" {
+  bucket = aws_s3_bucket.cloudtrail_logs_bucket.id
+  
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_public_access_block" "cloudtrail_logs" {
   bucket = aws_s3_bucket.cloudtrail_logs_bucket.id
 
