@@ -41,6 +41,20 @@ resource "aws_s3_bucket_policy" "microsite" {
         }
         Action   = "s3:GetObject"
         Resource = "${aws_s3_bucket.microsite_bucket.arn}/*"
+      },
+	  {
+        Effect    = "Deny"
+        Principal = "*"
+        Action    = "s3:*"
+        Resource = [
+          aws_s3_bucket.microsite_bucket.arn,
+          "${aws_s3_bucket.microsite_bucket.arn}/*"
+        ]
+        Condition = {
+          Bool = {
+            "aws:SecureTransport" = "false"
+          }
+        }
       }
     ]
     }) : var.cloudfront_distribution_arn != "" ? jsonencode({
@@ -58,11 +72,40 @@ resource "aws_s3_bucket_policy" "microsite" {
             "AWS:SourceArn" = var.cloudfront_distribution_arn
           }
         }
+      },
+	  {
+        Effect    = "Deny"
+        Principal = "*"
+        Action    = "s3:*"
+        Resource = [
+          aws_s3_bucket.microsite_bucket.arn,
+          "${aws_s3_bucket.microsite_bucket.arn}/*"
+        ]
+        Condition = {
+          Bool = {
+            "aws:SecureTransport" = "false"
+          }
+        }
       }
     ]
     }) : jsonencode({
     Version   = "2012-10-17"
-    Statement = [] # Empty policy if neither variable is set
+    Statement = [
+		{
+        Effect    = "Deny"
+        Principal = "*"
+        Action    = "s3:*"
+        Resource = [
+          aws_s3_bucket.microsite_bucket.arn,
+          "${aws_s3_bucket.microsite_bucket.arn}/*"
+        ]
+        Condition = {
+          Bool = {
+            "aws:SecureTransport" = "false"
+          }
+        }
+      }
+	] 
   })
 
   # Make this depend on CloudFront creation explicitly
