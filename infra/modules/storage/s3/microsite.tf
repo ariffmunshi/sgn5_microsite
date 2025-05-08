@@ -8,6 +8,15 @@ resource "aws_s3_bucket" "microsite_bucket" {
   }
 }
 
+# Enable versioning for the bucket
+resource "aws_s3_bucket_versioning" "microsite" {
+  bucket = aws_s3_bucket.microsite_bucket.id
+  
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 # Block public access
 resource "aws_s3_bucket_public_access_block" "microsite" {
   bucket = aws_s3_bucket.microsite_bucket.id
