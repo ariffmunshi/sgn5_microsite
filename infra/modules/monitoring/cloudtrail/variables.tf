@@ -34,3 +34,9 @@ variable "bucket_policy_id" {
   description = "ID of the S3 bucket policy to ensure it exists before creating CloudTrail"
   type        = string
 }
+
+variable "cloudwatch_kms_key_id" {
+  description = "KMS key ARN to use for encrypting CloudWatch logs"
+  type        = string
+  default     = null 
+}

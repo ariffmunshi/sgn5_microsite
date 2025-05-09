@@ -14,6 +14,7 @@ module "microsite_s3" {
 	project_name					= local.project_name
 	env          					= local.env
 	
+	# Cloudfront variables 
 	cloudfront_distribution_arn	= data.aws_cloudfront_distribution.existing_cloudfront_distribution.arn
 }
 
@@ -27,7 +28,7 @@ module "microsite_monitoring" {
   env          = local.env
   region       = local.region
 
-  # Connect to the S3 bucket
+  # S3 variables
   s3_bucket_id         = module.microsite_s3.microsite_bucket_id
   cloudfront_distro_id = data.aws_cloudfront_distribution.existing_cloudfront_distribution.id
 
@@ -39,10 +40,26 @@ module "microsite_cloudtrail" {
 
   project_name      = local.project_name
   env               = local.env
+
+  # S3 bucket variables
   microsite_bucket_id      = module.microsite_s3.microsite_bucket_id
   logs_bucket_name  = module.microsite_s3.cloudtrail_logs_bucket_id
   bucket_policy_id  = module.microsite_s3.cloudtrail_logs_bucket_policy_id
 
   # Only include this if you want to override the default value
   # log_retention_days = 90
+
+  # KMS variables
+  cloudwatch_kms_key_id = module.kms.key_arn
+}
+
+# ------------------------------------------------------------------------------
+# Security - KMS for CloudWatch Logs Encryption
+# ------------------------------------------------------------------------------
+module "kms" {
+  source = "../../modules/security/kms"
+
+  project_name = local.project_name
+  env          = local.env
+  region       = local.region
 }
