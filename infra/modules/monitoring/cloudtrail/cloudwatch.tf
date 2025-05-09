@@ -1,6 +1,7 @@
 resource "aws_cloudwatch_log_group" "cloudtrail" {
   name              = "/aws/cloudtrail/${var.project_name}-${var.env}-cloudtrail"
   retention_in_days = var.log_retention_days
+  kms_key_id        = var.cloudwatch_kms_key_id
   
   tags = {
     Name        = "${var.project_name}-${var.env}-cloudtrail-logs"

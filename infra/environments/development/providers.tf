@@ -24,7 +24,7 @@ terraform {
 provider "aws" {
   region  = "ap-southeast-1"
 
-	# Only needed for local development
+  # Only needed for local development
 #   profile = "sgn-microsite"
 
 #   assume_role {

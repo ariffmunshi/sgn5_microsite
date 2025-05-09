@@ -1,10 +1,4 @@
-# Microsite URL
-output "microsite_url" {
-  description = "URL of the microsite"
-  value       = module.microsite_cdn.distribution_domain_name
-}
-
-# Microsite S3 Bucket
+# S3 Bucket - Microsite 
 output "microsite_bucket_name" {
   description = "Name of the S3 bucket hosting the microsite content"
   value       = module.microsite_s3.microsite_bucket_id
@@ -15,15 +9,25 @@ output "microsite_bucket_arn" {
   value       = module.microsite_s3.microsite_bucket_arn
 }
 
-# CloudFront
-output "cloudfront_distribution_id" {
-  description = "ID of the CloudFront distribution"
-  value       = module.microsite_cdn.distribution_id
+output "microsite_url" {
+  description = "URL of the microsite"
+  value       = data.aws_cloudfront_distribution.existing_cloudfront_distribution.aliases
 }
 
-output "cloudfront_domain_name" {
-  description = "Domain name of the CloudFront distribution"
-  value       = module.microsite_cdn.distribution_domain_name
+# S3 Bucket - CloudTrail Logs
+output "cloudtrail_logs_bucket_name" {
+  description = "Name of the S3 bucket storing CloudTrail logs"
+  value       = module.microsite_s3_cloudtrail_logs.cloudtrail_logs_bucket.bucket
+}
+
+output "cloudtrail_logs_bucket_arn" {
+  description = "ARN of the S3 bucket storing CloudTrail logs"
+  value       = module.microsite_s3_cloudtrail_logs.cloudtrail_logs_bucket.arn
+}
+
+output "cloudtrail_logs_bucket_policy_id" {
+  description = "ID of the bucket policy attached to the CloudTrail logs bucket"
+  value       = module.microsite_s3_cloudtrail_logs.cloudtrail_logs_bucket_policy_id
 }
 
 # Monitoring - CloudWatch
@@ -83,3 +87,13 @@ output "cloudtrail_s3_log_prefix" {
   value       = module.microsite_cloudtrail.s3_log_prefix
 }
 
+# KMS Keys
+output "cloudwatch_kms_key_id" {
+  description = "ID of the KMS key used for CloudWatch Logs encryption"
+  value       = module.kms.key_id
+}
+
+output "cloudwatch_kms_key_arn" {
+  description = "ARN of the KMS key used for CloudWatch Logs encryption"
+  value       = module.kms.key_arn
+}

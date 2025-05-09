@@ -8,20 +8,21 @@ resource "aws_s3_bucket" "microsite_bucket" {
   }
 }
 
-# Enable website hosting
-resource "aws_s3_bucket_website_configuration" "microsite" {
+resource "aws_s3_bucket_versioning" "microsite" {
   bucket = aws_s3_bucket.microsite_bucket.id
-
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "error.html"
+  
+  versioning_configuration {
+    status = "Enabled"
   }
 }
 
-# Block public access
+resource "aws_s3_bucket_logging" "microsite" {
+  bucket = aws_s3_bucket.microsite_bucket.bucket
+
+  target_bucket = var.access_logs_bucket
+  target_prefix = "${var.access_logs_prefix}/microsite-bucket/"
+}
+
 resource "aws_s3_bucket_public_access_block" "microsite" {
   bucket = aws_s3_bucket.microsite_bucket.id
 
@@ -45,6 +46,20 @@ resource "aws_s3_bucket_policy" "microsite" {
         }
         Action   = "s3:GetObject"
         Resource = "${aws_s3_bucket.microsite_bucket.arn}/*"
+      },
+	  {
+        Effect    = "Deny"
+        Principal = "*"
+        Action    = "s3:*"
+        Resource = [
+          aws_s3_bucket.microsite_bucket.arn,
+          "${aws_s3_bucket.microsite_bucket.arn}/*"
+        ]
+        Condition = {
+          Bool = {
+            "aws:SecureTransport" = "false"
+          }
+        }
       }
     ]
     }) : var.cloudfront_distribution_arn != "" ? jsonencode({
@@ -62,11 +77,40 @@ resource "aws_s3_bucket_policy" "microsite" {
             "AWS:SourceArn" = var.cloudfront_distribution_arn
           }
         }
+      },
+	  {
+        Effect    = "Deny"
+        Principal = "*"
+        Action    = "s3:*"
+        Resource = [
+          aws_s3_bucket.microsite_bucket.arn,
+          "${aws_s3_bucket.microsite_bucket.arn}/*"
+        ]
+        Condition = {
+          Bool = {
+            "aws:SecureTransport" = "false"
+          }
+        }
       }
     ]
     }) : jsonencode({
     Version   = "2012-10-17"
-    Statement = [] # Empty policy if neither variable is set
+    Statement = [
+		{
+        Effect    = "Deny"
+        Principal = "*"
+        Action    = "s3:*"
+        Resource = [
+          aws_s3_bucket.microsite_bucket.arn,
+          "${aws_s3_bucket.microsite_bucket.arn}/*"
+        ]
+        Condition = {
+          Bool = {
+            "aws:SecureTransport" = "false"
+          }
+        }
+      }
+	] 
   })
 
   # Make this depend on CloudFront creation explicitly
