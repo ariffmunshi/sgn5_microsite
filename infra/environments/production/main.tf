@@ -9,13 +9,28 @@ locals {
 # Storage - S3 Bucket for Microsite Hosting
 # ------------------------------------------------------------------------------
 module "microsite_s3" {
-	source = "../../modules/storage/s3"
+  source = "../../modules/storage/s3/microsite"
 
-	project_name					= local.project_name
-	env          					= local.env
-	
-	# Cloudfront variables 
-	cloudfront_distribution_arn	= data.aws_cloudfront_distribution.existing_cloudfront_distribution.arn
+  project_name = local.project_name
+  env          = local.env
+
+  # Cloudfront variables 
+  cloudfront_distribution_arn	= data.aws_cloudfront_distribution.existing_cloudfront_distribution.arn
+
+  # S3 access logs variables
+  access_logs_prefix = local.env
+  access_logs_bucket = data.aws_s3_bucket.existing_microsite_access_logs_bucket.bucket
+}
+
+module "microsite_s3_cloudtrail_logs" {
+  source = "../../modules/storage/s3/cloudtrail_logs"
+
+  project_name = local.project_name
+  env          = local.env
+
+  # S3 access logs variables
+  access_logs_prefix = local.env
+  access_logs_bucket = data.aws_s3_bucket.existing_microsite_access_logs_bucket.bucket
 }
 
 # ------------------------------------------------------------------------------
@@ -43,8 +58,8 @@ module "microsite_cloudtrail" {
 
   # S3 bucket variables
   microsite_bucket_id      = module.microsite_s3.microsite_bucket_id
-  logs_bucket_name  = module.microsite_s3.cloudtrail_logs_bucket_id
-  bucket_policy_id  = module.microsite_s3.cloudtrail_logs_bucket_policy_id
+  logs_bucket_name  = module.microsite_s3_cloudtrail_logs.cloudtrail_logs_bucket.bucket
+  bucket_policy_id  = module.microsite_s3_cloudtrail_logs.cloudtrail_logs_bucket_policy_id
 
   # Only include this if you want to override the default value
   # log_retention_days = 90

@@ -1,3 +1,4 @@
+# CloudTrail logs
 resource "aws_s3_bucket" "cloudtrail_logs_bucket" {  
   bucket        = "${var.project_name}-${var.env}-cloudtrail-logs"
   force_destroy = true
@@ -8,13 +9,19 @@ resource "aws_s3_bucket" "cloudtrail_logs_bucket" {
   }
 }
 
-# Enable versioning for the bucket
 resource "aws_s3_bucket_versioning" "cloudtrail_logs" {
   bucket = aws_s3_bucket.cloudtrail_logs_bucket.id
   
   versioning_configuration {
     status = "Enabled"
   }
+}
+
+resource "aws_s3_bucket_logging" "cloudtrail_logs" {
+  bucket = aws_s3_bucket.cloudtrail_logs_bucket.bucket
+
+  target_bucket = var.access_logs_bucket
+  target_prefix = "${var.access_logs_prefix}/cloudtrail-logs-bucket/"
 }
 
 resource "aws_s3_bucket_public_access_block" "cloudtrail_logs" {

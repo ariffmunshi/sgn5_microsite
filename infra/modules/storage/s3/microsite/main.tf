@@ -8,7 +8,6 @@ resource "aws_s3_bucket" "microsite_bucket" {
   }
 }
 
-# Enable versioning for the bucket
 resource "aws_s3_bucket_versioning" "microsite" {
   bucket = aws_s3_bucket.microsite_bucket.id
   
@@ -17,7 +16,13 @@ resource "aws_s3_bucket_versioning" "microsite" {
   }
 }
 
-# Block public access
+resource "aws_s3_bucket_logging" "microsite" {
+  bucket = aws_s3_bucket.microsite_bucket.bucket
+
+  target_bucket = var.access_logs_bucket
+  target_prefix = "${var.access_logs_prefix}/microsite-bucket/"
+}
+
 resource "aws_s3_bucket_public_access_block" "microsite" {
   bucket = aws_s3_bucket.microsite_bucket.id
 
