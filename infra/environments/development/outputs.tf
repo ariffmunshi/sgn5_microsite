@@ -30,6 +30,17 @@ output "cloudtrail_logs_bucket_policy_id" {
   value       = module.microsite_s3_cloudtrail_logs.cloudtrail_logs_bucket_policy_id
 }
 
+# CloudFront
+output "cloudfront_distribution_id" {
+	description = "ID of the CloudFront distribution"
+	value       = data.aws_cloudfront_distribution.existing_cloudfront_distribution.id
+}
+
+output "cloudfront_domain_name" {
+	description = "Domain name of the CloudFront distribution"
+	value       = data.aws_cloudfront_distribution.existing_cloudfront_distribution.domain_name
+}
+
 # Monitoring - CloudWatch
 output "cloudwatch_dashboard_name" {
   description = "Name of the CloudWatch dashboard for the microsite"
