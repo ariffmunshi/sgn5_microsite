@@ -11,7 +11,7 @@ output "microsite_bucket_arn" {
 
 output "microsite_url" {
   description = "URL of the microsite"
-  value       = module.microsite_cdn.distribution_domain_name
+  value       = data.aws_cloudfront_distribution.existing_cloudfront_distribution.aliases
 }
 
 # S3 Bucket - CloudTrail Logs
@@ -28,17 +28,6 @@ output "cloudtrail_logs_bucket_arn" {
 output "cloudtrail_logs_bucket_policy_id" {
   description = "ID of the bucket policy attached to the CloudTrail logs bucket"
   value       = module.microsite_s3_cloudtrail_logs.cloudtrail_logs_bucket_policy_id
-}
-
-# CloudFront
-output "cloudfront_distribution_id" {
-  description = "ID of the CloudFront distribution"
-  value       = module.microsite_cdn.distribution_id
-}
-
-output "cloudfront_domain_name" {
-  description = "Domain name of the CloudFront distribution"
-  value       = module.microsite_cdn.distribution_domain_name
 }
 
 # Monitoring - CloudWatch
