@@ -15,8 +15,7 @@ module "microsite_s3" {
   env          = local.env
 
   # Cloudfront variables 
-  cloudfront_depends_on  = module.microsite_cdn.distribution_id
-  cloudfront_oai_iam_arn = module.microsite_cdn.distribution_oai_iam_arn
+  cloudfront_distribution_arn	= data.aws_cloudfront_distribution.existing_cloudfront_distribution.arn
 
   # S3 access logs variables
   access_logs_prefix = local.env
@@ -35,18 +34,6 @@ module "microsite_s3_cloudtrail_logs" {
 }
 
 # ------------------------------------------------------------------------------
-# CDN - CloudFront Distribution
-# ------------------------------------------------------------------------------
-module "microsite_cdn" {
-  source = "../../modules/cdn/cloudfront"
-
-  project_name = local.project_name
-  env          = local.env
-
-  s3_microsite_bucket = module.microsite_s3.microsite_bucket
-}
-
-# ------------------------------------------------------------------------------
 # Monitoring - CloudWatch & CloudTrail
 # ------------------------------------------------------------------------------
 module "microsite_monitoring" {
@@ -58,7 +45,7 @@ module "microsite_monitoring" {
 
   # S3 variables
   s3_bucket_id         = module.microsite_s3.microsite_bucket_id
-  cloudfront_distro_id = module.microsite_cdn.distribution_id
+  cloudfront_distro_id = data.aws_cloudfront_distribution.existing_cloudfront_distribution.id
 
   # Optional: Configure custom alarm thresholds
 }
