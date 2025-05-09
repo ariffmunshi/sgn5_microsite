@@ -11,7 +11,17 @@ data "aws_iam_policy_document" "cloudwatch_kms_policy" {
       ]
     }
     actions = [
-      "kms:*"
+      "kms:Describe*",
+      "kms:Get*", 
+      "kms:List*",
+      "kms:RevokeGrant",
+      "kms:CreateGrant",
+      "kms:PutKeyPolicy",
+	  "kms:Encrypt",
+      "kms:Decrypt",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:DescribeKey"
     ]
     resources = ["*"]
   }
