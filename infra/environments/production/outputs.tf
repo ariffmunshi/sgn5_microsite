@@ -82,3 +82,14 @@ output "cloudtrail_s3_log_prefix" {
   description = "S3 prefix where CloudTrail logs are delivered"
   value       = module.microsite_cloudtrail.s3_log_prefix
 }
+
+# KMS Keys
+output "cloudwatch_kms_key_id" {
+  description = "ID of the KMS key used for CloudWatch Logs encryption"
+  value       = module.kms.key_id
+}
+
+output "cloudwatch_kms_key_arn" {
+  description = "ARN of the KMS key used for CloudWatch Logs encryption"
+  value       = module.kms.key_arn
+}

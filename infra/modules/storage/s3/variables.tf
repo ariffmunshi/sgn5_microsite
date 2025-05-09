@@ -26,12 +26,6 @@ variable "cloudfront_depends_on" {
   default     = null
 }
 
-variable "log_prefix" {
-  description = "Prefix for log objects within the log bucket"
-  type        = string
-  default     = ""
-}
-
 variable "log_retention_days" {
   description = "Number of days to retain CloudTrail logs"
   type        = number
@@ -42,10 +36,4 @@ variable "cloudtrail_bucket_name" {
   description = "Name for the CloudTrail log bucket (if not specified, a name will be generated)"
   type        = string
   default     = ""
-}
-
-variable "cloudtrail_log_retention_days" {
-  description = "Number of days to retain CloudTrail logs"
-  type        = number
-  default     = 90
 }
