@@ -1,0 +1,18 @@
+---
+// Navigation links
+const navItems = [
+  { title: "Home", url: "/" },
+  { title: "Explore SG60", url: "/explore-sg60" },
+  { title: "Fashion Showcase and Contest", url: "/fashion-showcase-and-contest" },
+  { title: "Hawker Heritage", url: "/hawker-heritage" },
+  { title: "Icons of SG", url: "/icons-of-sg" }
+];
+---
+
+<nav>
+  <ul>
+    {navItems.map(item => (
+      <li><a href={item.url}>{item.title}</a></li>
+    ))}
+  </ul>
+</nav>
