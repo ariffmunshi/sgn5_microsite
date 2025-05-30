@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+// ADD OBJECT BELOW FOR PLACEHOLDER. WILL CHANGE TO PROPS
+const hawker = {
+    image: "https://placecats.com/600/400",
+    header: "Header",
+    tags: ["Tag 1", "Tag 2"],
+    description: "Lorem ipsum dolor sit amet consectetur. At enim libero diam id vulputate velit etiam sagittis nibh. Tempus turpis et adipiscing euismod. Consequat adipiscing ipsum adipiscing eu id lorem neque enim. Amet scelerisque risus feugiat tortor. Risus pulvinar laoreet dapibus at amet. Ut sem eu nec malesuada. Lacus nibh pellentesque volutpat massa nec placerat cras.",
+    url: "#"
+}
+---
+<article class="card hawker-card">
+    <Image class="hawker-img" src={hawker.image} alt={hawker.header} height={400} width={600}/>
+    <div class="hawker-body">
+        <div class="tag-group">
+            {hawker.tags.map((tag) => <div class="tag primary-light-bg">{tag}</div>)}
+        </div>    
+        <h4 class="hawker-header">{hawker.header}</h4>
+        <p class="hawker-text">{hawker.description}</p>
+        <a class="button btn-secondary" href={hawker.url}>Read More</a>
+    </div>
+</article>
+
+<style>
+    .hawker-card {
+        display: flex;
+        width: 85rem;
+        height: 37.5rem;
+    }
+    .hawker-img {
+        width: 42.5rem;
+        height: 100%;
+        object-fit: cover;
+    }
+    .hawker-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        border-left: 0.25rem solid var(--dark-grey);
+        padding: 1.5rem;
+    }
+    .hawker-header {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }    
+    .hawker-card .button {
+        margin-top: auto;
+    }
+</style>

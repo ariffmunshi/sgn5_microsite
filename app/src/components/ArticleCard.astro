@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+// ADD OBJECT BELOW FOR PLACEHOLDER. WILL CHANGE TO PROPS
+const article = {
+    image: "https://placecats.com/600/400",
+    header: "Header",
+    tags: ["Tag 1", "Tag 2"],
+    description: "Lorem ipsum dolor sit amet consectetur. At enim libero diam id vulputate velit etiam sagittis nibh. Tempus turpis et adipiscing euismod. Consequat adipiscing ipsum adipiscing eu id lorem neque enim. Amet scelerisque risus feugiat tortor. Risus pulvinar laoreet dapibus at amet. Ut sem eu nec malesuada. Lacus nibh pellentesque volutpat massa nec placerat cras.",
+    url: "#"
+}
+---
+<article class="card article-card">
+    <Image class="article-img" src={article.image} alt={article.header} height={400} width={600}/>
+    <div class="article-body">
+        <div class="tag-group">
+            {article.tags.map((tag) => <div class="tag primary-light-bg">{tag}</div>)}
+        </div>    
+        <h4 class="article-header">{article.header}</h4>
+        <p class="article-text">{article.description}</p>
+        <a class="button btn-secondary" href={article.url}>Read More</a>
+    </div>
+</article>
+
+<style>
+    .article-card {
+        display: flex;
+        flex-direction: column;
+        width: 27.375rem;
+        height: 33.5rem;
+    }
+    .article-img {
+        height: 15rem;
+        object-fit: cover;
+    }
+    .article-body {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+        flex-shrink: 0;
+        gap: 0.75rem;
+        border-top: 0.25rem solid var(--dark-grey);
+        padding: 1.5rem;
+    }
+    .article-header {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+    .article-text {
+        display: -webkit-box;
+        height: 3.5rem;
+        align-self: stretch;
+        overflow: hidden;
+        font-weight: 500;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+</style>

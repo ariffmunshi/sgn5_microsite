@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+// ADD OBJECT BELOW FOR PLACEHOLDER. WILL CHANGE TO PROPS
+const step = {
+    image: "https://placecats.com/64/64",
+    title: "Dress Up",
+    description: "Pick a fashion era that isn’t yours. Channel the 60s, 70s or 80s, even if you weren’t born then. Style it like you own it."
+}
+---
+<div class="card step-card">
+    <Image class="step-img" src={step.image} alt={step.title} width={64} height={64} />
+    <h5 class="step">Step 1</h5>
+    <h3 class="step-title">{step.title}</h3>
+    <p>{step.description}</p>
+</div>
+
+<style>
+    .step-card {
+        width: 26.75rem;
+        padding: 2.5rem;
+    }
+    .step-img {
+        width: 4rem;
+    }
+    .step {
+        font-weight: 700;
+    }
+    .step-title {
+        margin-bottom: 1rem;
+    }
+</style>

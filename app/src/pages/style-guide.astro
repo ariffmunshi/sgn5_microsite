@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro'
+import IconCard from '../components/IconCard.astro'
+import StepCard from '../components/StepCard.astro'
+import HawkerCard from '../components/HawkerCard.astro'
+import AccordianCard from '../components/AccordianCard.astro'
+import FAQs from '../layouts/FAQs.astro'
+---
+
+<BaseLayout>
+	<AccordianCard />
+	<HawkerCard />
+	<StepCard />
+	<ArticleCard />
+	<IconCard />
+	<FAQs />
+	<div class="section">
+		<h1>SGN Microsite</h1>
+		<p>Welcome to the SGN Microsite!</p>
+		<p>This is a simple example of an Astro project.</p>
+	</div>
+	<div class="section primary-bg">
+		<h1>Typography</h1>
+		<h1>Header 1</h1>
+		<h2>Header 2</h2>
+		<h3>Header 3</h3>
+		<h4>Header 4</h4>
+		<h5>Header 5</h5>
+		<h6>Header 6</h6>
+		<hr>
+		<p>Paragraph</p>
+	</div>
+		
+	<div class="section primary-light-bg">
+		<h2>Buttons</h2>
+		<a class="button btn-primary" href="">Primary button</a>
+		<a class="button btn-secondary" href="">Secondary button</a>
+		<div class="tag">Tag</div>
+	</div>
+</BaseLayout>
