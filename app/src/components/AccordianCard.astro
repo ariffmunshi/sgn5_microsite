@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import vChevron from '../assets/images/icons//v-chevron-icon.svg'
+const question = {
+    header: "Question header",
+    body: "Lorem ipsum dolor sit amet consectetur. Vel nunc accumsan consectetur id orci sed. Pharetra tristique morbi magna vitae suspendisse quis. Sodales venenatis consequat integer duis. Consectetur purus luctus massa enim sed sed eros. Molestie vulputate cursus ac ac tristique pretium dictumst quis sit. In sed ultrices euismod pharetra ornare odio. Lorem dignissim at orci cursus amet. Cras lobortis iaculis dui ut. Vestibulum hac phasellus integer velit mollis nec."
+}
+---
+<div class="card accordian-card">
+    <div class="accordian-header">
+        <h5>{question.header}</h5>
+        <Image src={vChevron} alt="v-chevron-icon" class="v-chevron-icon" />
+    </div>
+    <div class="accordian-body">
+        <p>{question.body}</p>
+    </div>
+</div>
+
+<style>
+    .accordian-card {
+        flex-basis: calc(50% - 0.5rem);
+        overflow-y: hidden;
+        min-width: 42rem;
+        height: 5rem;
+        padding: 0.85rem 1.5rem;
+        transition: all 0.6s ease-out;
+    }
+    .accordian-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        line-height: 1;
+    }
+    .accordian-card.active {
+        height: auto;
+    }
+    .accordian-card h5 {
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+    .v-chevron-icon {
+        height: 2.75rem;
+        width: 2.75rem;
+        transfrom: rotate(190deg);
+    }
+</style>

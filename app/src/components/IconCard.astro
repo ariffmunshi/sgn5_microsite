@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+// ADD OBJECT BELOW FOR PLACEHOLDER. WILL CHANGE TO PROPS
+const icon = {
+    image: "https://placecats.com/400/400",
+    name: "Fandi Ahmad",
+    bio: "Football Icon"
+}
+---
+
+<div class="card icon-card">
+    <Image class="card icon-img" src={icon.image} alt={icon.name} width={310} height={310} />
+    <h4 class="icon-name">{icon.name}</h4>
+    <h5>{icon.bio}</h5>
+</div>
+
+<div class="card icon-card active">
+    <Image class="card icon-img" src={icon.image} alt={icon.name} width={310} height={310} />
+    <h4 class="icon-name">{icon.name}</h4>
+    <h5>{icon.bio}</h5>
+</div>
+
+<style>
+    .icon-card {  
+        width: 22.5rem;
+        padding: 2rem;
+        text-align: center;
+    }
+    .icon-img {
+        margin-bottom: 0.5rem;
+    }
+    .icon-name {
+        font-weight:900;
+        text-transform: uppercase;
+    }
+</style>
