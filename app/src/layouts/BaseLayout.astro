@@ -9,13 +9,27 @@ import NavMenu from "../components/NavMenu.astro";
 <html lang="en">
 	<head>
 		<BaseHead title="SGN Microsite" description="Welcome to the SGN Microsite" />
+
+		<!-- WOG scripts -->
+		<script src="https://assets.wogaa.sg/scripts/wogaa.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/@govtechsg/sgds-web-component@2.1.2/components/Masthead/index.umd.js"
+		></script>
+
+		<!-- Custom scripts -->
+		<script src="/scripts/utility.js" is:inline></script>
 	</head>
 	<body>
+		<sgds-masthead id="sgds-masthead"></sgds-masthead>
 		<Header />
 		<NavMenu />
 		<main>
 			<slot />
 		</main>
 		<Footer />
-	</body>
+	</body><style>
+		#sgds-masthead {
+			position: relative;
+			z-index: 1000;
+		}
+	</style>
 </html>

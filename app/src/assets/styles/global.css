@@ -7,14 +7,17 @@
  :root {
 	--primary: #FFC803;
 	--primary-light: #F8EABB;
-	--brand: #DA0C16;
+	--brand: #A90911;
 	--brand-light: #DE6066;
 	--light-grey: #888888;
 	--dark-grey: #222222;
 	--grey: #525252;
 	--black: #000000;
+	--black-80: rgba(0, 0, 0, 0.8);
 	--white: #FFFFFF;
 	--off-white: #F5F5F5;
+	--sgds-primary: #D0D5DD;
+	--sgds-secondary: invert(60%) sepia(46%) saturate(386%) hue-rotate(346deg) brightness(200%) contrast(105%);
 	--box-shadow: box-shadow: 0 0.5rem 1.5rem 0 rgba(var(--black), 0.24);
     --small-screens: 30rem;
     --medium-screens: 48rem;
@@ -149,15 +152,15 @@ a.button, button.button, .button {
 
 .button.btn-secondary,
 .button.btn-secondary:visited {
-	border: 0.25rem solid var(--primary);
-	background-color: var(--primary);
-	color: var(--dark-grey);
+	border: 0.25rem solid var(--brand);
+	background-color: var(--brand);
+	color: var(--white);
 }
 
 .button.btn-secondary:hover,
 .button.btn-secondary:active {
-	border: 0.25rem solid var(--primary-light);
-	background-color: var(--primary-light);
+	border: 0.25rem solid var(--brand-light);
+	background-color: var(--brand-light);
 }
 
 /* Tags */
@@ -219,4 +222,15 @@ a.button, button.button, .button {
 
 .off-white-bg {
 	background-color: var(--off-white);
+}
+
+/* Collapsible Classes */
+.collapse {
+  display: none;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.collapse.show {
+  display: block;
 }

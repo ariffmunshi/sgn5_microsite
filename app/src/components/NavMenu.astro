@@ -1,62 +1,113 @@
 ---
+import { Image } from "astro:assets";
+import navMenuClose from "../assets/images/layout/navmenu_close.svg";
+
 // Navigation links
 const navItems = [
-  { title: "Home", url: "/" },
-  { title: "Icons of SG", url: "/icons-of-sg" },
-  { title: "Dress to Impress", url: "/dress-to-impress" },
-  { title: "Games", url: "/games" },
-  { title: "Stories of Singapore", url: "/stories-of-singapore" },
-  { title: "Resource Library", url: "/resource-library" }
+	{ title: "Home", url: "/" },
+	{ title: "Icons of SG", url: "/icons-of-sg" },
+	{ title: "Dress to Impress", url: "/dress-to-impress" },
+	{ title: "Games", url: "/games" },
+	{ title: "Stories of Singapore", url: "/stories-of-singapore" },
+	{ title: "Resource Library", url: "/resource-library" },
 ];
 ---
-<div class="main-menu">
-  <button class="button btn-secondary menu-button">
-    <p>Close</p>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18.3646 6.50011L5.63672 19.228" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M18.3646 19.2274L5.63672 6.49951" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <nav>
-    <ul class="nav-list">
-      {navItems.map(item => (
-        <li class="list-item"><a href={item.url}>{item.title}</a></li>
-      ))}
-    </ul>
-  </nav>
+
+<div class="main-menu collapse" id="navbar">
+	<button class="button btn-secondary menu-button" data-my-toggle="collapse" data-my-target="#navbar">
+		<p>Close</p>
+		<Image src={navMenuClose} class="nav-menu-close" alt="Close" />
+	</button>
+	<nav>
+		<ul class="nav-list">
+			{
+				navItems.map((item) => (
+					<li class="list-item">
+						<a href={item.url}>
+							<span>{item.title}</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
 </div>
 
 <style>
-  .main-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    background-color: var(--black);
-    padding: 1.5rem 2.5rem;
-  }
-  .menu-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-left: auto;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-  }
-  .nav-list {
-    padding-left: 0;
-    text-align: right;
-    list-style: none;
-  }
-  .list-item > a {
-    font-size: 4rem;
-    color: var(--white);
-    font-weight: 500;
-    text-decoration: none;
-  }
-  .list-item > a:hover,
-  .list-item > a:active,
-  .list-item > a.active {
-    color: var(--primary);
-    text-decoration: underline;
-  }
+	.main-menu {
+		flex-direction: column;
+		align-items: flex-end;
+		background-color: var(--black-80);
+		padding: 3rem 2.5rem 1.5rem;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		z-index: 100;
+	}
+
+	.main-menu.collapse {
+		display: block;
+		transform: translateY(-100%);
+		transition: transform 0.3s ease-in-out;
+	}
+
+	.main-menu.show {
+		transform: translateY(0);
+		transition: transform 0.3s ease-in-out;
+	}
+
+	.menu-button {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-left: auto;
+		padding: 0.5rem 1rem;
+		font-size: 1rem;
+	}
+
+	.nav-list {
+		padding-left: 0;
+		text-align: right;
+		list-style: none;
+	}
+
+	.list-item > a {
+		font-size: 4rem;
+		color: var(--white);
+		font-weight: 500;
+		text-decoration: none;
+		position: relative;
+		padding-left: 4rem;
+	}
+
+	.list-item > a::before {
+		content: "↪";
+		position: absolute;
+		left: 0;
+		opacity: 0;
+		transition: opacity 0.25s ease;
+	}
+
+	.list-item > a:hover,
+	.list-item > a:active,
+	.list-item > a.active {
+		color: var(--primary);
+		text-decoration: underline;
+	}
+
+	.list-item > a:hover span {
+		transform: translateX(1rem);
+	}
+
+	.list-item > a:hover::before {
+		opacity: 1;
+	}
+
+	.list-item > a span {
+		display: inline-block;
+		transform: translateX(0);
+		transition: transform 0.25s ease;
+	}
 </style>
