@@ -29,10 +29,18 @@ const otherArticles = [...allArticles.slice(featuredIndex + 1), ...allArticles.s
 		<IconsPageTopSection />
 
 		<!-- Featured article (expanded) -->
-		{featuredArticle && <IconsArticle articleData={featuredArticle.data} />}
+		{
+			featuredArticle && (
+				<IconsArticle id="featured-article" articleId={featuredArticle.id} articleData={featuredArticle.data} />
+			)
+		}
 
 		<!-- Other articles (collapsed) -->
-		{otherArticles.map((article) => <IconsArticle collapse={true} articleData={article.data} />)}
+		{
+			otherArticles.map((article) => (
+				<IconsArticle articleId={article.id} collapse={true} articleData={article.data} />
+			))
+		}
 
 		<ResourceSection />
 	</div>
@@ -46,22 +54,3 @@ const otherArticles = [...allArticles.slice(featuredIndex + 1), ...allArticles.s
 		gap: 12px;
 	}
 </style>
-
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		// Find all collapsed articles and their buttons
-		const collapsedArticles = document.querySelectorAll(".icon-article.collapse");
-
-		collapsedArticles.forEach((article) => {
-			const readMoreBtn = article.querySelector(".button");
-
-			if (readMoreBtn) {
-				readMoreBtn.addEventListener("click", function (e) {
-					e.preventDefault();
-					article.classList.remove("collapse");
-					(readMoreBtn as HTMLElement).style.display = "none";
-				});
-			}
-		});
-	});
-</script>
