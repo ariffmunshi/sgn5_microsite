@@ -1,0 +1,58 @@
+---
+import Carousel from "../components/Carousel.astro";
+---
+
+<div class="icons-top-section primary-light-bg">
+	<div class="content-wrapper">
+		<div class="header-section">
+			<h2>Faces of Singapore</h2>
+			<h4>This SG60, we celebrate the people whose resilience and drive laid the foundation of our nation.</h4>
+		</div>
+		<div class="carousel-section">
+			<Carousel />
+		</div>
+	</div>
+</div>
+
+<style>
+	.icons-top-section {
+		display: flex;
+		justify-content: center;
+		padding: 52px 38px;
+		border-radius: 0.5rem;
+		width: 100%;
+	}
+
+	.icons-top-section .content-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-between;
+		width: min(1440px, 100%);
+		gap: 2rem;
+	}
+
+	.icons-top-section .header-section {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-between;
+		width: 100%;
+		gap: 0.75rem;
+	}
+
+	.icons-top-section .header-section h2 {
+		text-transform: none;
+		line-height: 1;
+	}
+
+	.icons-top-section h4 {
+		line-height: 1.1;
+	}
+
+	.icons-top-section .carousel-section {
+		display: flex;
+		padding: 39px 24px;
+		width: 100%;
+	}
+</style>

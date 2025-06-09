@@ -1,0 +1,67 @@
+---
+import Layout from "../../layouts/BaseLayout.astro";
+import IntroSection from "../../components/IntroSection.astro";
+import IconsPageTopSection from "../../components/IconsTopSection.astro";
+import IconsArticle from "../../components/IconsArticle.astro";
+import ResourceSection from "../../components/ResourceSection.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+	const articles = await getCollection("iconsArticles");
+
+	return articles.map((article) => ({
+		params: { person: article.id },
+		props: {
+			featuredArticle: article,
+			allArticles: articles,
+		},
+	}));
+}
+
+const { featuredArticle, allArticles } = Astro.props;
+const featuredIndex = allArticles.findIndex((a) => a.id === featuredArticle.id);
+const otherArticles = [...allArticles.slice(featuredIndex + 1), ...allArticles.slice(0, featuredIndex)];
+---
+
+<Layout>
+	<div class="icons-page">
+		<IntroSection tag="Stories" title="Visionaries, trailblazers, nation builders" />
+		<IconsPageTopSection />
+
+		<!-- Featured article (expanded) -->
+		{featuredArticle && <IconsArticle articleData={featuredArticle.data} />}
+
+		<!-- Other articles (collapsed) -->
+		{otherArticles.map((article) => <IconsArticle collapse={true} articleData={article.data} />)}
+
+		<ResourceSection />
+	</div>
+</Layout>
+
+<style>
+	.icons-page {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	}
+</style>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		// Find all collapsed articles and their buttons
+		const collapsedArticles = document.querySelectorAll(".icon-article.collapse");
+
+		collapsedArticles.forEach((article) => {
+			const readMoreBtn = article.querySelector(".button");
+
+			if (readMoreBtn) {
+				readMoreBtn.addEventListener("click", function (e) {
+					e.preventDefault();
+					article.classList.remove("collapse");
+					(readMoreBtn as HTMLElement).style.display = "none";
+				});
+			}
+		});
+	});
+</script>

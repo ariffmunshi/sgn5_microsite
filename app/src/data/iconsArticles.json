@@ -1,0 +1,185 @@
+{
+	"person-A": {
+		"images": {
+			"topImage": {
+				"src": "#",
+				"alt": "Backpacking journey across South Asia"
+			},
+			"bottomImage": {
+				"src": "#",
+				"alt": "Community engagement in Southeast Asia"
+			}
+		},
+		"content": {
+			"header": {
+				"tags": ["Tag A", "Tag A"],
+				"title": "At 23, I left the UK on a year-long backpacking journey to rethink sustainable development. Here's what I found.",
+				"subtext": "I took a year off with just my savings and a backpack — not for a break, but to reconnect with friends, rethink development, and learn what sustainability looks like on the ground. That journey led me to South Asia, then Southeast Asia, and eventually a new chapter in Singapore.",
+				"author": "John Doe",
+				"postDate": "11 January 2025"
+			},
+			"introduction": [
+				"I used to be a financially inexperienced environmentalist who ticked all the \"right\" boxes — recycled religiously, bought second-hand, marched in the streets, and led sustainability projects on campus.",
+				"But everything changed when I came across a campaign by People & Planet, urging Barclays to stop funding fossil fuels. To my dismay, I discovered that Barclays — the very bank I'd had an account with since I was 10 — was the largest funder of fossil fuels in Europe at the time.",
+				"I had to confront an uncomfortable truth: despite my efforts to live sustainably, my own money was helping fund the very thing I was trying to fight against. So, I closed my account, sent them an email explaining why, and thought, \"Okay, step one is done. I've stopped the harm.\"",
+				"But that wasn't enough; I quickly realised that finding the \"good guys\" in finance wasn't easy. Greenwashing was everywhere and ethical banking options charged for the privilege Most sustainable retail finance options were either too complicated or required minimum investments that the average 20-year-old student like me couldn't afford.",
+				"That left me wondering: What comes next?"
+			],
+			"body": [
+				{
+					"title": "My first venture into impact investing",
+					"paragraphs": [
+						"One day during a classic LinkedIn doomscroll, I came across FLIT Invest — a startup developing an impact investing app designed for everyday people. The minimum investment? Just 10 dollars. The user interface? Simple and easy to understand. The app was accessible, focused on real-world impact, and not just for finance bros. They were also looking for sustainability interns. I applied, stating, \"I need what you're building — let me help.\"",
+						"Before I knew it, I was hired as a Sustainability Intern and, soon enough, I transitioned to a full-time role as an Impact Investing Analyst. Over the next year and a half, I threw myself into my work. I helped develop the product, wrote investment papers, published articles on financial literacy and impact investing, and led the team conducting ESG and impact analysis for FLIT's portfolio. I also worked closely with NGOs, led shareholder advocacy efforts, and mentored interns. That job was everything I could've asked for — an incredible team, meaningful work, a mission I truly believed in, and fair pay.",
+						"But, like many visionary startups, we were slightly ahead of our time. The market wasn't ready, and the geopolitical climate in the West made it incredibly difficult for B2C sustainable investing apps to survive. Eventually, the company shut down, and so did many of our friends and competitors.",
+						"Aside from the obvious feelings about company closure, there was a disappointment that many parts of our roadmap didn't happen. Many of us shared the same hope for our mission to reach beyond Europe and the US.",
+						"We'd seen how impact investing in wealthier countries often meant investing in their own resilience and progress — while the Global South was left out of the picture, or with restrictive funding",
+						"That never sat right with me. I felt a responsibility to connect across borders and drive impact capital into new spaces — to help shape a version of sustainable finance that didn't just serve the privileged but was truly accessible to all."
+					]
+				},
+				{
+					"title": "Lorem ipsum dolor sit amet consectetur. Fames sed ultrices sit cursus vulputate non malesuada.",
+					"paragraphs": [
+						"One day during a classic LinkedIn doomscroll, I came across FLIT Invest — a startup developing an impact investing app designed for everyday people. The minimum investment? Just 10 dollars. The user interface? Simple and easy to understand. The app was accessible, focused on real-world impact, and not just for finance bros. They were also ooking for sustainability interns. I applied, stating, \"I need what you're building — let me help.\"",
+						"Before I knew it, I was hired as a Sustainability Intern and, soon enough, I transitioned to a full-time role as an Impact Investing Analyst. Over the next year and a half, I threw myself into my work. I helped develop the product, wrote investment papers, published articles on financial literacy and impact investing, and led the team conducting ESG and impact analysis for FLIT's portfolio. I also worked closely with NGOs, led shareholder advocacy efforts, and mentored interns. That job was everything I could've asked for — an incredible team, meaningful work, a mission I truly believed in, and fair pay."
+					]
+				}
+			],
+			"conclusion": {
+				"title": "Learning everything from the ground up, across continents",
+				"paragraphs": [
+					"And so, I made a decision: if I wanted to do this authentically and compassionately, I couldn't keep building this mission where I was; I would bring myself to where the mission needed to grow.",
+					"At the age of 23, with no mortgage, no dependants, and a strong desire to walk the talk, I packed up my savings and a backpack and took a year off to travel.",
+					"But this wasn't a sabbatical or a soul-searching getaway. I had three clear goals: to reconnect with friends and communities in their home environments, to broaden my perspective and challenge the way I thought about development, and to learn what sustainability looks like in practice — not from a classroom or boardroom, but on the ground.",
+					"I approached that year as an immersive form of education. I stayed in villages where I was the only foreigner, met my best friend's mother in Bangalore, interviewed Ministers and micro-entrepreneurs, and did pro bono work.",
+					"I rode buses into places far off the beaten path and spent hours listening to and learning from everyday people. I observed, unlearned, and asked myself tough questions along the way. Of course, it wasn't easy. There were so many times I felt exhausted and overwhelmed. But it was everything I needed. That year changed how I see the world, and fundamentally, how I see my role in it.",
+					"Now, when I enter a room to discuss investment mandates or funding strategies for impact, I don't just rely on theory; I draw from real-life experiences and the relationships I've built over time.",
+					"For instance, if someone wants to invest in preventing gender-based violence in South Asia, I can connect them with the Director of one of Sri Lanka's largest NGOs working on this issue, as well as a hundred everyday women of all age ranges who experience this. Real people. Real insights. That's a value you can't get from a textbook or conference.",
+					"Although I'm no longer on a career break, my learning hasn't stopped. I continue to stay connected to local communities through my work, Scouting, and women's travel networks. At its core, sustainable finance — and any impact-driven work, really — isn't about speaking over others. It's about listening, understanding, and amplifying the voices of those who have long been overlooked, understanding how and where I hold power, and using it with humility to better the world."
+				]
+			}
+		}
+	},
+	"person-B": {
+		"images": {
+			"topImage": {
+				"src": "#",
+				"alt": "Backpacking journey across South Asia"
+			},
+			"bottomImage": {
+				"src": "#",
+				"alt": "Community engagement in Southeast Asia"
+			}
+		},
+		"content": {
+			"header": {
+				"tags": ["Tag B", "Tag B"],
+				"title": "At 23, I left the UK on a year-long backpacking journey to rethink sustainable development. Here's what I found.",
+				"subtext": "I took a year off with just my savings and a backpack — not for a break, but to reconnect with friends, rethink development, and learn what sustainability looks like on the ground. That journey led me to South Asia, then Southeast Asia, and eventually a new chapter in Singapore.",
+				"author": "John Doe",
+				"postDate": "11 January 2025"
+			},
+			"introduction": [
+				"I used to be a financially inexperienced environmentalist who ticked all the \"right\" boxes — recycled religiously, bought second-hand, marched in the streets, and led sustainability projects on campus.",
+				"But everything changed when I came across a campaign by People & Planet, urging Barclays to stop funding fossil fuels. To my dismay, I discovered that Barclays — the very bank I'd had an account with since I was 10 — was the largest funder of fossil fuels in Europe at the time.",
+				"I had to confront an uncomfortable truth: despite my efforts to live sustainably, my own money was helping fund the very thing I was trying to fight against. So, I closed my account, sent them an email explaining why, and thought, \"Okay, step one is done. I've stopped the harm.\"",
+				"But that wasn't enough; I quickly realised that finding the \"good guys\" in finance wasn't easy. Greenwashing was everywhere and ethical banking options charged for the privilege Most sustainable retail finance options were either too complicated or required minimum investments that the average 20-year-old student like me couldn't afford.",
+				"That left me wondering: What comes next?"
+			],
+			"body": [
+				{
+					"title": "My first venture into impact investing",
+					"paragraphs": [
+						"One day during a classic LinkedIn doomscroll, I came across FLIT Invest — a startup developing an impact investing app designed for everyday people. The minimum investment? Just 10 dollars. The user interface? Simple and easy to understand. The app was accessible, focused on real-world impact, and not just for finance bros. They were also looking for sustainability interns. I applied, stating, \"I need what you're building — let me help.\"",
+						"Before I knew it, I was hired as a Sustainability Intern and, soon enough, I transitioned to a full-time role as an Impact Investing Analyst. Over the next year and a half, I threw myself into my work. I helped develop the product, wrote investment papers, published articles on financial literacy and impact investing, and led the team conducting ESG and impact analysis for FLIT's portfolio. I also worked closely with NGOs, led shareholder advocacy efforts, and mentored interns. That job was everything I could've asked for — an incredible team, meaningful work, a mission I truly believed in, and fair pay.",
+						"But, like many visionary startups, we were slightly ahead of our time. The market wasn't ready, and the geopolitical climate in the West made it incredibly difficult for B2C sustainable investing apps to survive. Eventually, the company shut down, and so did many of our friends and competitors.",
+						"Aside from the obvious feelings about company closure, there was a disappointment that many parts of our roadmap didn't happen. Many of us shared the same hope for our mission to reach beyond Europe and the US.",
+						"We'd seen how impact investing in wealthier countries often meant investing in their own resilience and progress — while the Global South was left out of the picture, or with restrictive funding",
+						"That never sat right with me. I felt a responsibility to connect across borders and drive impact capital into new spaces — to help shape a version of sustainable finance that didn't just serve the privileged but was truly accessible to all."
+					]
+				},
+				{
+					"title": "Lorem ipsum dolor sit amet consectetur. Fames sed ultrices sit cursus vulputate non malesuada.",
+					"paragraphs": [
+						"One day during a classic LinkedIn doomscroll, I came across FLIT Invest — a startup developing an impact investing app designed for everyday people. The minimum investment? Just 10 dollars. The user interface? Simple and easy to understand. The app was accessible, focused on real-world impact, and not just for finance bros. They were also ooking for sustainability interns. I applied, stating, \"I need what you're building — let me help.\"",
+						"Before I knew it, I was hired as a Sustainability Intern and, soon enough, I transitioned to a full-time role as an Impact Investing Analyst. Over the next year and a half, I threw myself into my work. I helped develop the product, wrote investment papers, published articles on financial literacy and impact investing, and led the team conducting ESG and impact analysis for FLIT's portfolio. I also worked closely with NGOs, led shareholder advocacy efforts, and mentored interns. That job was everything I could've asked for — an incredible team, meaningful work, a mission I truly believed in, and fair pay."
+					]
+				}
+			],
+			"conclusion": {
+				"title": "Learning everything from the ground up, across continents",
+				"paragraphs": [
+					"And so, I made a decision: if I wanted to do this authentically and compassionately, I couldn't keep building this mission where I was; I would bring myself to where the mission needed to grow.",
+					"At the age of 23, with no mortgage, no dependants, and a strong desire to walk the talk, I packed up my savings and a backpack and took a year off to travel.",
+					"But this wasn't a sabbatical or a soul-searching getaway. I had three clear goals: to reconnect with friends and communities in their home environments, to broaden my perspective and challenge the way I thought about development, and to learn what sustainability looks like in practice — not from a classroom or boardroom, but on the ground.",
+					"I approached that year as an immersive form of education. I stayed in villages where I was the only foreigner, met my best friend's mother in Bangalore, interviewed Ministers and micro-entrepreneurs, and did pro bono work.",
+					"I rode buses into places far off the beaten path and spent hours listening to and learning from everyday people. I observed, unlearned, and asked myself tough questions along the way. Of course, it wasn't easy. There were so many times I felt exhausted and overwhelmed. But it was everything I needed. That year changed how I see the world, and fundamentally, how I see my role in it.",
+					"Now, when I enter a room to discuss investment mandates or funding strategies for impact, I don't just rely on theory; I draw from real-life experiences and the relationships I've built over time.",
+					"For instance, if someone wants to invest in preventing gender-based violence in South Asia, I can connect them with the Director of one of Sri Lanka's largest NGOs working on this issue, as well as a hundred everyday women of all age ranges who experience this. Real people. Real insights. That's a value you can't get from a textbook or conference.",
+					"Although I'm no longer on a career break, my learning hasn't stopped. I continue to stay connected to local communities through my work, Scouting, and women's travel networks. At its core, sustainable finance — and any impact-driven work, really — isn't about speaking over others. It's about listening, understanding, and amplifying the voices of those who have long been overlooked, understanding how and where I hold power, and using it with humility to better the world."
+				]
+			}
+		}
+	},
+	"person-C": {
+		"images": {
+			"topImage": {
+				"src": "#",
+				"alt": "Backpacking journey across South Asia"
+			},
+			"bottomImage": {
+				"src": "#",
+				"alt": "Community engagement in Southeast Asia"
+			}
+		},
+		"content": {
+			"header": {
+				"tags": ["Tag C", "Tag C"],
+				"title": "At 23, I left the UK on a year-long backpacking journey to rethink sustainable development. Here's what I found.",
+				"subtext": "I took a year off with just my savings and a backpack — not for a break, but to reconnect with friends, rethink development, and learn what sustainability looks like on the ground. That journey led me to South Asia, then Southeast Asia, and eventually a new chapter in Singapore.",
+				"author": "John Doe",
+				"postDate": "11 January 2025"
+			},
+			"introduction": [
+				"I used to be a financially inexperienced environmentalist who ticked all the \"right\" boxes — recycled religiously, bought second-hand, marched in the streets, and led sustainability projects on campus.",
+				"But everything changed when I came across a campaign by People & Planet, urging Barclays to stop funding fossil fuels. To my dismay, I discovered that Barclays — the very bank I'd had an account with since I was 10 — was the largest funder of fossil fuels in Europe at the time.",
+				"I had to confront an uncomfortable truth: despite my efforts to live sustainably, my own money was helping fund the very thing I was trying to fight against. So, I closed my account, sent them an email explaining why, and thought, \"Okay, step one is done. I've stopped the harm.\"",
+				"But that wasn't enough; I quickly realised that finding the \"good guys\" in finance wasn't easy. Greenwashing was everywhere and ethical banking options charged for the privilege Most sustainable retail finance options were either too complicated or required minimum investments that the average 20-year-old student like me couldn't afford.",
+				"That left me wondering: What comes next?"
+			],
+			"body": [
+				{
+					"title": "My first venture into impact investing",
+					"paragraphs": [
+						"One day during a classic LinkedIn doomscroll, I came across FLIT Invest — a startup developing an impact investing app designed for everyday people. The minimum investment? Just 10 dollars. The user interface? Simple and easy to understand. The app was accessible, focused on real-world impact, and not just for finance bros. They were also looking for sustainability interns. I applied, stating, \"I need what you're building — let me help.\"",
+						"Before I knew it, I was hired as a Sustainability Intern and, soon enough, I transitioned to a full-time role as an Impact Investing Analyst. Over the next year and a half, I threw myself into my work. I helped develop the product, wrote investment papers, published articles on financial literacy and impact investing, and led the team conducting ESG and impact analysis for FLIT's portfolio. I also worked closely with NGOs, led shareholder advocacy efforts, and mentored interns. That job was everything I could've asked for — an incredible team, meaningful work, a mission I truly believed in, and fair pay.",
+						"But, like many visionary startups, we were slightly ahead of our time. The market wasn't ready, and the geopolitical climate in the West made it incredibly difficult for B2C sustainable investing apps to survive. Eventually, the company shut down, and so did many of our friends and competitors.",
+						"Aside from the obvious feelings about company closure, there was a disappointment that many parts of our roadmap didn't happen. Many of us shared the same hope for our mission to reach beyond Europe and the US.",
+						"We'd seen how impact investing in wealthier countries often meant investing in their own resilience and progress — while the Global South was left out of the picture, or with restrictive funding",
+						"That never sat right with me. I felt a responsibility to connect across borders and drive impact capital into new spaces — to help shape a version of sustainable finance that didn't just serve the privileged but was truly accessible to all."
+					]
+				},
+				{
+					"title": "Lorem ipsum dolor sit amet consectetur. Fames sed ultrices sit cursus vulputate non malesuada.",
+					"paragraphs": [
+						"One day during a classic LinkedIn doomscroll, I came across FLIT Invest — a startup developing an impact investing app designed for everyday people. The minimum investment? Just 10 dollars. The user interface? Simple and easy to understand. The app was accessible, focused on real-world impact, and not just for finance bros. They were also ooking for sustainability interns. I applied, stating, \"I need what you're building — let me help.\"",
+						"Before I knew it, I was hired as a Sustainability Intern and, soon enough, I transitioned to a full-time role as an Impact Investing Analyst. Over the next year and a half, I threw myself into my work. I helped develop the product, wrote investment papers, published articles on financial literacy and impact investing, and led the team conducting ESG and impact analysis for FLIT's portfolio. I also worked closely with NGOs, led shareholder advocacy efforts, and mentored interns. That job was everything I could've asked for — an incredible team, meaningful work, a mission I truly believed in, and fair pay."
+					]
+				}
+			],
+			"conclusion": {
+				"title": "Learning everything from the ground up, across continents",
+				"paragraphs": [
+					"And so, I made a decision: if I wanted to do this authentically and compassionately, I couldn't keep building this mission where I was; I would bring myself to where the mission needed to grow.",
+					"At the age of 23, with no mortgage, no dependants, and a strong desire to walk the talk, I packed up my savings and a backpack and took a year off to travel.",
+					"But this wasn't a sabbatical or a soul-searching getaway. I had three clear goals: to reconnect with friends and communities in their home environments, to broaden my perspective and challenge the way I thought about development, and to learn what sustainability looks like in practice — not from a classroom or boardroom, but on the ground.",
+					"I approached that year as an immersive form of education. I stayed in villages where I was the only foreigner, met my best friend's mother in Bangalore, interviewed Ministers and micro-entrepreneurs, and did pro bono work.",
+					"I rode buses into places far off the beaten path and spent hours listening to and learning from everyday people. I observed, unlearned, and asked myself tough questions along the way. Of course, it wasn't easy. There were so many times I felt exhausted and overwhelmed. But it was everything I needed. That year changed how I see the world, and fundamentally, how I see my role in it.",
+					"Now, when I enter a room to discuss investment mandates or funding strategies for impact, I don't just rely on theory; I draw from real-life experiences and the relationships I've built over time.",
+					"For instance, if someone wants to invest in preventing gender-based violence in South Asia, I can connect them with the Director of one of Sri Lanka's largest NGOs working on this issue, as well as a hundred everyday women of all age ranges who experience this. Real people. Real insights. That's a value you can't get from a textbook or conference.",
+					"Although I'm no longer on a career break, my learning hasn't stopped. I continue to stay connected to local communities through my work, Scouting, and women's travel networks. At its core, sustainable finance — and any impact-driven work, really — isn't about speaking over others. It's about listening, understanding, and amplifying the voices of those who have long been overlooked, understanding how and where I hold power, and using it with humility to better the world."
+				]
+			}
+		}
+	}
+}

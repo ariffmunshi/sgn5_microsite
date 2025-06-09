@@ -1,0 +1,231 @@
+---
+export interface Props {
+	collapse?: boolean;
+	articleData: {
+		images: {
+			topImage: { src: string; alt: string };
+			bottomImage: { src: string; alt: string };
+		};
+		content: {
+			header: { tags: string[]; title: string; subtext: string; author: string; postDate: string };
+			introduction: string[];
+			body: Array<{ title: string; paragraphs: string[] }>;
+			conclusion: { title: string; paragraphs: string[] };
+		};
+	};
+}
+
+const { collapse = false, articleData } = Astro.props;
+const { images, content } = articleData;
+---
+
+<div class=`icon-article ${collapse ? 'collapse' : ''} primary-light-bg`>
+	<div class="content-wrapper">
+		<div class="header-section">
+			<div class="icon-article-tags">
+				{content.header.tags.map((tag) => <span class="tag primary-bg">{tag}</span>)}
+			</div>
+			<div class="header-para">
+				<h2 class="header-para-title">
+					{content.header.title}
+				</h2>
+				<h4 class="header-para-content">
+					{content.header.subtext}
+				</h4>
+			</div>
+			<div class="author">
+				<h6>
+					<span class="author-text-bold">Posted on: </span>
+					<span class="author-text-normal">{content.header.postDate}</span>
+				</h6>
+				<h6>
+					<span class="author-text-bold">Author: </span>
+					<span class="author-text-normal">{content.header.author}</span>
+				</h6>
+			</div>
+		</div>
+		<div class="top-section">
+			{
+				images.topImage && images.topImage.src && (
+					<div class="top-section-image">
+						<img src={images.topImage.src} alt={images.topImage.alt} />
+					</div>
+				)
+			}
+			<div class="first-para">
+				<h6>
+					{content.introduction.map((paragraph) => <h6>{paragraph}</h6>)}
+				</h6>
+			</div>
+			{
+				content.body.map((section, index) => (
+					<div class={index === 0 ? "second-para" : "third-para"}>
+						<h2 class={index === 0 ? "second-para-title" : "third-para-title"}>{section.title}</h2>
+						<div class={index === 0 ? "second-para-content" : "third-para-content"}>
+							{section.paragraphs.map((paragraph) => (
+								<h6>{paragraph}</h6>
+							))}
+						</div>
+					</div>
+				))
+			}
+		</div>
+		<div class="btm-section">
+			{
+				images.bottomImage && images.bottomImage.src && (
+					<div class="btm-section-image">
+						<img src={images.bottomImage.src} alt={images.bottomImage.alt} />
+					</div>
+				)
+			}
+			<div class="fourth-para">
+				<h2 class="fourth-para-title">{content.conclusion.title}</h2>
+				<div class="fourth-para-content">
+					{content.conclusion.paragraphs.map((paragraph) => <h6>{paragraph}</h6>)}
+				</div>
+			</div>
+		</div>
+		{
+			collapse && (
+				<a class="button btn-primary" href="">
+					Read more
+				</a>
+			)
+		}
+	</div>
+</div>
+
+<style>
+	.icon-article {
+		display: flex;
+		justify-content: center;
+		padding: 52px 38px;
+		border-radius: 0.5rem;
+		width: 100%;
+	}
+
+	.icon-article .content-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: min(1440px, 100%);
+		gap: 1.5rem;
+	}
+
+	.icon-article h2 {
+		text-transform: none;
+		line-height: 1;
+	}
+
+	.icon-article .header-section,
+	.icon-article .top-section,
+	.icon-article .btm-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		width: 100%;
+	}
+
+	.icon-article .header-section {
+		align-items: flex-start;
+	}
+
+	.icon-article .header-section .icon-article-tags {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		gap: 0.5rem;
+		width: 100%;
+	}
+
+	.icon-article .header-section .header-para {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.icon-article .header-section .author {
+		display: flex;
+		justify-content: flex-start;
+		gap: 1.5rem;
+	}
+
+	.icon-article .header-section .author-text-bold {
+		font-weight: 700;
+	}
+
+	.icon-article .header-section .author-text-normal {
+		font-weight: 500;
+	}
+
+	.icon-article .top-section .top-section-image {
+		height: 830px;
+		width: 100%;
+		border: 5px dashed var(--black);
+		background-color: var(--light-grey);
+	}
+
+	.icon-article .first-para,
+	.icon-article .second-para,
+	.icon-article .third-para,
+	.icon-article .fourth-para {
+		padding: 0 230px;
+	}
+
+	.icon-article .second-para,
+	.icon-article .third-para,
+	.icon-article .fourth-para {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.icon-article .first-para,
+	.icon-article .second-para-content,
+	.icon-article .third-para-content,
+	.icon-article .content-wrapper.fourth-para-content {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.icon-article .btm-section .btm-section-image {
+		height: 919px;
+		width: 100%;
+		border: 5px dashed var(--black);
+		background-color: var(--light-grey);
+	}
+
+	.collapse {
+		position: relative;
+		max-height: 810px;
+		overflow: hidden;
+		align-items: flex-start;
+	}
+
+	.collapse::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 810px;
+		background: linear-gradient(
+			180deg,
+			rgba(var(--primary-light-rgb), 0) 1.12%,
+			rgba(var(--primary-light-rgb), 0.5) 100%
+		);
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	.icon-article.collapse .button {
+		position: absolute;
+		bottom: 3.25rem;
+		border: none;
+		padding: 1rem 1.5rem;
+		width: 194px;
+		z-index: 2;
+	}
+</style>

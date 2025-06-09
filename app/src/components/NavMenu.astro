@@ -1,62 +1,77 @@
 ---
 // Navigation links
 const navItems = [
-  { title: "Home", url: "/" },
-  { title: "Icons of SG", url: "/icons-of-sg" },
-  { title: "Dress to Impress", url: "/dress-to-impress" },
-  { title: "Games", url: "/games" },
-  { title: "Stories of Singapore", url: "/stories-of-singapore" },
-  { title: "Resource Library", url: "/resource-library" }
+	{ title: "Home", url: "/" },
+	{ title: "Icons of SG", url: "/icons" },
+	{ title: "Dress to Impress", url: "/dress-to-impress" },
+	{ title: "Games", url: "/games" },
+	{ title: "Stories of Singapore", url: "/stories-of-singapore" },
+	{ title: "Resource Library", url: "/resource-library" },
 ];
 ---
+
 <div class="main-menu">
-  <button class="button btn-secondary menu-button">
-    <p>Close</p>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18.3646 6.50011L5.63672 19.228" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M18.3646 19.2274L5.63672 6.49951" stroke="#222222" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <nav>
-    <ul class="nav-list">
-      {navItems.map(item => (
-        <li class="list-item"><a href={item.url}>{item.title}</a></li>
-      ))}
-    </ul>
-  </nav>
+	<button class="button btn-secondary menu-button">
+		<p>Close</p>
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path
+				d="M18.3646 6.50011L5.63672 19.228"
+				stroke="#222222"
+				stroke-width="2.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"></path>
+			<path
+				d="M18.3646 19.2274L5.63672 6.49951"
+				stroke="#222222"
+				stroke-width="2.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"></path>
+		</svg>
+	</button>
+	<nav>
+		<ul class="nav-list">
+			{
+				navItems.map((item) => (
+					<li class="list-item">
+						<a href={item.url}>{item.title}</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
 </div>
 
 <style>
-  .main-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    background-color: var(--black);
-    padding: 1.5rem 2.5rem;
-  }
-  .menu-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-left: auto;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-  }
-  .nav-list {
-    padding-left: 0;
-    text-align: right;
-    list-style: none;
-  }
-  .list-item > a {
-    font-size: 4rem;
-    color: var(--white);
-    font-weight: 500;
-    text-decoration: none;
-  }
-  .list-item > a:hover,
-  .list-item > a:active,
-  .list-item > a.active {
-    color: var(--primary);
-    text-decoration: underline;
-  }
+	.main-menu {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		background-color: var(--black);
+		padding: 1.5rem 2.5rem;
+	}
+	.menu-button {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-left: auto;
+		padding: 0.5rem 1rem;
+		font-size: 1rem;
+	}
+	.nav-list {
+		padding-left: 0;
+		text-align: right;
+		list-style: none;
+	}
+	.list-item > a {
+		font-size: 4rem;
+		color: var(--white);
+		font-weight: 500;
+		text-decoration: none;
+	}
+	.list-item > a:hover,
+	.list-item > a:active,
+	.list-item > a.active {
+		color: var(--primary);
+		text-decoration: underline;
+	}
 </style>
