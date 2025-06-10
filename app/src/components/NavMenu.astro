@@ -5,12 +5,13 @@ import navMenuClose from "../assets/images/layout/navmenu_close.svg";
 // Navigation links
 const navItems = [
 	{ title: "Home", url: "/" },
-	{ title: "Icons of SG", url: "/icons-of-sg" },
+	{ title: "Faces of Singapore", url: "/icons-of-sg" },
 	{ title: "Dress to Impress", url: "/dress-to-impress" },
-	{ title: "Games", url: "/games" },
+	{ title: "Quizzes and Games", url: "/games" },
 	{ title: "Stories of Singapore", url: "/stories-of-singapore" },
-	{ title: "Resource Library", url: "/resource-library" },
+	{ title: "National Day Resource Library", url: "/resource-library" },
 ];
+const { pathname } = Astro.url;
 ---
 
 <div class="main-menu collapse" id="navbar">
@@ -21,13 +22,17 @@ const navItems = [
 	<nav>
 		<ul class="nav-list">
 			{
-				navItems.map((item) => (
-					<li class="list-item">
-						<a href={item.url}>
-							<span>{item.title}</span>
-						</a>
-					</li>
-				))
+				navItems.map((item) => {
+					const isActive = pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url));
+
+					return (
+						<li class="list-item">
+							<a href={item.url} class={isActive ? "active" : ""}>
+								<span>{item.title}</span>
+							</a>
+						</li>
+					);
+				})
 			}
 		</ul>
 	</nav>
@@ -46,6 +51,12 @@ const navItems = [
 		bottom: 0;
 		width: 100%;
 		z-index: 100;
+	}
+
+	@media (max-width: 480px) {
+		.main-menu {
+			padding: 4.75rem 1rem 1.5rem;
+		}
 	}
 
 	.main-menu.collapse {
@@ -75,6 +86,8 @@ const navItems = [
 		text-align: right;
 		list-style: none;
 		gap: 1rem;
+		margin: 0;
+		padding-top: 3.5rem;
 	}
 
 	@media (max-width: 480px) {
@@ -87,9 +100,8 @@ const navItems = [
 		font-size: 4rem;
 		color: var(--white);
 		font-weight: 500;
-		text-decoration: none;
 		position: relative;
-		padding-left: 4rem;
+		padding-left: 3.5rem;
 	}
 
 	@media (max-width: 480px) {
@@ -114,15 +126,22 @@ const navItems = [
 		}
 	}
 
-	.list-item > a:hover,
-	.list-item > a:active,
 	.list-item > a.active {
 		color: var(--primary);
+	}
+
+	.list-item > a.active span {
 		text-decoration: underline;
 	}
 
 	.list-item > a:hover span {
 		transform: translateX(1rem);
+	}
+
+	@media (max-width: 480px) {
+		.list-item > a:hover span {
+			transform: translateX(1rem);
+		}
 	}
 
 	.list-item > a:hover::before {

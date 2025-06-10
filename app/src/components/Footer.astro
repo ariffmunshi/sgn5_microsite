@@ -85,6 +85,7 @@ import wc_i from "../assets/images/icons/wechat_icon.svg";
 	/* SG@Home Custom Footer */
 	.footer {
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
 		width: 100%;
 		background-color: var(--dark-grey);
@@ -100,11 +101,17 @@ import wc_i from "../assets/images/icons/wechat_icon.svg";
 		}
 	}
 
+	.footer-logos {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
 	.sg60-logo {
 		width: 2rem;
 		height: 2rem;
 		object-fit: cover;
-		margin-left: 1.5rem;
 	}
 
 	.sgn-logo {
@@ -115,9 +122,9 @@ import wc_i from "../assets/images/icons/wechat_icon.svg";
 
 	.footer-icons {
 		display: flex;
+		justify-content: center;
 		align-items: center;
 		gap: 1.25rem;
-		margin-left: auto;
 	}
 
 	@media (max-width: 480px) {
@@ -143,6 +150,14 @@ import wc_i from "../assets/images/icons/wechat_icon.svg";
 		align-items: center;
 		background-color: #333333;
 		font-size: 1rem;
+	}
+
+	@media (max-width: 480px) {
+		.sgds.footer .footer-mandatory-links ul {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
 	}
 
 	.sgds.footer .footer-mandatory-links ul li {

@@ -6,8 +6,10 @@ import navMenuIcon from "../assets/images/layout/navmenu_icon.svg";
 ---
 
 <header class="main-header">
-	<Image src={SGN} class="sgn-logo" alt="SGN" />
-	<Image src={SG60} class="sg60-logo" alt="SG60" />
+	<div class="header-logos">
+		<Image src={SGN} class="sgn-logo" alt="SGN" />
+		<Image src={SG60} class="sg60-logo" alt="SG60" />
+	</div>
 	<button class="button btn-secondary menu-button" data-my-toggle="collapse" data-my-target="#navbar">
 		<p>Menu</p>
 		<Image src={navMenuIcon} class="nav-menu-icon" alt="Menu" />
@@ -22,6 +24,19 @@ import navMenuIcon from "../assets/images/layout/navmenu_icon.svg";
 		background-color: var(--dark-grey);
 	}
 
+	@media (max-width: 480px) {
+		.main-header {
+			padding: 3.25rem 1rem 1.5rem;
+		}
+	}
+
+	.header-logos {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
 	.sgn-logo {
 		width: 79px;
 		height: 52px;
@@ -32,8 +47,8 @@ import navMenuIcon from "../assets/images/layout/navmenu_icon.svg";
 		width: 2rem;
 		height: 2rem;
 		object-fit: cover;
-		margin-left: 1.5rem;
 	}
+
 	.menu-button {
 		display: flex;
 		align-items: center;
