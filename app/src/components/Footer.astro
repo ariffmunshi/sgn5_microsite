@@ -14,8 +14,10 @@ import wc_i from "../assets/images/icons/wechat_icon.svg";
 
 <footer class="main-footer">
 	<div class="footer">
-		<Image src={SGN} class="sgn-logo" alt="SGN" />
-		<Image src={SG60} class="sg60-logo" alt="SG60" />
+		<div class="footer-logos">
+			<Image src={SGN} class="sgn-logo" alt="SGN" />
+			<Image src={SG60} class="sg60-logo" alt="SG60" />
+		</div>
 		<div class="footer-icons">
 			<a class="footer-icon" href="#">
 				<Image src={fb_i} alt="Facebook Icon" />
@@ -89,6 +91,15 @@ import wc_i from "../assets/images/icons/wechat_icon.svg";
 		padding: 1.5rem 2.5rem;
 	}
 
+	@media (max-width: 480px) {
+		.footer {
+			flex-direction: column;
+			justify-content: center;
+			gap: 2rem;
+			padding: 1.5rem 2.5rem 4rem;
+		}
+	}
+
 	.sg60-logo {
 		width: 2rem;
 		height: 2rem;
@@ -107,6 +118,12 @@ import wc_i from "../assets/images/icons/wechat_icon.svg";
 		align-items: center;
 		gap: 1.25rem;
 		margin-left: auto;
+	}
+
+	@media (max-width: 480px) {
+		.footer-icons {
+			gap: 0.5rem;
+		}
 	}
 
 	a.footer-icon {
