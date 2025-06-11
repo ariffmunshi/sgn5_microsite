@@ -29,18 +29,10 @@ const otherArticles = [...allArticles.slice(featuredIndex + 1), ...allArticles.s
 		<IconsPageTopSection />
 
 		<!-- Featured article (expanded) -->
-		{
-			featuredArticle && (
-				<IconsArticle id="featured-article" articleId={featuredArticle.id} articleData={featuredArticle.data} />
-			)
-		}
+		{featuredArticle && <IconsArticle id={featuredArticle.id} articleData={featuredArticle.data} />}
 
 		<!-- Other articles (collapsed) -->
-		{
-			otherArticles.map((article) => (
-				<IconsArticle articleId={article.id} collapse={true} articleData={article.data} />
-			))
-		}
+		{otherArticles.map((article) => <IconsArticle id={article.id} collapse={true} articleData={article.data} />)}
 
 		<ResourceSection />
 	</div>

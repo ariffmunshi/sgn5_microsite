@@ -1,7 +1,6 @@
 ---
 export interface Props {
 	collapse?: boolean;
-	articleId?: string;
 	id?: string;
 	articleData: {
 		images: {
@@ -17,8 +16,9 @@ export interface Props {
 	};
 }
 
-const { collapse = false, articleId = "", id = "", articleData } = Astro.props;
+const { collapse = false, id = "", articleData } = Astro.props;
 const { images, content } = articleData;
+const { pathname } = Astro.url;
 ---
 
 <div id={id} class=`icon-article ${collapse ? 'collapse' : ''} primary-light-bg`>
@@ -89,7 +89,7 @@ const { images, content } = articleData;
 		</div>
 		{
 			collapse && (
-				<a class="button btn-primary" href={`/icons/${articleId}#featured-article`}>
+				<a class="button btn-primary" href={`${pathname}/#${id}`}>
 					Read more
 				</a>
 			)
