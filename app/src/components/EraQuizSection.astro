@@ -2,25 +2,33 @@
 import FruitBasket from '../assets/images/fruit-basket.svg?raw'; // Import as raw SVG string
 ---
 
-<div class="era-quiz-container">
-  <div class="ellipse-shadow-svg-container"></div>
-  <div class="frame9704-svg-container" set:html={FruitBasket} />
-  <div class="era-quiz-content-wrapper">
-    <div class="header-text-era-quiz">
-      <h2 class="era-quiz-title">What era do you belong to?</h2>
-      <p class="era-quiz-description">
-        From the industrious spirit of the 60s and 70s, to the pop culture boom of the 90s, to the global ambition of the 2000s and beyond, each era shaped a generation.
-        <br/><br/>
-        What era do you really belong to? Take our quiz to find out!
-      </p>
+<section class="era-quiz-section-wrapper">
+  <div class="era-quiz-container">
+    <div class="ellipse-shadow-svg-container"></div>
+    <div class="frame9704-svg-container" set:html={FruitBasket} />
+    <div class="era-quiz-content-wrapper">
+      <div class="header-text-era-quiz">
+        <h2 class="era-quiz-title">What era do you belong to?</h2>
+        <p class="era-quiz-description">
+          From the industrious spirit of the 60s and 70s, to the pop culture boom of the 90s, to the global ambition of the 2000s and beyond, each era shaped a generation.
+          <br/><br/>
+          What era do you really belong to? Take our quiz to find out!
+        </p>
+      </div>
+      <a href="/era-quiz" class="button btn-primary era-quiz-button">Take the quiz</a>
     </div>
-    <a href="/era-quiz" class="button btn-primary era-quiz-button">Take the quiz</a>
   </div>
-</div>
+</section>
 
 <style>
+  .era-quiz-section-wrapper {
+    padding: 4px;
+    background-color: var(--dark-grey);
+    display: flex;
+  }
+
   .era-quiz-container {
-    flex: 1 1 0; /* From Figma: flex: 1 1 0 */
+    flex: 1 1 0%;
     height: 809px;
     position: relative;
     background-color: var(--primary-light);
@@ -35,7 +43,7 @@ import FruitBasket from '../assets/images/fruit-basket.svg?raw'; // Import as ra
     opacity: 0.10; 
     background: #666666;
     border-radius: 50% 50%; 
-    right: 373.65px; /* Shadow's on the right */
+    right: 373.65px; /* Shadow's on the left */
     top: 783px; 
     z-index: 0;
   }
@@ -100,6 +108,10 @@ import FruitBasket from '../assets/images/fruit-basket.svg?raw'; // Import as ra
   }
 
   @media (max-width: 48rem) {
+    .another-games-section-wrapper {
+      flex-direction: stack;
+    }
+
     .era-quiz-container {
       height: 640px; 
       padding: 32px 16px 300px 16px; 
