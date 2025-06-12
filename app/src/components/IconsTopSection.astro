@@ -3,32 +3,24 @@ import Carousel from "../components/Carousel.astro";
 ---
 
 <div class="icons-top-section primary-light-bg">
-	<div class="content-wrapper">
-		<div class="header-section">
-			<h2>Faces of Singapore</h2>
-			<h4>This SG60, we celebrate the people whose resilience and drive laid the foundation of our nation.</h4>
-		</div>
-		<div class="carousel-section">
-			<Carousel />
-		</div>
+	<div class="header-section">
+		<h2>Faces of Singapore</h2>
+		<h4>This SG60, we celebrate the people whose resilience and drive laid the foundation of our nation.</h4>
+	</div>
+	<div class="carousel-section">
+		<Carousel />
 	</div>
 </div>
 
 <style>
 	.icons-top-section {
 		display: flex;
-		justify-content: center;
-		padding: 52px 38px;
-		border-radius: 0.5rem;
-		width: 100%;
-	}
-
-	.icons-top-section .content-wrapper {
-		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: space-between;
-		width: min(1440px, 100%);
+		padding: 3.25rem 2.5rem;
+		border-radius: 0.5rem;
+		width: 100%;
 		gap: 2rem;
 	}
 

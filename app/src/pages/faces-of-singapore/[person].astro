@@ -1,0 +1,138 @@
+---
+import Layout from "../../layouts/BaseLayout.astro";
+import IntroSection from "../../components/IntroSection.astro";
+import IconsPageTopSection from "../../components/IconsTopSection.astro";
+import IconsArticle from "../../components/IconsArticle.astro";
+import ResourceSection from "../../components/ResourceSection.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+	const articles = await getCollection("iconsArticles");
+
+	return articles.map((article) => ({
+		params: { person: article.id },
+		props: {
+			featuredArticle: article,
+			allArticles: articles,
+		},
+	}));
+}
+
+const { featuredArticle, allArticles } = Astro.props;
+const featuredIndex = allArticles.findIndex((a) => a.id === featuredArticle.id);
+const otherArticles = [...allArticles.slice(featuredIndex + 1), ...allArticles.slice(0, featuredIndex)];
+---
+
+<Layout>
+	<div class="icons-page">
+		<IntroSection tag="Stories" title="Visionaries, trailblazers, nation builders" />
+		<IconsPageTopSection />
+
+		<!-- Featured article (expanded) -->
+		{featuredArticle && <IconsArticle id={featuredArticle.id} articleData={featuredArticle.data} />}
+
+		<!-- Other articles (collapsed) -->
+		{otherArticles.map((article) => <IconsArticle id={article.id} collapse={true} articleData={article.data} />)}
+
+		<ResourceSection />
+	</div>
+</Layout>
+
+<style>
+	.icons-page {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 0.25rem;
+		gap: 0.5rem;
+	}
+</style>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const collapsedArticles = document.querySelectorAll(".icon-article.collapse");
+		const downObserverOptions = {
+			root: null,
+			rootMargin: "0px 0px -100% 0px", // Top edge
+			threshold: 0,
+		};
+		const upObserverOptions = {
+			root: null,
+			rootMargin: "-100% 0px 0px 0px", // Bottom edge
+			threshold: 0,
+		};
+		let lastScrollY = window.scrollY;
+
+		function getScrollDirection() {
+			const currentScrollY = window.scrollY;
+			const isScrollingDown = currentScrollY > lastScrollY;
+			lastScrollY = currentScrollY;
+			return isScrollingDown;
+		}
+
+		// Intersection observer for URL changes
+		const downObserver = new IntersectionObserver((entries) => {
+			const isScrollingDown = getScrollDirection();
+
+			if (isScrollingDown) {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const articleId = entry.target.id;
+						const basePath = window.location.pathname.split("/").slice(0, -1).join("/");
+						const newUrl = `${basePath}/${articleId}`;
+
+						if (window.location.pathname !== newUrl) {
+							history.replaceState(null, "", newUrl);
+						}
+					}
+				});
+			}
+		}, downObserverOptions);
+
+		const upObserver = new IntersectionObserver((entries) => {
+			const isScrollingDown = getScrollDirection();
+
+			if (!isScrollingDown) {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const articleId = entry.target.id;
+						const basePath = window.location.pathname.split("/").slice(0, -1).join("/");
+						const newUrl = `${basePath}/${articleId}`;
+
+						if (window.location.pathname !== newUrl) {
+							history.replaceState(null, "", newUrl);
+						}
+					}
+				});
+			}
+		}, upObserverOptions);
+
+		const allArticles = document.querySelectorAll(".icon-article");
+		allArticles.forEach((article) => {
+			downObserver.observe(article);
+			upObserver.observe(article);
+		});
+
+		// "Read More" button functionality
+		collapsedArticles.forEach((article) => {
+			const readMoreBtn = article.querySelector(".button");
+
+			if (readMoreBtn) {
+				readMoreBtn.addEventListener("click", function (e) {
+					e.preventDefault();
+
+					const buttonId = (e.target as HTMLElement).id;
+					const articleId = buttonId.replace("button-", "");
+					const basePath = window.location.pathname.split("/").slice(0, -1).join("/");
+					const newUrl = `${basePath}/${articleId}`;
+					console.log(newUrl);
+
+					// TODO - Manually trigger GA pageview for the new URL
+
+					article.classList.remove("collapse");
+					(readMoreBtn as HTMLElement).style.display = "none";
+				});
+			}
+		});
+	});
+</script>

@@ -5,13 +5,19 @@ const iconsArticles = defineCollection({
 	loader: file("src/data/iconsArticles.json", { parser: (text) => JSON.parse(text) }),
 	schema: z.object({
 		images: z.object({
-			topImage: z.object({
+			heroImage: z.object({
 				src: z.string(),
 				alt: z.string(),
 			}),
-			bottomImage: z.object({
+			bottomLeftImage: z.object({
 				src: z.string(),
 				alt: z.string(),
+				subtext: z.string(),
+			}),
+			bottomRightImage: z.object({
+				src: z.string(),
+				alt: z.string(),
+				subtext: z.string(),
 			}),
 		}),
 		content: z.object({

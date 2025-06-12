@@ -8,32 +8,24 @@ const { tag, title } = Astro.props;
 ---
 
 <div class="intro-section primary-bg">
-	<div class="content-wrapper">
-		<div class="tag primary-light-bg">
-			{tag}
-		</div>
-		<div class="intro-title">
-			<h2>{title}</h2>
-		</div>
+	<div class="tag primary-light-bg">
+		{tag}
+	</div>
+	<div class="intro-title">
+		<h2>{title}</h2>
 	</div>
 </div>
 
 <style>
 	.intro-section {
 		display: flex;
-		justify-content: center;
-		padding: 52px 38px;
-		border-radius: 0.5rem;
-		width: 100%;
-	}
-
-	.intro-section .content-wrapper {
-		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: space-between;
-		width: min(1440px, 100%);
-		gap: 32px;
+		padding: 3.25rem 2.5rem;
+		border-radius: 0.5rem;
+		width: 100%;
+		gap: 2rem;
 	}
 
 	.intro-section .intro-title h2 {

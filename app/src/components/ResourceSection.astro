@@ -1,36 +1,31 @@
 ---
-
+import { Image } from "astro:assets";
+import resourceImage from "../assets/images/resource-section/ndp.jpg";
 ---
 
 <div class="resource-section">
-	<div class="content-wrapper">
-		<div class="image-col"></div>
-		<div class="content-col">
-			<div class="content-col-text">
-				<h2>Celebrating National Day at home?</h2>
-				<h4>From digital backdrops to printable table-top games and colouring pages, we have you covered.</h4>
-			</div>
-			<a class="button btn-secondary" href="#">Find out more</a>
+	<div class="image-col">
+		<Image src={resourceImage} alt="ndp" class="image-col-image" />
+	</div>
+	<div class="content-col">
+		<div class="content-col-text">
+			<h2>Celebrating National Day at home?</h2>
+			<h4>From digital backdrops to printable table-top games and colouring pages, we have you covered.</h4>
 		</div>
+		<a class="button btn-secondary" href="#">Find out more</a>
 	</div>
 </div>
 
 <style>
 	.resource-section {
 		display: flex;
-		justify-content: center;
+		align-items: center;
+		justify-content: flex-start;
 		background-color: var(--brand);
-		padding: 52px 38px;
+		padding: 3.25rem 2.5rem;
 		border-radius: 0.5rem;
 		width: 100%;
-	}
-
-	.resource-section .content-wrapper {
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
 		gap: 2rem;
-		width: min(1440px, 100%);
 	}
 
 	.resource-section h2,
@@ -46,11 +41,11 @@
 		line-height: 1.1;
 	}
 
-	.resource-section .image-col {
-		height: 200px;
-		width: 200px;
-		border: 5px dashed var(--black);
-		background-color: var(--light-grey);
+	.resource-section .image-col-image {
+		height: 208px;
+		width: 208px;
+		border-radius: 0.5rem;
+		border: 0.25rem solid var(--dark-grey);
 	}
 
 	.resource-section .content-col {

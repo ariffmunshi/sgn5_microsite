@@ -1,11 +1,14 @@
 ---
-export interface Props {
+import { Image } from "astro:assets";
+
+interface Props {
 	collapse?: boolean;
 	id?: string;
 	articleData: {
 		images: {
-			topImage: { src: string; alt: string };
-			bottomImage: { src: string; alt: string };
+			heroImage: { src: string; alt: string };
+			bottomLeftImage: { src: string; alt: string; subtext: string };
+			bottomRightImage: { src: string; alt: string; subtext?: string };
 		};
 		content: {
 			header: { tags: string[]; title: string; subtext: string; author: string; postDate: string };
@@ -18,10 +21,23 @@ export interface Props {
 
 const { collapse = false, id = "", articleData } = Astro.props;
 const { images, content } = articleData;
-const { pathname } = Astro.url;
+
+// Import Images
+// Dynamically import images from public folder
+const imageModules = import.meta.glob(`../assets/images/faces-of-singapore/*/*.{png,jpg,jpeg,webp}`, {
+	eager: true,
+}) as Record<string, { default: any }>;
+
+const getImage = (imagePath: string) => {
+	return imageModules[imagePath].default || null;
+};
+
+const heroImage = getImage(articleData.images.heroImage.src);
+const bottomLeftImage = getImage(articleData.images.bottomLeftImage.src);
+const bottomRightImage = getImage(articleData.images.bottomRightImage.src);
 ---
 
-<div id={id} class=`icon-article ${collapse ? 'collapse' : ''} primary-light-bg`>
+<div id={id} class={`icon-article ${collapse ? "collapse" : ""} primary-light-bg`}>
 	<div class="content-wrapper">
 		<div class="header-section">
 			<div class="icon-article-tags">
@@ -48,16 +64,14 @@ const { pathname } = Astro.url;
 		</div>
 		<div class="top-section">
 			{
-				images.topImage && images.topImage.src && (
+				heroImage && (
 					<div class="top-section-image">
-						<img src={images.topImage.src} alt={images.topImage.alt} />
+						<Image src={heroImage} alt={images.heroImage.alt} />
 					</div>
 				)
 			}
 			<div class="first-para">
-				<h6>
-					{content.introduction.map((paragraph) => <h6>{paragraph}</h6>)}
-				</h6>
+				{content.introduction.map((paragraph) => <h6>{paragraph}</h6>)}
 			</div>
 			{
 				content.body.map((section, index) => (
@@ -74,9 +88,16 @@ const { pathname } = Astro.url;
 		</div>
 		<div class="btm-section">
 			{
-				images.bottomImage && images.bottomImage.src && (
-					<div class="btm-section-image">
-						<img src={images.bottomImage.src} alt={images.bottomImage.alt} />
+				(
+					<div class="image-gallery">
+						<div class="image-card">
+							<Image src={bottomLeftImage} alt={images.bottomLeftImage.alt} />
+							<h6>{images.bottomLeftImage.subtext}</h6>
+						</div>
+						<div class="image-card">
+							<Image src={bottomRightImage} alt={images.bottomRightImage.alt} />
+							<h6>{images.bottomRightImage.subtext}</h6>
+						</div>
 					</div>
 				)
 			}
@@ -89,7 +110,7 @@ const { pathname } = Astro.url;
 		</div>
 		{
 			collapse && (
-				<a class="button btn-primary" href={`${pathname}/#${id}`}>
+				<a id={`button-${id}`} class="button btn-primary">
 					Read more
 				</a>
 			)
@@ -101,7 +122,7 @@ const { pathname } = Astro.url;
 	.icon-article {
 		display: flex;
 		justify-content: center;
-		padding: 52px 38px;
+		padding: 3.25rem 2.5rem;
 		border-radius: 0.5rem;
 		width: 100%;
 	}
@@ -118,6 +139,12 @@ const { pathname } = Astro.url;
 	.icon-article h2 {
 		text-transform: none;
 		line-height: 1;
+	}
+
+	.icon-article img {
+		border-radius: 0.5rem;
+		/* Placeholder image includes border */
+		/* border: 0.25rem solid var(--dark-grey); */
 	}
 
 	.icon-article .header-section,
@@ -162,10 +189,7 @@ const { pathname } = Astro.url;
 	}
 
 	.icon-article .top-section .top-section-image {
-		height: 830px;
 		width: 100%;
-		border: 5px dashed var(--black);
-		background-color: var(--light-grey);
 	}
 
 	.icon-article .first-para,
@@ -192,11 +216,18 @@ const { pathname } = Astro.url;
 		gap: 1.25rem;
 	}
 
-	.icon-article .btm-section .btm-section-image {
-		height: 919px;
+	.icon-article .btm-section .image-gallery {
+		display: flex;
+		gap: 0.5rem;
 		width: 100%;
-		border: 5px dashed var(--black);
-		background-color: var(--light-grey);
+	}
+
+	.icon-article .btm-section .image-gallery .image-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		width: 100%;
+		height: auto;
 	}
 
 	.collapse {
