@@ -1,0 +1,92 @@
+---
+---
+
+<section class="introduction-section">
+  <div class="inner-frame">
+    <div class="header-frame">
+      <div class="header-text">
+        <h2 class="header-title-content">
+          At 60, Singapore is not slowing down. <br />
+          Neither as a nation, nor as a people.
+        </h2>
+        <div class="subtext-content">
+          <p>
+            From our achievements on the global stage to everyday stories of strength and unity, SG60 is our moment to honour our journey while embracing the future with energy and ambition.
+          </p>
+          <p>
+            <strong>Whether its our people or our nation, 60, never looked so good.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .introduction-section {
+    background-color: var(--dark-grey); 
+    padding: 4px; 
+    overflow: hidden;
+  }
+
+  .inner-frame {
+    background-color: var(--primary); 
+    padding: 52px 38px; 
+    border-radius: 8px; 
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px; 
+  }
+
+  .header-frame {
+    width: 100%;
+    z-index: 1; 
+  }
+
+  .header-text {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+    color: var(--dark-grey); 
+  }
+
+  .header-title-content {
+    font-size: 3rem; 
+    line-height: 1; 
+    font-weight: 900;
+    color: var(--dark-grey);
+    text-transform: none;  /* Overwrite H2 from global.css */
+  }
+
+  .subtext-content {
+    font-size: 2rem; 
+    line-height: 1.1; 
+    color: var(--dark-grey);
+  }
+  .subtext-content p {
+    margin-bottom: 1em; 
+  }
+  .subtext-content p:last-child {
+    margin-bottom: 0;
+  }
+  .subtext-content strong {
+    font-weight: 700; 
+  }
+
+  @media (max-width: 48rem) {
+    .inner-frame {
+      padding: 32px 16px; 
+    }
+    .header-title-content {
+      font-size: 2rem; 
+      line-height: 1; 
+    }
+    .subtext-content {
+      font-size: 1rem; 
+      line-height: 1.1;
+    }
+  }
+</style>

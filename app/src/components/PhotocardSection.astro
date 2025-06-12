@@ -1,0 +1,169 @@
+---
+const youtubeVideoId = "UcwjvSgEpS0";
+---
+
+<section class="photocard-section">
+  <div class="photocard-inner-frame">
+  <iframe
+    id="youtube-video-player"
+    class="youtube-iframe"
+    src=""
+    title="Photocard video player"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+
+  <div class="content-wrapper" id="initial-photocard-content">
+      <button class="play-button" aria-label="Play video">
+        <div class="play-icon">
+          <div class="play-vector"></div>
+        </div>
+        <span class="play-text">Play</span>
+      </button>
+      <noscript>
+        <p style="color: white; text-align: center; margin-top: 20px;">
+          To watch this video, please enable JavaScript, or 
+          <a href={`https://www.youtube.com/watch?v=${youtubeVideoId}`} target="_blank" rel="noopener noreferrer" style="color: var(--primary);">watch on YouTube</a>.
+        </p>
+      </noscript>
+    </div>
+  </div>
+</section>
+
+<style>
+  .photocard-section {
+    /* Photocard styles from Figma */
+    align-self: stretch;
+    height: 806.38px;
+    padding: 2px;
+    background-color: var(--dark-grey);
+
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+
+  .photocard-inner-frame {
+    /* Frame 9527 styles styles adopted from Figma */
+    align-self: stretch;
+    height: 801.38px; 
+    padding: 39.65px;
+    border-radius: 8px;
+    background-image: url('https://img.youtube.com/vi/UcwjvSgEpS0/maxresdefault.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 33.70px;
+  }
+
+  .content-wrapper {
+    /* Frame 9567 styles adopted from Figma */
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 120px; 
+  }
+
+  .play-button {
+    height: 45px;
+    padding: 10px 16px;
+    background-color: var(--brand);
+    border: none;
+    border-radius: 12px;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .play-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+  }
+
+  .play-button:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .play-icon {
+    width: 1.49rem; /* 23.79px */
+    height: 1.49rem; /* 23.79px */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .play-vector {
+    width: 18.83px;
+    height: 19.83px;
+    position: relative;
+    background-color: var(--white); 
+    clip-path: polygon(0 0, 0 100%, 100% 50%); 
+  }
+
+  .play-text {
+    color: var(--white); 
+    font-size: 1rem; 
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .youtube-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; 
+    display: none; 
+    border: none; 
+    border-radius: 8px;
+  }
+
+  @media (max-width: 48rem) {
+    .photocard-section {
+      aspect-ratio: 16 / 9; /* Enforce 16:9 aspect ratio */
+      height: auto; 
+      padding: 4px;
+    }
+    
+    .photocard-inner-frame {
+      width: 100%; 
+    }
+    
+    .play-button {
+      height: 45px; 
+      padding: 10px 16px; 
+    }
+  }
+</style>
+
+<script define:vars={{ youtubeVideoId }}>
+  const playButton = document.querySelector('.photocard-section .play-button');
+  const youtubeIframe = document.getElementById('youtube-video-player');
+  const initialContent = document.getElementById('initial-photocard-content');
+
+  if (playButton && youtubeIframe && initialContent) {
+    playButton.addEventListener('click', () => {
+      youtubeIframe.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&cc_load_policy=1`;
+      youtubeIframe.style.display = 'block';
+      initialContent.style.display = 'none';
+    });
+  }
+</script>

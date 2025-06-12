@@ -1,0 +1,198 @@
+---
+import nasiLemakImg from '../assets/images/food/nasi-lemak.png';
+import rotiPrataImg from '../assets/images/food/roti-prata.png';
+import laksaImg from '../assets/images/food/laksa.png';
+import chickenRiceImg from '../assets/images/food/chicken-rice.png';
+import hokkienMeeImg from '../assets/images/food/hokkien-mee.png';
+import bakChorMeeImg from '../assets/images/food/bak-chor-mee.png';
+---
+
+<div class="hawkernomics-container">
+  <div class="hawkernomics-content-wrapper">
+    <div class="header-hawkernomics">
+      <h2 class="hawkernomics-title">
+        How your hawkers keep your favourite dishes cheap? should they? And at what cost?
+      </h2>
+    </div>
+  </div>
+
+  <img src={nasiLemakImg.src} alt="Nasi Lemak" class="food-image nasi-lemak" />
+  <img src={rotiPrataImg.src} alt="Roti Prata" class="food-image roti-prata" />
+  <img src={laksaImg.src} alt="Laksa" class="food-image laksa" />
+  <img src={chickenRiceImg.src} alt="Chicken Rice" class="food-image chicken-rice" />
+  <img src={hokkienMeeImg.src} alt="Hokkien Mee" class="food-image hokkien-mee" />
+  <img src={bakChorMeeImg.src} alt="Bak Chor Mee" class="food-image bak-chor-mee" />
+</div>
+
+<style>
+  .hawkernomics-container {
+    flex: 1 1 0;
+    min-height: 25rem;
+    padding: 63px 40px;
+    background-color: var(--primary-light);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hawkernomics-content-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 443px;
+    text-align: center;
+  }
+
+  .header-hawkernomics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .hawkernomics-title {
+    color: var(--dark-grey);
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+    text-transform: none;
+  }
+
+  .food-image {
+    position: absolute;
+    z-index: 0;
+    object-fit: cover; 
+  }
+  
+  .nasi-lemak {
+    width: 398.89px; 
+    height: auto; 
+    left: -12.9%; 
+    top: 66.5%;  
+    transform: rotate(-1deg);
+    transform-origin: top left;
+  }
+
+  .roti-prata {
+    width: 444.57px; 
+    height: 419.57px; 
+    left: 75.4%; 
+    top: -28.3%; 
+    transform: rotate(32deg);
+    transform-origin: top left;
+  }
+
+  .laksa {
+    width: 428px;
+    height: 404px; 
+    left: -11.7%; 
+    top: -23.4%;  
+  }
+
+  .chicken-rice {
+    width: 397.12px; 
+    height: 374.89px; 
+    left: 74.6%; 
+    top: 71.2%;  
+    transform: rotate(-82deg); 
+    transform-origin: top left;
+  }
+
+  .hokkien-mee {
+    width: 418.76px; 
+    height: 395.31px; 
+    left: 47.3%; 
+    top: 105.6%;
+    transform: rotate(-60deg);
+    transform-origin: top left;
+  }
+  
+  .bak-chor-mee {
+    width: 418.76px; 
+    height: auto; 
+    left: -5%;  
+    top: 80%;  
+    transform: rotate(-135deg);
+    transform-origin: top left;
+  }
+
+  @media (min-width: 48rem) { /* Desktop */
+    .hawkernomics-container {
+        height: 809px; /* Fixed height from Figma requirement*/
+    }
+  }
+   
+  @media (max-width: 48rem) {
+    .hawkernomics-container {
+      height: 640px; 
+      padding: 200px 48px; 
+      flex: none; 
+
+    }
+
+    .hawkernomics-content-wrapper {
+      width: 100%; 
+      max-width: none; 
+    }
+
+    .hawkernomics-title {
+      font-size: 2rem; 
+      line-height: 1;  
+    }
+
+    .nasi-lemak {
+      width: 239px; 
+      height: auto; 
+      left: 8%;
+      top: 82%; 
+      transform: rotate(-1deg);
+      transform-origin: top left; 
+    }
+
+    .roti-prata {
+      width: 267px; 
+      height: auto; 
+      right: -7%; 
+      top: -25%;  
+      left: auto; 
+      transform: rotate(32deg);
+      transform-origin: top left; 
+    }
+
+    .laksa {
+      width: 257px; 
+      height: auto; 
+      left: -30%; 
+      top: -7%;    
+    }
+
+    .chicken-rice {
+      width: 238px; 
+      height: auto; 
+      right: -10%; 
+      top: 37%;
+      transform: rotate(-82deg);
+      transform-origin: top left;
+    }
+
+    .hokkien-mee {
+      width: 251px; 
+      height: auto;
+      left: 85%;
+      transform: translateX(-50%) rotate(-60deg);
+      top: 93%; 
+    }
+
+    .bak-chor-mee {
+      width: 220px; 
+      height: auto; 
+      left: 2.7%;  
+      top: 100%;  
+      transform: rotate(-135deg);
+      transform-origin: top left; 
+    }
+  }
+</style>

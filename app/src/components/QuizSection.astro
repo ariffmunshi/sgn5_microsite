@@ -1,0 +1,108 @@
+---
+---
+
+<div class="quiz-container">
+  <div class="quiz-content-wrapper">
+    <div class="header-text-quiz">
+      <h2 class="quiz-title">60 years old.</h2>
+      <p class="quiz-description">
+        That’s the median age of hawkers in Singapore. As Singaporeans, we take great pride in our hawkers, but how deeply do we understand the realities of their daily struggles?
+        <br/><br/>
+        Try your hand at running a hawker stall in Hawkernomics.
+      </p>
+    </div>
+    <a href="/play-quiz" class="button btn-primary quiz-button">Play now</a>
+  </div>
+</div>
+
+<style>
+  .quiz-container {
+    width: 100%; 
+    background-color: var(--primary); 
+    padding: 63px 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+  }
+
+  .quiz-content-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+    gap: 3.56rem; 
+  }
+  
+  .header-text-quiz {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+  }
+
+  .quiz-title {
+    color: var(--dark-grey); 
+    font-size: 5.3125rem; /* 85px */
+    font-weight: 900;
+    line-height: 1; /* 85px */
+    margin: 0;
+    text-transform: none; 
+  }
+
+  .quiz-description {
+    color: var(--dark-grey); 
+    font-size: 2rem; 
+    font-weight: 400;
+    line-height: 1.1; /* 35.20px */
+    margin: 0;
+  }
+
+  .quiz-button {
+    min-width: 194px;
+    padding: 16px 24px;
+    background-color: var(--brand); 
+    color: var(--white);
+    font-size: 1.125rem; 
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    align-self: flex-start;
+  }
+
+  @media (min-width: 48rem) {
+    .quiz-container {
+      flex-grow: 1;  
+      flex-basis: 0; 
+    }
+  }
+  
+  @media (max-width: 48rem) {
+    .quiz-container {
+      padding: 32px 16px; 
+    }
+
+    .quiz-content-wrapper {
+      gap: 24px;
+      justify-content: flex-start; 
+    }
+
+    .quiz-title {
+      font-size: 3rem; 
+      line-height: 1; 
+    }
+
+    .quiz-description {
+      font-size: 1rem; 
+      line-height: 1.1; 
+    }
+
+    .quiz-button {
+      padding: 12px 24px; 
+      font-size: 1rem; 
+      min-width: unset; 
+    }
+  }
+</style>

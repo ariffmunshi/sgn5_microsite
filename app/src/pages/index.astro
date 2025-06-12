@@ -1,6 +1,39 @@
 ---
+import HeroSection from '../components/HeroSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import IntroductionSection from '../components/IntroductionSection.astro';
+import IconsSection from '../components/IconsSection.astro';
+import GamesSection from '../components/GamesSection.astro';
+import AnotherGamesSection from '../components/AnotherGamesSection.astro';
+import PhotocardSection from '../components/PhotocardSection.astro';
+import ResourceSection from '../components/ResourceSection.astro'; 
 ---
 
 <BaseLayout>
+    <HeroSection/>
+    <IntroductionSection/>
+    <IconsSection/>
+    <GamesSection />
+    <AnotherGamesSection />
+    <PhotocardSection />
+    <ResourceSection />
 </BaseLayout>
+
+<style is:global>
+.main-header {
+  background: transparent !important;
+  box-shadow: none !important;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 100;
+}
+
+.hero-section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  position: relative;
+  top: 0;
+}
+</style>

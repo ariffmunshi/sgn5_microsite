@@ -1,0 +1,130 @@
+---
+---
+
+<section class="icons-section">
+  <div class="inner-frame">
+    <div class="header-frame">
+      <div class="header-text">
+        <h2 class="header-title-content">Visionaries, trailblazers, nation builders.</h2>
+        <p class="subtext-content">This SG60, we celebrate the people whose resilience and drive laid the foundation of our nation — one story at a time</p>
+      </div>
+      <a href="/icons" class="button btn-primary icon-section-button">Read more</a>
+    </div>
+
+    <!-- Carousel Placeholder -->
+    <div class="carousel-placeholder">
+      <p>[Carousel will be placed here]</p>
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  .icons-section {
+    background-color: var(--dark-grey); 
+    padding: 4px;
+    overflow: hidden;
+  }
+
+  .inner-frame {
+    background-color: var(--primary-light); 
+    padding: 52px 38px;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 32px; 
+    overflow: hidden;
+  }
+
+  .header-frame {
+    width: 100%;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    gap: 24px;
+    z-index: 1;
+  }
+
+  .header-text {
+    flex: 1 1 0; 
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .header-title-content {
+    color: var(--dark-grey); 
+    font-size: 3rem; /* 48px */
+    line-height: 1; /* 48px */
+    font-weight: 900;
+    text-transform: none; 
+  }
+
+  .subtext-content {
+    color: var(--dark-grey); 
+    font-size: 2rem; /* 32px */
+    line-height: 1.1; /* 35.2px */
+    font-weight: 400;
+  }
+  
+  .icon-section-button {
+    min-width: 194px;
+    padding: 16px 24px;
+    background-color: var(--brand); 
+    color: var(--white);
+    font-size: 1.125rem; 
+    border-radius: 12px; 
+    border: none; 
+    text-decoration: none; 
+    display: inline-flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 8px; 
+    overflow: hidden; 
+  }
+
+  .carousel-placeholder {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.05);
+    border: 2px dashed var(--grey);
+    border-radius: 8px;
+    color: var(--grey);
+    font-style: italic;
+  }
+
+  
+  @media (max-width: 48rem) {
+    .inner-frame {
+      padding: 32px 16px; 
+      gap: 24px; 
+    }
+
+    .header-frame {
+      flex-direction: column; 
+      align-items: flex-start; 
+      gap: 24px; 
+    }
+
+    .header-title-content {
+      font-size: 2rem; 
+      line-height: 1; 
+    }
+
+    .subtext-content {
+      font-size: 1rem; 
+      line-height: 1.1; 
+    }
+
+    .icon-section-button {
+      padding: 12px 24px;
+      font-size: 1rem; 
+      min-width: unset; 
+    }
+  }
+</style>

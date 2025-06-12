@@ -1,0 +1,161 @@
+---
+import FruitBasket from '../assets/images/fruit-basket.svg?raw'; // Import as raw SVG string
+---
+
+<div class="era-quiz-container">
+  <div class="ellipse-shadow-svg-container"></div>
+  <div class="frame9704-svg-container" set:html={FruitBasket} />
+  <div class="era-quiz-content-wrapper">
+    <div class="header-text-era-quiz">
+      <h2 class="era-quiz-title">What era do you belong to?</h2>
+      <p class="era-quiz-description">
+        From the industrious spirit of the 60s and 70s, to the pop culture boom of the 90s, to the global ambition of the 2000s and beyond, each era shaped a generation.
+        <br/><br/>
+        What era do you really belong to? Take our quiz to find out!
+      </p>
+    </div>
+    <a href="/era-quiz" class="button btn-primary era-quiz-button">Take the quiz</a>
+  </div>
+</div>
+
+<style>
+  .era-quiz-container {
+    flex: 1 1 0; /* From Figma: flex: 1 1 0 */
+    height: 809px;
+    position: relative;
+    background-color: var(--primary-light);
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .ellipse-shadow-svg-container {
+    position: absolute;
+    width: 582px;
+    height: 16px;
+    opacity: 0.10; 
+    background: #666666;
+    border-radius: 50% 50%; 
+    right: 373.65px; /* Shadow's on the right */
+    top: 783px; 
+    z-index: 0;
+  }
+
+  .frame9704-svg-container {
+    width: 761.65px;
+    height: 708.77px;
+    right: 0px;
+    /*top: 337.13px;*/
+    position: absolute;
+    transform: rotate(-5deg);
+    transform-origin: 250% 50%;
+    box-sizing: border-box;
+    z-index: 0;
+  }
+
+  .frame9704-svg-container :global(svg) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .era-quiz-content-wrapper {
+    position: relative; 
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%;
+    padding: 52px 40px 263px; 
+    box-sizing: border-box;
+    gap: 28px; 
+  }
+  
+  .header-text-era-quiz {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 600px;
+  }
+
+  .era-quiz-title {
+    color: var(--dark-grey);
+    font-size: 3rem; /* 48px */
+    font-weight: 900;
+    line-height: 1; /* 48px */
+    margin: 0;
+  }
+
+  .era-quiz-description {
+    color: var(--dark-grey);
+    font-size: 2rem; /* 32px */
+    font-weight: 400;
+    line-height: 1.1; /* 35.20px */
+    margin: 0;
+  }
+
+  .era-quiz-button {
+    background-color: var(--brand);
+    align-self: flex-start; 
+    border: none; 
+  }
+
+  @media (max-width: 48rem) {
+    .era-quiz-container {
+      height: 640px; 
+      padding: 32px 16px 300px 16px; 
+    }
+
+    .era-quiz-content-wrapper {
+      padding: 0; 
+      height: auto; 
+      justify-content: flex-start;
+      gap: 24px; 
+    }
+
+    .header-text-era-quiz {
+      gap: 12px; 
+      max-width: 100%; 
+    }
+
+    .era-quiz-title {
+      font-size: 2rem; 
+      line-height: 1; 
+    }
+
+    .era-quiz-description {
+      font-size: 1rem; 
+      line-height: 1.1; 
+    }
+
+    .era-quiz-button {
+      padding: 12px 24px; 
+      font-size: 1rem; 
+      min-width: unset;
+    }
+
+    .frame9704-svg-container { 
+      width: 304.66px; 
+      height: 283.51px; 
+      transform: rotate(-15deg); 
+      transform-origin: top left;
+      right: 16px; 
+      bottom: 20px; 
+      left: auto;
+      top: auto; 
+    }
+
+    .ellipse-shadow-svg-container { 
+      position: absolute;
+      height: 33.95px;
+      opacity: 0.10;
+      background: #666666;
+      width: 198.80px; 
+      border-radius: 50% 50%; 
+      right: -10px;
+      bottom: 10px; 
+      left: auto;
+      top: auto; 
+      transform-origin: center;
+    }
+  }
+</style>
