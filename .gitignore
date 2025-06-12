@@ -6,6 +6,7 @@ app/.astro/
 
 # dependencies
 app/node_modules/
+node_modules/
 
 # logs
 app/npm-debug.log*
@@ -35,3 +36,4 @@ infra/**/*.tfstate
 infra/**/*.tfstate.backup
 infra/**/.terraform.lock.hcl
 infra/**/.terragrunt-cache/
+/Assets

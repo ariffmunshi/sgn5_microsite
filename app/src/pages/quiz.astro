@@ -1,0 +1,262 @@
+---
+import LottieAnimation from "astro-integration-lottie/Lottie.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import QuizQuestion from "../components/QuizQuestion.astro";
+import { quizQuestions } from "../questions.js";
+import '@fontsource-variable/dm-sans';
+---
+
+<!-- This is the initial "start quiz" page content -->
+<div id="quiz-page-container" class='quiz-container'>
+    <div id="quiz-lottie-wrapper" class="lottie-wrapper">
+        <LottieAnimation
+            src="/lottie/Fruit Basket - Drop and with Facial Expression.json"
+            autoplay="visible"
+            loop={true} />
+    </div>
+    <div id="quiz-main-text" class="quiz-text-content">
+        <text class="title">6 Eras.1 You</text>
+        <br>
+        <text class="title">Which era are you from?</text>
+         <p class="top-description">
+            Singapore has evolved over the years--from the industrious spirit of
+            the 60s and 70s, to the pop culture boom of the 90s, to the global
+            ambition of the 2000s and beyond. Each era shaped a generation:
+            from nation-builders to trendsetters.
+        </p>
+        <p class="bottom-description">
+            So, which era matches your vibe? Take our quiz to find out.
+        </p>
+    </div>
+    <button id="quiz-start-button" class="btn-secondary">
+        <text id="quiz-start-btn-text">Let's find out!</text>
+    </button>
+</div>
+
+<!-- This is the quiz questions area, initially hidden -->
+<div id="quiz-questions-area" style="display: none;">
+    {quizQuestions.map((question, index) => (
+        <div class:list={["quiz-question-wrapper", { hidden: index !== 0 }]} data-question-index={index}>
+            <QuizQuestion
+                questionNumber={index + 1}
+                totalQuestions={quizQuestions.length}
+                questionText={question.questionText}
+                options={question.options}
+                lottieFileUrl={question.lottieFileUrl}
+            />
+            <!-- 
+              IMPORTANT: Ensure your QuizQuestion.astro component renders a 'Next' button
+              with the class 'quiz-next-button' for the script below to work.
+            -->
+        </div>
+    ))}
+</div>
+
+<style is:global>
+    body {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        height: 100vh;
+        font-family: 'DM Sans Variable', sans-serif;
+        color: #333333;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+    }
+    @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+    .hidden {
+        display: none !important;
+    }
+
+    #quiz-page-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 60px;
+        text-align: center;
+    }
+
+    #quiz-main-text .title {
+        color: var(--General-Off-Black, #222);
+        text-align: center;
+        font-family: "DM Sans Variable";
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 100%; /* 48px */
+        letter-spacing: -2.4px;
+    }
+    #quiz-lottie-wrapper {
+        width: 395.386px;
+        height: 367px;         
+    }
+
+    #quiz-lottie-wrapper lottie-player {
+        display: block;
+    }
+
+    #quiz-main-text .top-description,
+    #quiz-main-text .bottom-description {
+        color: var(--General-Off-Black, #222);
+        text-align: center;
+        font-family: "DM Sans Variable";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 110%; /* 22px */
+        letter-spacing: -0.4px;
+    }
+
+    #quiz-start-button {
+        border-radius: 12px;
+        background: var(--SGN-Brand-Red, #A90911);
+        display: flex;
+        min-width: 194px;
+        padding: 16px 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+
+    #quiz-start-button:hover {
+        background: #8a0710;
+    }
+    #quiz-start-btn-text{
+        color: var(--General-White, #FFF);
+        text-align: center;
+        font-family: "DM Sans Variable";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        flex: 1 0 0;
+    }
+    #quiz-next-button{
+    border-radius: 12px;
+    background: var(--Brand-Brand-Yellow, #FFC803);
+    display: flex;
+    height: 55px;
+    min-width: 194px;
+    padding: 16px 24px;
+    align-items: flex-end;
+    gap: 8px;
+
+  }
+  #quiz-next-button:hover{
+    color: white;
+    
+
+  }
+    .quiz-option {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .quiz-option.selected {
+        background-color: #A90911;
+        color: white;
+        border-color: #A90911;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const startButton = document.getElementById('quiz-start-button');
+        const mainPageContainer = document.getElementById('quiz-page-container');
+        const questionsArea = document.getElementById('quiz-questions-area');
+        const questionWrappers = document.querySelectorAll('.quiz-question-wrapper');
+        //const userAnswers = [];
+
+        // --- 1. Start Quiz Logic ---
+        if (startButton) {
+            startButton.addEventListener('click', () => {
+                if (mainPageContainer) {
+                    mainPageContainer.style.display = 'none';
+                }
+                if (questionsArea) {
+                    questionsArea.style.display = 'block';
+                }
+            });
+        }
+
+        // --- 2. Option Selection Logic ---
+        if (questionsArea) {
+            questionsArea.addEventListener('click', (event) => {
+                if (!event.target) return;
+                
+                const target = event.target as Element;
+                
+                // Handle option selection (adjust selector based on your QuizQuestion component)
+                if (target.classList.contains('quiz-option') || target.closest('.quiz-option')) {
+                    const optionElement = target.classList.contains('quiz-option') ? target : target.closest('.quiz-option');
+                    const questionWrapper = optionElement?.closest('.quiz-question-wrapper');
+                    
+                    if (questionWrapper && optionElement) {
+                        // Remove selected class from all options in this question
+                        const allOptions = questionWrapper.querySelectorAll('.quiz-option');
+                        allOptions.forEach(option => option.classList.remove('selected'));
+                        
+                        // Add selected class to clicked option
+                        optionElement.classList.add('selected');
+                        
+                        // Store the answer
+                        const questionIndex = parseInt((questionWrapper as HTMLElement).dataset.questionIndex || '0', 10);
+                        const optionValue = optionElement.getAttribute('data-value') || optionElement.textContent?.trim() || '';
+                        //userAnswers[questionIndex] = optionValue;
+                        
+                        // Enable the Next button
+                        const nextButton = questionWrapper.querySelector('.quiz-next-button') as HTMLButtonElement;
+                        if (nextButton) {
+                            nextButton.disabled = false;
+                            nextButton.style.opacity = '1';
+                        }
+                    }
+                }
+                
+                // Handle Next button click
+                const nextButton = target.closest('.quiz-next-button');
+                if (nextButton) {
+                    const currentQuestionWrapper = nextButton.closest('.quiz-question-wrapper');
+                    if (!currentQuestionWrapper) return;
+
+                    const currentQuestionIndex = parseInt((currentQuestionWrapper as HTMLElement).dataset.questionIndex || '0', 10);
+                    const nextQuestionIndex = currentQuestionIndex + 1;
+
+                    // Hide the current question
+                    currentQuestionWrapper.classList.add('hidden');
+
+                    if (nextQuestionIndex < questionWrappers.length) {
+                        // Show the next question
+                        const nextQuestionWrapper = questionWrappers[nextQuestionIndex];
+                        if (nextQuestionWrapper) {
+                            nextQuestionWrapper.classList.remove('hidden');
+                        }
+                    } else {
+                        // End of the quiz
+                        //console.log('Quiz finished!', userAnswers);
+                        questionsArea.innerHTML = '<h1>Quiz Complete! Thanks for playing.</h1>';
+                    }
+                }
+            });
+        }
+    });
+</script>
