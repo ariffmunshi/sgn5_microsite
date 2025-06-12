@@ -5,7 +5,7 @@ import resourceImage from "../assets/images/resource-section/ndp.jpg";
 
 <div class="resource-section">
 	<div class="image-col">
-		<Image src={resourceImage} alt="ndp" class="image-col-image" />
+		<Image src={resourceImage} alt="ndp" />
 	</div>
 	<div class="content-col">
 		<div class="content-col-text">
@@ -22,10 +22,17 @@ import resourceImage from "../assets/images/resource-section/ndp.jpg";
 		align-items: center;
 		justify-content: flex-start;
 		background-color: var(--brand);
-		padding: 3.25rem 2.5rem;
+		padding: 3.25rem 2.375rem;
 		border-radius: 0.5rem;
 		width: 100%;
 		gap: 2rem;
+	}
+
+	@media (max-width: 48rem) {
+		.resource-section {
+			flex-direction: column;
+			padding: 2rem 1rem;
+		}
 	}
 
 	.resource-section h2,
@@ -41,17 +48,40 @@ import resourceImage from "../assets/images/resource-section/ndp.jpg";
 		line-height: 1.1;
 	}
 
-	.resource-section .image-col-image {
-		height: 208px;
-		width: 208px;
+	@media (max-width: 48rem) {
+		.resource-section h2 {
+			font-size: 1.5rem;
+		}
+		.resource-section h4 {
+			font-size: 1rem;
+		}
+	}
+
+	.resource-section .image-col {
+		display: flex;
 		border-radius: 0.5rem;
 		border: 0.25rem solid var(--dark-grey);
+	}
+
+	.resource-section .image-col img {
+		height: 200px;
+		width: 200px;
+	}
+
+	@media (max-width: 48rem) {
+		.resource-section .image-col {
+			width: 100%;
+		}
+
+		.resource-section .image-col img {
+			height: 100%;
+			width: 100%;
+		}
 	}
 
 	.resource-section .content-col {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
 		gap: 1.5rem;
 	}
 
@@ -64,6 +94,6 @@ import resourceImage from "../assets/images/resource-section/ndp.jpg";
 
 	.resource-section .content-col .button {
 		padding: 1rem 1.5rem;
-		min-width: 194px;
+		width: 194px;
 	}
 </style>
