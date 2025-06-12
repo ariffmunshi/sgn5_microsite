@@ -53,7 +53,7 @@ const { pathname } = Astro.url;
 		z-index: 100;
 	}
 
-	@media (max-width: 480px) {
+	@media (max-width: 48rem) {
 		.main-menu {
 			padding: 4.75rem 1rem 1.5rem;
 		}
@@ -90,7 +90,7 @@ const { pathname } = Astro.url;
 		padding-top: 3.5rem;
 	}
 
-	@media (max-width: 480px) {
+	@media (max-width: 48rem) {
 		.nav-list {
 			gap: 2rem;
 		}
@@ -104,7 +104,7 @@ const { pathname } = Astro.url;
 		padding-left: 3.5rem;
 	}
 
-	@media (max-width: 480px) {
+	@media (max-width: 48rem) {
 		.list-item > a {
 			font-size: 2rem;
 			gap: 2rem;
@@ -120,7 +120,7 @@ const { pathname } = Astro.url;
 		transition: opacity 0.25s ease;
 	}
 
-	@media (max-width: 480px) {
+	@media (max-width: 48rem) {
 		.list-item > a::before {
 			content: none;
 		}
@@ -138,9 +138,9 @@ const { pathname } = Astro.url;
 		transform: translateX(1rem);
 	}
 
-	@media (max-width: 480px) {
+	@media (max-width: 48rem) {
 		.list-item > a:hover span {
-			transform: translateX(1rem);
+			transform: translateX(0);
 		}
 	}
 
