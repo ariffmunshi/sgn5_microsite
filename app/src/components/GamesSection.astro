@@ -1,0 +1,33 @@
+---
+import QuizSection from './QuizSection.astro';
+import HawkernomicsSection from './HawkernomicsSection.astro';
+---
+
+<section class="games-section-wrapper">
+  <QuizSection />
+  <HawkernomicsSection />
+</section>
+
+<style>
+  .games-section-wrapper {
+    display: flex;
+    gap: 8px; /* Gap needed between Quiz and Hawkernomics sections */
+    padding: 4px;
+    background-color: var(--dark-grey); 
+  }
+
+  /* Desktop: Side by side */
+  @media (min-width: 48rem) { 
+    .games-section-wrapper {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  }
+
+  /* Mobile: Stacked */
+  @media (max-width: 48rem) { 
+    .games-section-wrapper {
+      flex-direction: column;
+    }
+  }
+</style>

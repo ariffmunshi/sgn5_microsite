@@ -1,0 +1,31 @@
+---
+import EraQuizSection from './EraQuizSection.astro';
+---
+
+<section class="another-games-section-wrapper">
+  <EraQuizSection />
+</section>
+
+<style>
+  .another-games-section-wrapper {
+    display: flex;
+    gap: 8px; 
+    padding: 4px;
+    background-color: var(--dark-grey);
+  }
+
+  /* Desktop: side by side  */
+  @media (min-width: 48rem) { 
+    .another-games-section-wrapper {
+      flex-direction: row;
+      align-items: stretch; 
+    }
+  }
+
+  /* Mobile: stacked */
+  @media (max-width: 48rem) { 
+    .another-games-section-wrapper {
+      flex-direction: stack;
+    }
+  }
+</style>
