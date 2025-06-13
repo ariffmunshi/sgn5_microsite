@@ -54,9 +54,9 @@ import '@fontsource-variable/dm-sans';
 
 <style is:global>
     body {
-        background-color: #F8EABB;
-        background-image: url('/grain_overlay_tile.webp'), url('/Background Texture.webp');
-        background-blend-mode: multiply;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
         height: 100vh;
         font-family: 'DM Sans Variable';
         color: #333333;
@@ -164,7 +164,7 @@ import '@fontsource-variable/dm-sans';
     min-width: 194px;
     padding: 16px 24px;
     align-items: flex-end;
-    gap: 32px;
+    gap: 8px;
 
   }
   #quiz-next-button:hover{
@@ -194,19 +194,6 @@ import '@fontsource-variable/dm-sans';
     pointer-events: none;
     z-index: 9999;
     transition: opacity 1.2s ease-in-out;
-}
- /* White out transition overlay */
-    #quiz-questions-area {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    max-width: 600px; /* Optional: limit max width for better readability */
-    margin: 0 auto; /* Center the container itself */
-    padding: 20px; /* Optional: add some padding */
-    box-sizing: border-box;
 }
 
 .white-transition.active {
@@ -256,10 +243,19 @@ import '@fontsource-variable/dm-sans';
         line-height: normal;
         flex: 1 0 0;
     }
-    #quiz-next-button{
-        gap: 24px
-    }
-
+    /* White out transition overlay */
+    #quiz-questions-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 600px; /* Optional: limit max width for better readability */
+    margin: 0 auto; /* Center the container itself */
+    padding: 20px; /* Optional: add some padding */
+    box-sizing: border-box;
+}
 }
 </style>
 

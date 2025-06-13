@@ -72,52 +72,34 @@ const {
     font-weight: 600;
   }
 
-  /* Add this missing style for the question text */
+
   #quiz-question-screen .question-text {
     margin: 0; /* Remove default h1 margins */
     font-size: 1.5rem; /* Adjust as needed */
     font-weight: 700;
     font-family: "DM Sans Variable";
-  }
-   #quiz-question-screen .options-container {
-    display: grid; /* Changed from flex to grid */
-    gap: 12px;
-    /* width: 100%; */ /* Removed to allow container to size to content */
-    /* flex-direction, justify-content, flex-wrap removed as they are flex properties */
-    justify-items: stretch; /* Makes grid items (buttons) stretch to column width */
-  }
-  #quiz-question-screen .quiz-option {
-    border-radius: 8px;
-    border: 4px solid var(--General-Off-Black, #222);
-    display: flex; /* For aligning content within the button (e.g., text) */
-    padding: 24px;
-    justify-content: center; /* Aligns text inside button */
-    align-items: center;   /* Aligns text inside button */
-    /* align-self: center; */ /* Removed - grid items stretch by default */
-    gap: 8px;
-    background: transparent;
-    color: var(--General-Off-Black, #222);
     text-align: center;
-    font-family: "DM Sans Variable";
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 140%; /* 28px */
-    white-space: nowrap; /* Ensures button width is based on text content */
-    min-height: 80px; /* Consistent minimum height for all buttons */
-    /* flex: 1; */ /* Removed - not needed for width in this grid context */
-  }
-  #quiz-question-screen .quiz-option {
-    border-radius: 8px;
-    border: 4px solid var(--General-Off-Black, #222);
+}
+
+#quiz-question-screen .options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-items: stretch;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    min-width: 894px;
+}
+
+#quiz-question-screen .quiz-option {
     display: flex;
     padding: 24px;
     justify-content: center;
     align-items: center;
-    align-self: center; /* Changed from stretch to center, allowing button width to fit content */
     gap: 8px;
-    /* align-self: stretch; */ /* In a row, this would stretch height. flex:1 below handles width distribution. */
-    background: transparent;
+    border-radius: 8px;
+    border: 4px solid var(--General-Off-Black, #222);
     color: var(--General-Off-Black, #222);
     text-align: center;
     font-family: "DM Sans Variable";
@@ -125,10 +107,15 @@ const {
     font-style: normal;
     font-weight: 600;
     line-height: 140%; /* 28px */
-    white-space: nowrap; /* Prevents text wrapping */
-    min-height: 80px; /* Consistent minimum height for all buttons */
-    flex: 1; 
-  }
+    background: transparent;
+    cursor: pointer;
+    min-width: 194px;
+    /* Prevent text wrapping and stretch to content */
+    white-space: nowrap;
+    min-width: 100%;
+    box-sizing: border-box;
+    align-self: : stretch;
+}
   #quiz-question-screen .quiz-option:hover {
     background: #fef7c7;
   }
@@ -163,6 +150,61 @@ const {
   color: transparent;
   cursor: not-allowed;
 }
+@media all and (max-width: 500px) {
+  #quiz-question-screen .quiz-container {
+    display: flex;
+    width: 350px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+#quiz-question-screen .question-text {
+    color: var(--General-Off-Black, #222);
+    text-align: center;
+    font-family: "DM Sans Variable";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 100%; /* 24px */
+    letter-spacing: -1.2px;
+    align-self: stretch;
+  }
   
+  #quiz-question-screen .options-container {
+    display: grid;
+    gap: 12px;
+    justify-items: stretch;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    min-width: auto;
+  }
+#quiz-question-screen .quiz-option {
+    display: flex;
+    min-width: 194px;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 4px solid var(--General-Off-Black, #222);
+    color: var(--General-Off-Black, #222);
+    text-align: center;
+    font-family: "DM Sans Variable";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 22.4px */
+    flex: 1 0 0;
+    box-sizing: border-box;
+    /* Text wrapping fixes */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    white-space: normal; /* Allow text to wrap */
+    min-height: auto
+    height:100%;
+  }
+}
 </style>
 
