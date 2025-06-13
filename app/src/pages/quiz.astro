@@ -2,7 +2,7 @@
 import LottieAnimation from "astro-integration-lottie/Lottie.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import QuizQuestion from "../components/QuizQuestion.astro";
-import { quizQuestions } from "../questions.js";
+import { quizQuestions} from "../questions.js";
 import '@fontsource-variable/dm-sans';
 ---
 <!-- This is the initial "start quiz" page content -->
@@ -264,31 +264,107 @@ import '@fontsource-variable/dm-sans';
 </style>
 
 <script>
+    import {calculateERAScores, ERAS, questionScores } from "../questions.js";
     document.addEventListener('DOMContentLoaded', () => {
-        const startButton = document.getElementById('quiz-start-button');
-        const mainPageContainer = document.getElementById('quiz-page-container');
-        const questionsArea = document.getElementById('quiz-questions-area');
-        const questionWrappers = document.querySelectorAll('.quiz-question-wrapper');
-        const userAnswers: string[] = [];
+    const startButton = document.getElementById('quiz-start-button');
+    const mainPageContainer = document.getElementById('quiz-page-container');
+    const questionsArea = document.getElementById('quiz-questions-area');
+    const questionWrappers = document.querySelectorAll('.quiz-question-wrapper');
+    const userAnswers: Number[] = [];
 
-        // Create white transition overlay
-        const whiteTransition = document.createElement('div');
-        whiteTransition.className = 'white-transition';
-        document.body.appendChild(whiteTransition);
+    // Create white transition overlay
+    const whiteTransition = document.createElement('div');
+    whiteTransition.className = 'white-transition';
+    document.body.appendChild(whiteTransition);
 
-        // --- 1. Start Quiz Logic with white transition ---
-        if (startButton) {
-            startButton.addEventListener('click', () => {
+    // --- 1. Start Quiz Logic with white transition ---
+    if (startButton) {
+        startButton.addEventListener('click', () => {
+            // Trigger white transition
+            whiteTransition.classList.add('active');
+
+            // Wait for transition to complete, then change content
+            setTimeout(() => {
+                if (mainPageContainer) {
+                    mainPageContainer.style.display = 'none';
+                }
+                if (questionsArea) {
+                    questionsArea.style.display = 'block';
+                }
+
+                // Remove white transition after content change
+                setTimeout(() => {
+                    whiteTransition.classList.remove('active');
+                }, 200); // Small delay to ensure content is visible
+
+            }, 600); // Half of the 1.2s transition duration
+        });
+    }
+
+    // --- 2. Option Selection Logic ---
+    if (questionsArea) {
+        questionsArea.addEventListener('click', (event) => {
+            if (!event.target) return;
+            
+            const target = event.target as Element;
+            
+            // Handle option selection (adjust selector based on your QuizQuestion component)
+            if (target.classList.contains('quiz-option') || target.closest('.quiz-option')) {
+                const optionElement = target.classList.contains('quiz-option') ? target : target.closest('.quiz-option');
+                const questionWrapper = optionElement?.closest('.quiz-question-wrapper');
+                
+                if (questionWrapper && optionElement) {
+                    // Remove selected class from all options in this question
+                    const allOptions = questionWrapper.querySelectorAll('.quiz-option');
+                    allOptions.forEach(option => option.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    optionElement.classList.add('selected');
+                    
+                      // Store the answer
+                        const questionIndex = parseInt((questionWrapper as HTMLElement).dataset.questionIndex || '0', 10);
+                        const optionIndex = parseInt((optionElement as HTMLElement).dataset.optionIndex || '0', 10);
+                        userAnswers[questionIndex] = optionIndex;
+                    
+                    // Enable the Next button
+                    const nextButton = questionWrapper.querySelector('.quiz-next-button') as HTMLButtonElement;
+                    if (nextButton) {
+                        nextButton.disabled = false;
+                        nextButton.style.opacity = '1';
+                    }
+                }
+            }
+            
+            // Handle Next button click with white transition
+            const nextButton = target.closest('.quiz-next-button');
+            if (nextButton) {
+                const currentQuestionWrapper = nextButton.closest('.quiz-question-wrapper');
+                if (!currentQuestionWrapper) return;
+
+                const currentQuestionIndex = parseInt((currentQuestionWrapper as HTMLElement).dataset.questionIndex || '0', 10);
+                const nextQuestionIndex = currentQuestionIndex + 1;
+
                 // Trigger white transition
                 whiteTransition.classList.add('active');
 
                 // Wait for transition to complete, then change content
                 setTimeout(() => {
-                    if (mainPageContainer) {
-                        mainPageContainer.style.display = 'none';
-                    }
-                    if (questionsArea) {
-                        questionsArea.style.display = 'block';
+                    // Hide the current question
+                    currentQuestionWrapper.classList.add('hidden');
+
+                    if (nextQuestionIndex < questionWrappers.length) {
+                        // Show the next question
+                        const nextQuestionWrapper = questionWrappers[nextQuestionIndex];
+                        if (nextQuestionWrapper) {
+                            nextQuestionWrapper.classList.remove('hidden');
+                        }
+                    } else {
+                        // End of the quiz and
+                        console.log('Quiz finished!', userAnswers);
+                        let eraIndex = calculateERAScores(userAnswers);
+                        let ERA = ERAS[eraIndex];
+                        questionsArea.innerHTML = `<h1>Quiz Complete! Thanks for playing.ERA: ${ERA}</h1>`;
+                        console.log(ERA);
                     }
 
                     // Remove white transition after content change
@@ -297,80 +373,8 @@ import '@fontsource-variable/dm-sans';
                     }, 200); // Small delay to ensure content is visible
 
                 }, 600); // Half of the 1.2s transition duration
-            });
-        }
-
-        // --- 2. Option Selection Logic ---
-        if (questionsArea) {
-            questionsArea.addEventListener('click', (event) => {
-                if (!event.target) return;
-                
-                const target = event.target as Element;
-                
-                // Handle option selection (adjust selector based on your QuizQuestion component)
-                if (target.classList.contains('quiz-option') || target.closest('.quiz-option')) {
-                    const optionElement = target.classList.contains('quiz-option') ? target : target.closest('.quiz-option');
-                    const questionWrapper = optionElement?.closest('.quiz-question-wrapper');
-                    
-                    if (questionWrapper && optionElement) {
-                        // Remove selected class from all options in this question
-                        const allOptions = questionWrapper.querySelectorAll('.quiz-option');
-                        allOptions.forEach(option => option.classList.remove('selected'));
-                        
-                        // Add selected class to clicked option
-                        optionElement.classList.add('selected');
-                        
-                        // Store the answer
-                        const questionIndex = parseInt((questionWrapper as HTMLElement).dataset.questionIndex || '0', 10);
-                        const optionValue = optionElement.getAttribute('data-value') || optionElement.textContent?.trim() || '';
-                        userAnswers[questionIndex] = optionValue;
-                        
-                        // Enable the Next button
-                        const nextButton = questionWrapper.querySelector('.quiz-next-button') as HTMLButtonElement;
-                        if (nextButton) {
-                            nextButton.disabled = false;
-                            nextButton.style.opacity = '1';
-                        }
-                    }
-                }
-                
-                // Handle Next button click with white transition
-                const nextButton = target.closest('.quiz-next-button');
-                if (nextButton) {
-                    const currentQuestionWrapper = nextButton.closest('.quiz-question-wrapper');
-                    if (!currentQuestionWrapper) return;
-
-                    const currentQuestionIndex = parseInt((currentQuestionWrapper as HTMLElement).dataset.questionIndex || '0', 10);
-                    const nextQuestionIndex = currentQuestionIndex + 1;
-
-                    // Trigger white transition
-                    whiteTransition.classList.add('active');
-
-                    // Wait for transition to complete, then change content
-                    setTimeout(() => {
-                        // Hide the current question
-                        currentQuestionWrapper.classList.add('hidden');
-
-                        if (nextQuestionIndex < questionWrappers.length) {
-                            // Show the next question
-                            const nextQuestionWrapper = questionWrappers[nextQuestionIndex];
-                            if (nextQuestionWrapper) {
-                                nextQuestionWrapper.classList.remove('hidden');
-                            }
-                        } else {
-                            // End of the quiz
-                            console.log('Quiz finished!', userAnswers);
-                            questionsArea.innerHTML = '<h1>Quiz Complete! Thanks for playing.</h1>';
-                        }
-
-                        // Remove white transition after content change
-                        setTimeout(() => {
-                            whiteTransition.classList.remove('active');
-                        }, 200); // Small delay to ensure content is visible
-
-                    }, 600); // Half of the 1.2s transition duration
-                }
-            });
-        }
-    });
+            }
+        });
+    }
+});
 </script>  

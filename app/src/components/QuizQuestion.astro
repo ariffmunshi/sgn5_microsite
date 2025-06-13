@@ -35,8 +35,10 @@ const {
     </h1>
 
     <div class="options-container">
-      {options.map(text => (
-        <button class="quiz-option">{text}</button>
+      {options.map((text, index) => (
+        <button class="quiz-option" data-option-index={index}>
+          {text}
+        </button>
       ))}
     </div>
 
