@@ -209,9 +209,9 @@ import '@fontsource-variable/dm-sans';
     box-sizing: border-box;
 }
 
-.white-transition.active {
-    opacity: 1;
-}
+    .white-transition.active {
+        opacity: 1;
+    }
     @media all and (max-width: 500px) {
 
         #quiz-lottie-wrapper {
@@ -222,7 +222,7 @@ import '@fontsource-variable/dm-sans';
     #quiz-lottie-wrapper lottie-player {
         display: block;
     }
-    
+
         #quiz-main-text .top-description,
     #quiz-main-text .bottom-description {
         color: var(--General-Off-Black, #222);
@@ -260,11 +260,59 @@ import '@fontsource-variable/dm-sans';
         gap: 24px
     }
 
-}
+    }
 </style>
 
 <script>
-    import {calculateERAScores, ERAS, questionScores } from "../questions.js";
+    import { appendForwardSlash } from "astro:actions";
+import {calculateERAScores, ERAS, questionScores } from "../questions.js";
+    let nextButtonPressCount = 0;
+    // Function to apply gradient background
+    function applyGradientBackground(background: string) {
+        console.log(background)
+        document.body.style.backgroundColor = "transparent"; // Clear solid color if any
+        document.body.style.backgroundImage = `linear-gradient(${background})`; // Only sets the image
+        document.body.style.backgroundBlendMode = 'overlay'; 
+        document.body.style.backgroundSize = '400% 400%'; 
+        document.body.style.animation = 'gradient 15s ease infinite';
+        document.body.style.height = '100vh';
+    }
+    // Add event listener to next button
+    document.addEventListener('click', function(event) {
+        if (event.target && ((event.target as Element).matches('.quiz-next-button'))) { // Adjust selector as needed
+            nextButtonPressCount++;
+            console.log(`Next button pressed ${nextButtonPressCount} times`);
+            // Apply gradient after certain number of presses
+        if (nextButtonPressCount === 0) {
+            applyGradientBackground('-45deg, #ff5f6d, #ffc371, #8e44ad, #3498db'); // Warm and vibrant
+        }
+        if (nextButtonPressCount === 1) {
+            applyGradientBackground('-45deg, #00c6ff, #0072ff, #2ecc71, #27ae60'); // Cool blues and greens
+        }
+        if (nextButtonPressCount === 2) {
+            applyGradientBackground('-45deg, #ff9a9e, #fad0c4, #fdcb6e, #f15f79'); // Soft and pastel
+        }
+        if (nextButtonPressCount === 3) {
+            applyGradientBackground('-45deg, #7f00ff, #e100ff, #e74c3c, #c0392b'); // Deep purples and reds
+        }
+        if (nextButtonPressCount === 4) {
+            applyGradientBackground('-45deg, #f7971e, #ffd200, #3498db, #2980b9'); // Earthy tones with blue
+        }
+        if (nextButtonPressCount === 5) {
+            applyGradientBackground('-45deg, #16a085, #f4d03f, #c0392b, #8e44ad'); // Contrasting greens, yellows, reds, and purples
+        }
+        if (nextButtonPressCount === 6) {
+            applyGradientBackground('-45deg, #ff0844, #ffb199, #000428, #004e92'); // Bold reds and deep blues
+        }
+        if (nextButtonPressCount === 7) {
+            applyGradientBackground('-45deg, #d3cce3, #e9e4f0, #ff8c00, #ff2d55'); // Muted purples and vibrant oranges/reds
+        }
+            // Reset count after applying gradient
+            if (nextButtonPressCount >= 7) {
+                nextButtonPressCount = 0; // Reset to 0 after reaching 7
+            }
+        }
+    });
     document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('quiz-start-button');
     const mainPageContainer = document.getElementById('quiz-page-container');
@@ -282,7 +330,7 @@ import '@fontsource-variable/dm-sans';
         startButton.addEventListener('click', () => {
             // Trigger white transition
             whiteTransition.classList.add('active');
-
+            applyGradientBackground('-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab');
             // Wait for transition to complete, then change content
             setTimeout(() => {
                 if (mainPageContainer) {
